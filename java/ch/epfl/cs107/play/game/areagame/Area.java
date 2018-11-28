@@ -32,6 +32,9 @@ public abstract class Area implements Playable {
     private Actor viewCandidate;
     // effective center of the view
     private Vector viewCenter;
+    private AreaBehavior areaBehavior;
+    //to know if a area has already been played
+    private boolean savedGame;
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
 
@@ -179,8 +182,14 @@ public abstract class Area implements Playable {
     public void suspend(){
         // Do nothing by default
         purgeRegistration();
+        //set the resume value to true so we know there is a current are
+        savedGame = true;
     }
 
+//function to know if the area has been played
+    public boolean isSavedGame() {
+        return savedGame;
+    }
 
     @Override
     public void end() {
@@ -203,6 +212,8 @@ public abstract class Area implements Playable {
     public final void setViewCandidate(Actor a){
         this.viewCandidate = a;
     }
-
+    protected final void setBehavior(AreaBehavior ab){
+        areaBehavior = ab;
+    };
 }
 

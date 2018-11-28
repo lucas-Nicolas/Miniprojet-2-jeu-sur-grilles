@@ -68,7 +68,8 @@ public class Demo1 implements Game {
                         Color.RED, 0.005f));
         movingRock = new MovingRock(pos,"Hello, I am a moving rock");
 
-        return true;}
+        return true;
+    }
 
     public double distanceFromMovingRock(MovingRock a, Actor b){
         return  Math.sqrt(Math.pow(a.getPosition().x+0.05-b.getPosition().x,2)+Math.pow(a.getPosition().y +0.05- b.getPosition().y,2));

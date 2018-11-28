@@ -4,6 +4,9 @@ import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Window;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * AreaGame is a type of Game displayed in a (MxN) Grid called Area
@@ -13,13 +16,17 @@ abstract public class AreaGame implements Game {
 
     // Context objects
     // TODO implements me #PROJECT #TUTO
-
+    private Window window;
+    private FileSystem fileSystem;
+    private Map<String, Area> areas;
+    private Area currentArea;
     /**
      * Add an Area to the AreaGame list
      * @param a (Area): The area to add, not null
      */
     protected final void addArea(Area a){
         // TODO implements me #PROJECT #TUTO
+        areas.put(a.getTitle(), a);
     }
 
     /**
@@ -31,6 +38,21 @@ abstract public class AreaGame implements Game {
      */
     protected final Area setCurrentArea(String key, boolean forceBegin){
         // TODO implements me #PROJECT #TUTO
+        String name=null;
+        if(currentArea!=null){
+            currentArea.suspend();
+            name = currentArea.getTitle();
+        }
+        currentArea = areas.get(key);
+        if (currentArea!=null){
+            if(!currentArea.isSavedGame()||forceBegin){
+                currentArea.begin(window, fileSystem);
+            }else{
+                currentArea.resume(window, fileSystem);
+            }
+        }else{
+            currentArea= areas.get(name);
+        }
         return null;
     }
 
@@ -53,6 +75,9 @@ abstract public class AreaGame implements Game {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         // TODO implements me #PROJECT #TUTO
+        this.fileSystem = fileSystem;
+        this.window = window;
+        areas = new HashMap<>();
         return true;
     }
 
@@ -60,11 +85,13 @@ abstract public class AreaGame implements Game {
     @Override
     public void update(float deltaTime) {
         // TODO implements me #PROJECT #TUTO
+        currentArea.update(deltaTime);
     }
 
     @Override
     public void end() {
         // TODO save the game states somewhere
+
     }
 
 }
