@@ -29,7 +29,7 @@ public class MovingRock extends GraphicsEntity implements Actor {
 
     @Override
     public void update(float deltaTime){
-    // (here compute displakcement in function of deltaTime for example)
+    // (here compute displacement in function of deltaTime for example)
     // for simplification, deltaTime ignored :
         setCurrentPosition(getPosition().sub(0.005f, 0.005f)); }
 }

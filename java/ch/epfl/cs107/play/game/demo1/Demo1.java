@@ -58,7 +58,7 @@ public class Demo1 implements Game {
         }
     }
     public boolean begin(Window window, FileSystem fileSystem){
-        Vector pos = new Vector(0.3f,0.1f);
+        Vector pos = new Vector(0.2f,0.1f);
         float radius= 0.2f;
         this.fileSystem = fileSystem;
         this.window = window;
