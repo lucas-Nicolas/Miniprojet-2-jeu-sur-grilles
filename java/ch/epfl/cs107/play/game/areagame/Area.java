@@ -5,6 +5,8 @@ import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.math.Transform;
+import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
@@ -26,9 +28,16 @@ public abstract class Area implements Playable {
     private List<Actor> actors;
     private List<Actor> registeredActors ;
     private List<Actor> unregisteredActors ;
+    // Camera Parameter
+    // actor on which the view is centered
+    private Actor viewCandidate;
+    // effective center of the view
+    private Vector viewCenter;
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
-    
+
+
+
     /**
      * Add an actor to the actors list
      * @param a (Actor): the actor to add, not null
@@ -130,7 +139,8 @@ public abstract class Area implements Playable {
         actors = new LinkedList<>();
         this.fileSystem = fileSystem;
         this.window = window;
-
+        viewCenter = Vector.ZERO;
+        viewCandidate = null;
         return true;
     }
 
@@ -149,15 +159,20 @@ public abstract class Area implements Playable {
         purgeRegistration();
         for (Actor actor : actors) {
             actor.update(deltaTime);
-            actor.draw(window);// TODO SI CA MARCHE PAS :  VENIR ICI
-
         }
-
+        updateCamera();
+        for (Actor actor : actors) {
+            actor.draw(window);
+        }
     }
 
 
     private void updateCamera () {
-        // TODO implements me #PROJECT #TUTO
+        if(viewCandidate!=null){
+            viewCenter=viewCandidate.getPosition();
+        }
+        Transform viewTransform = Transform.I.scaled(getCameraScaleFactor()).translated(viewCenter);
+        window.setRelativeTransform(viewTransform);
     }
 
     /**
@@ -165,6 +180,7 @@ public abstract class Area implements Playable {
      */
     public void suspend(){
         // Do nothing by default
+        purgeRegistration();
     }
 
 
@@ -172,6 +188,7 @@ public abstract class Area implements Playable {
     public void end() {
         // TODO save the AreaState somewhere
     }
+
     private final void purgeRegistration(){
         for (Actor actor: registeredActors) {
             addActor(actor,false);
@@ -185,4 +202,9 @@ public abstract class Area implements Playable {
         unregisteredActors.clear();
     }
 
+    public final void setViewCandidate(Actor a){
+        this.viewCandidate = a;
+    }
+
 }
+

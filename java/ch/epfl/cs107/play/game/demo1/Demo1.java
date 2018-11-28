@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.demo1;
 
-import ch.epfl.cs107.play.game.*;
+
+import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.GraphicsEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;

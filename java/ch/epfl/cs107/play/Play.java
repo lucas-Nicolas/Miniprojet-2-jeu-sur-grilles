@@ -15,41 +15,41 @@ import ch.epfl.cs107.play.game.demo1.Demo1;
  */
 public class Play {
 
-	/** One second in nano second */
+    /** One second in nano second */
     private static final float ONE_SEC = 1E9f;
 
-	/**
-	 * Main entry point.
-	 * @param args (Array of String): ignored
-	 */
-	public static void main(String[] args) {
+    /**
+     * Main entry point.
+     * @param args (Array of String): ignored
+     */
+    public static void main(String[] args) {
 
-		// Define cascading file system
-		final FileSystem fileSystem = new ResourceFileSystem(DefaultFileSystem.INSTANCE);
+        // Define cascading file system
+        final FileSystem fileSystem = new ResourceFileSystem(DefaultFileSystem.INSTANCE);
 
         // Create a demo game and initialize corresponding texts
-		final Game game = new Demo1();
-		//XMLTexts.initialize(fileSystem, "strings/enigme_fr.xml");
+        final Game game = new Demo1();
+        //XMLTexts.initialize(fileSystem, "strings/enigme_fr.xml");
 
-		// Use Swing display
-		final Window window = new SwingWindow(game.getTitle(), fileSystem, 750, 750);
+        // Use Swing display
+        final Window window = new SwingWindow(game.getTitle(), fileSystem, 750, 750);
 
-		try {
+        try {
 
-			if (game.begin(window, fileSystem)) {
+            if (game.begin(window, fileSystem)) {
 
-				// Use system clock to keep track of time progression
+                // Use system clock to keep track of time progression
                 long currentTime = System.nanoTime();
-				long lastTime;
-				final float frameDuration = ONE_SEC / game.getFrameRate();
+                long lastTime;
+                final float frameDuration = ONE_SEC / game.getFrameRate();
 
-				// Run until the user try to close the window
-				while (!window.isCloseRequested()) {
+                // Run until the user try to close the window
+                while (!window.isCloseRequested()) {
 
-					// Compute time interval
+                    // Compute time interval
                     lastTime = currentTime;
                     currentTime = System.nanoTime();
-					float deltaTime = (currentTime - lastTime);
+                    float deltaTime = (currentTime - lastTime);
 
                     try {
                         int timeDiff = Math.max(0, (int) (frameDuration - deltaTime));
@@ -66,13 +66,13 @@ public class Play {
 
                     // Render and update input
                     window.update();
-				}
-			}
-			game.end();
+                }
+            }
+            game.end();
 
-		} finally {
-			// Release resources
-			window.dispose();
-		}
-	}
+        } finally {
+            // Release resources
+            window.dispose();
+        }
+    }
 }
