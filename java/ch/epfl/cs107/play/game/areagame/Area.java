@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -18,8 +19,13 @@ import java.util.List;
 public abstract class Area implements Playable {
 
     // Context objects
+    private Window window;
+    private FileSystem fileSystem;
     // TODO implements me #PROJECT #TUTO
-
+    /// List of actors inside the area
+    private List<Actor> actors;
+    private List<Actor> registeredActors ;
+    private List<Actor> unregisteredActors ;
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
     
@@ -29,7 +35,17 @@ public abstract class Area implements Playable {
      * @param forced (Boolean): if true, the method ends
      */
     private void addActor(Actor a, boolean forced) {
-        // TODO implements me #PROJECT #TUTO
+        if (a != null){
+            // Here decisions at the area level to decide if an actor // must be added or not
+            boolean errorOccured = !actors.add(a);
+            if (errorOccured && !forced) {
+                System.out.println("Actor " + a + " cannot be " +
+                        "completely added, so remove it from where it was ");
+                removeActor(a, true);
+            }
+        }else{
+            System.out.println("Null actor cannot be added here");
+        }
     }
 
     /**
@@ -38,7 +54,14 @@ public abstract class Area implements Playable {
      * @param forced (Boolean): if true, the method ends
      */
     private void removeActor(Actor a, boolean forced){
-        // TODO implements me #PROJECT #TUTO
+        if (a != null) {
+            boolean errorOccured = !actors.remove(a);
+            if (errorOccured && !forced) {
+                System.out.println("Actor " + a + " cannot be " +
+                        "completely removed , so add it to where it was ");
+                addActor(a, true);
+            }
+        }
     }
 
     /**
@@ -48,6 +71,13 @@ public abstract class Area implements Playable {
      */
     public final boolean registerActor(Actor a){
         // TODO implements me #PROJECT #TUTO
+
+        if (a != null) {
+
+            boolean errorOccured = !registeredActors.add(a);
+
+            return !errorOccured;
+        }
         return false;
     }
 
@@ -58,6 +88,13 @@ public abstract class Area implements Playable {
      */
     public final boolean unregisterActor(Actor a){
         // TODO implements me #PROJECT #TUTO
+        if (a != null) {
+
+            boolean errorOccured = !unregisteredActors.add(a);
+
+            return !errorOccured;
+        }
+
         return false;
     }
 
@@ -90,6 +127,10 @@ public abstract class Area implements Playable {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         // TODO implements me #PROJECT #TUTO
+        actors = new LinkedList<>();
+        this.fileSystem = fileSystem;
+        this.window = window;
+
         return true;
     }
 
@@ -105,7 +146,13 @@ public abstract class Area implements Playable {
 
     @Override
     public void update(float deltaTime) {
-        // TODO implements me #PROJECT #TUTO
+        purgeRegistration();
+        for (Actor actor : actors) {
+            actor.update(deltaTime);
+            actor.draw(window);// TODO SI CA MARCHE PAS :  VENIR ICI
+
+        }
+
     }
 
 
@@ -124,6 +171,18 @@ public abstract class Area implements Playable {
     @Override
     public void end() {
         // TODO save the AreaState somewhere
+    }
+    private final void purgeRegistration(){
+        for (Actor actor: registeredActors) {
+            addActor(actor,false);
+
+
+        }
+        for (Actor actor: unregisteredActors) {
+            removeActor(actor, false);
+        }
+        registeredActors.clear();
+        unregisteredActors.clear();
     }
 
 }
