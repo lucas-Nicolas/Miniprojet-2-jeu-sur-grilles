@@ -26,8 +26,8 @@ public abstract class Area implements Playable {
     // TODO implements me #PROJECT #TUTO
     /// List of actors inside the area
     private List<Actor> actors;
-    private List<Actor> registeredActors ;
-    private List<Actor> unregisteredActors ;
+    private List<Actor> registeredActors;
+    private List<Actor> unregisteredActors;
     // Camera Parameter
     // actor on which the view is centered
     private Actor viewCandidate;
@@ -137,6 +137,8 @@ public abstract class Area implements Playable {
     public boolean begin(Window window, FileSystem fileSystem) {
         // TODO implements me #PROJECT #TUTO
         actors = new LinkedList<>();
+        registeredActors = new LinkedList<>();
+        unregisteredActors = new LinkedList<>();
         this.fileSystem = fileSystem;
         this.window = window;
         viewCenter = Vector.ZERO;
