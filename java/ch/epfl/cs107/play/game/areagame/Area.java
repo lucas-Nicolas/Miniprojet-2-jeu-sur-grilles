@@ -23,7 +23,6 @@ public abstract class Area implements Playable {
     // Context objects
     private Window window;
     private FileSystem fileSystem;
-    // TODO implements me #PROJECT #TUTO
     /// List of actors inside the area
     private List<Actor> actors;
     private List<Actor> registeredActors;
@@ -79,8 +78,6 @@ public abstract class Area implements Playable {
      * @return (boolean): true if the actor is correctly registered
      */
     public final boolean registerActor(Actor a){
-        // TODO implements me #PROJECT #TUTO
-
         if (a != null) {
 
             boolean errorOccured = !registeredActors.add(a);
@@ -96,7 +93,7 @@ public abstract class Area implements Playable {
      * @return (boolean): true if the actor is correctly unregistered
      */
     public final boolean unregisterActor(Actor a){
-        // TODO implements me #PROJECT #TUTO
+
         if (a != null) {
 
             boolean errorOccured = !unregisteredActors.add(a);
@@ -135,7 +132,6 @@ public abstract class Area implements Playable {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
-        // TODO implements me #PROJECT #TUTO
         actors = new LinkedList<>();
         registeredActors = new LinkedList<>();
         unregisteredActors = new LinkedList<>();
