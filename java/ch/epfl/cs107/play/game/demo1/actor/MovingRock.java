@@ -19,7 +19,7 @@ public class MovingRock extends GraphicsEntity implements Actor {
         );
         this.text = new TextGraphics(text, 0.04f, Color.BLUE);
         this.text.setParent(this);
-        //this.text.setAnchor(new Vector(-0.3f, 0.1f));
+        this.text.setAnchor(new Vector(-0.3f, 0.1f));
 
     }
 
