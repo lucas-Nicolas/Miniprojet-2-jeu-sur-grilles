@@ -9,7 +9,7 @@ import ch.epfl.cs107.play.math.Vector;
 
 import java.awt.*;
 
-public class MovingRock extends GraphicsEntity implements Actor {
+public class MovingRock extends GraphicsEntity {
 
     private final TextGraphics text;
 
