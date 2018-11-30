@@ -38,6 +38,7 @@ public abstract class Area implements Playable {
     private boolean savedGame;
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
+    private  String title;
 
 
 
@@ -138,6 +139,7 @@ public abstract class Area implements Playable {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
+        System.out.print("dqsfqsdf");
         actors = new LinkedList<>();
         registeredActors = new LinkedList<>();
         unregisteredActors = new LinkedList<>();
@@ -219,6 +221,10 @@ public abstract class Area implements Playable {
         areaBehavior = ab;
     }
 
+    @Override
+    public String getTitle(){
+        return title;
+    }
 
 }
 

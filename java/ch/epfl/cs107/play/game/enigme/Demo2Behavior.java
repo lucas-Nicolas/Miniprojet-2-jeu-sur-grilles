@@ -42,9 +42,10 @@ public class Demo2Behavior extends AreaBehavior {
 
     public Demo2Behavior(Window window, String fileName) {
         super(window, fileName);
-        for (int i = 0; i < super.getHeight(); i++) {
-            for (int j = 0; j < super.getWidth(); j++) {
-                Demo2CellType cellType = Demo2CellType.toType(getBehaviorMap().getRGB(height-1-y,x));
+        for (int y = 0; y < super.getHeight(); y++) {
+            for (int x = 0; x < super.getWidth(); x++) {
+                Demo2CellType cellType = Demo2CellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
+                //NOT SURE About this one
             }
         }
     }

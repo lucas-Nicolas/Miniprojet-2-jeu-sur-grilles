@@ -46,4 +46,8 @@ public abstract class AreaBehavior
     public int getHeight() {
         return height;
     }
+
+    public Image getBehaviorMap() {
+        return behaviorMap;
+    }
 }
