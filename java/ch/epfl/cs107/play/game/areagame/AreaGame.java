@@ -52,6 +52,9 @@ abstract public class AreaGame implements Game {
             }
         }else{
             currentArea= areas.get(name);
+            if(currentArea==null){
+                //todo implement expetion of good choice see end 4.3
+            }
         }
         return null;
     }

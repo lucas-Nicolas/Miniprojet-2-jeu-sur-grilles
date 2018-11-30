@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+
 /**
  * Area is a "Part" of the AreaGame. It is characterized by its AreaBehavior and a List of Actors
  */
@@ -45,6 +46,7 @@ public abstract class Area implements Playable {
      * @param a (Actor): the actor to add, not null
      * @param forced (Boolean): if true, the method ends
      */
+
     private void addActor(Actor a, boolean forced) {
         if (a != null){
             // Here decisions at the area level to decide if an actor // must be added or not
