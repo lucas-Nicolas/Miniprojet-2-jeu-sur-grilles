@@ -1,12 +1,14 @@
 package ch.epfl.cs107.play.game.areagame;
 
 import ch.epfl.cs107.play.game.actor.Actor;
+import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Window;
 import javafx.scene.control.Cell;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +22,7 @@ public abstract class AreaBehavior
     private final Image behaviorMap;
     private final int width, height;
     private final Cell[][] cells;
+    private Set<Interactable> contenue;
 
     /**
      * Default AreaBehavior Constructor
@@ -37,12 +40,18 @@ public abstract class AreaBehavior
 
     // TODO implements me #PROJECT #TUTO
     /** * Each game will have its own Cell extension. */
-    public abstract class Cell {
+    public abstract class Cell implements Interactable {
         private DiscreteCoordinates coordone;
         public Cell(int x, int y){
             coordone = new DiscreteCoordinates(x,y);
         }
+
+        public List<DiscreteCoordinates> getCurrentCells(List<DiscreteCoordinates> discreteCoordinatesList) {
+            discreteCoordinatesList.add(coordone);
+            return discreteCoordinatesList;
+        };
     }
+
 
     public int getWidth() {
         return width;

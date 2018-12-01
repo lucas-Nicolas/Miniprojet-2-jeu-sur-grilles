@@ -12,7 +12,7 @@ import ch.epfl.cs107.play.math.Vector;
 /**
  * Actors leaving in a grid
  */
-public abstract class AreaEntity extends Entity {
+public abstract class AreaEntity extends Entity implements Interactable{
 
     // TODO implements me #PROJECT #TUTO
     /// an AreaEntity knows its own Area

@@ -27,7 +27,7 @@ public class Demo2 extends AreaGame {
             Area room1 = new Room1();
             addArea(room0);
             addArea(room1);
-            setCurrentArea("LevelSelector", true);
+            setCurrentArea("Level1", true);
             return true;
         }
         return false;
