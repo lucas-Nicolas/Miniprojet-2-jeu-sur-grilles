@@ -22,7 +22,6 @@ public class Demo2 extends AreaGame {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
-        System.out.println("dsfqsdf");
         if(super.begin(window, fileSystem)){
             Area room0 = new Room0();
             Area room1 = new Room1();

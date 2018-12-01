@@ -139,7 +139,6 @@ public abstract class Area implements Playable {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
-        System.out.print("dqsfqsdf");
         actors = new LinkedList<>();
         registeredActors = new LinkedList<>();
         unregisteredActors = new LinkedList<>();
