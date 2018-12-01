@@ -1,10 +1,13 @@
 package ch.epfl.cs107.play.game.areagame;
 
+import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Window;
 import javafx.scene.control.Cell;
+
+import java.util.Set;
 
 /**
  * AreaBehavior manages a map of Cells.
@@ -17,6 +20,7 @@ public abstract class AreaBehavior
     private final Image behaviorMap;
     private final int width, height;
     private final Cell[][] cells;
+
     /**
      * Default AreaBehavior Constructor
      * @param window (Window): graphic context, not null
@@ -28,6 +32,7 @@ public abstract class AreaBehavior
         width = behaviorMap.getWidth();
         height = behaviorMap.getHeight();
         cells = new Cell[width][height];
+
     }
 
     // TODO implements me #PROJECT #TUTO
