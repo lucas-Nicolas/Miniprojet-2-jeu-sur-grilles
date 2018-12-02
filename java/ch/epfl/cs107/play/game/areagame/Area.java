@@ -13,7 +13,7 @@ import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Map;
 
 
 /**
@@ -28,6 +28,8 @@ public abstract class Area implements Playable {
     private List<Actor> actors;
     private List<Actor> registeredActors;
     private List<Actor> unregisteredActors;
+    private Map<Interactable, List<DiscreteCoordinates>> interactablesToEnter;
+    private Map<Interactable, List<DiscreteCoordinates>> interactablesToLeave;
     // Camera Parameter
     // actor on which the view is centered
     private Actor viewCandidate;
@@ -37,6 +39,7 @@ public abstract class Area implements Playable {
     //to know if a area has already been played
     private boolean savedGame;
     private String title;
+
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
 
@@ -53,6 +56,7 @@ public abstract class Area implements Playable {
         if (a != null){
             // Here decisions at the area level to decide if an actor // must be added or not
             boolean errorOccured = !actors.add(a);
+            if(a instanceof Interactable){errorOccured= errorOccured || !enterAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
             if (errorOccured && !forced) {
                 System.out.println("Actor " + a + " cannot be " +
                         "completely added, so remove it from where it was ");
@@ -71,6 +75,7 @@ public abstract class Area implements Playable {
     private void removeActor(Actor a, boolean forced){
         if (a != null) {
             boolean errorOccured = !actors.remove(a);
+            if(a instanceof Interactable){errorOccured= errorOccured || !leaveAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
             if (errorOccured && !forced) {
                 System.out.println("Actor " + a + " cannot be " +
                         "completely removed , so add it to where it was ");
@@ -202,6 +207,7 @@ public abstract class Area implements Playable {
     }
 
     private final void purgeRegistration(){
+        //on itère sur les acteurs enregistrés et desenregistrés pour les ajouter
         for (Actor actor: registeredActors) {
             addActor(actor,false);
 
@@ -210,8 +216,21 @@ public abstract class Area implements Playable {
         for (Actor actor: unregisteredActors) {
             removeActor(actor, false);
         }
+        //on vide les deux listes
         registeredActors.clear();
         unregisteredActors.clear();
+
+
+        //on itère sur les les dictionnaires de manière analogue
+        for (Map.Entry<Interactable, List<DiscreteCoordinates>> entry : interactablesToLeave.entrySet()) {
+            leaveAreaCells(entry.getKey(),entry.getValue());
+        }
+        for (Map.Entry<Interactable, List<DiscreteCoordinates>> entry : interactablesToEnter.entrySet()) {
+            enterAreaCells(entry.getKey(),entry.getValue());
+        }
+        //on vide également les dictionnaires
+        interactablesToEnter.clear();
+        interactablesToLeave.clear();
     }
 
     public final void setViewCandidate(Actor a){
@@ -224,6 +243,21 @@ public abstract class Area implements Playable {
     @Override
     public String getTitle(){
         return title;
+    }
+
+    public final boolean enterAreaCells(Interactable entity, List<DiscreteCoordinates> coordinates){
+        if(areaBehavior.canEnter(entity,coordinates)){
+            interactablesToEnter.put(entity,coordinates);
+            return true;
+        }
+        return false;
+    }
+    public final boolean leaveAreaCells(Interactable entity, List<DiscreteCoordinates> coordinates){
+        if(areaBehavior.canLeave(entity,coordinates)){
+            interactablesToLeave.put(entity,coordinates);
+            return true;
+        }
+        return false;
     }
 }
 
