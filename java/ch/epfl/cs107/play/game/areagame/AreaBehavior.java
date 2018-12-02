@@ -23,7 +23,7 @@ public abstract class AreaBehavior
     private final Image behaviorMap;
     private final int width, height;
     private final Cell[][] cells;
-    private Set<Interactable> contenue;
+
 
     /**
      * Default AreaBehavior Constructor
@@ -43,6 +43,7 @@ public abstract class AreaBehavior
     /** * Each game will have its own Cell extension. */
     public abstract class Cell implements Interactable {
         private DiscreteCoordinates coordone;
+        private Set<Interactable> contenue;
         public Cell(int x, int y){
             coordone = new DiscreteCoordinates(x,y);
         }
