@@ -8,6 +8,7 @@ import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Window;
 import javafx.scene.control.Cell;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -46,10 +47,11 @@ public abstract class AreaBehavior
             coordone = new DiscreteCoordinates(x,y);
         }
 
-        public List<DiscreteCoordinates> getCurrentCells(List<DiscreteCoordinates> discreteCoordinatesList) {
+        public List<DiscreteCoordinates> getCurrentCells() {
             // todo je suis pas sure du tout a revoir avec Lucas.
-            discreteCoordinatesList.add(coordone);
-            return discreteCoordinatesList;
+            ArrayList<DiscreteCoordinates> coor = new ArrayList<DiscreteCoordinates>();
+            coor.add(coordone);
+            return coor;
         };
     }
 
