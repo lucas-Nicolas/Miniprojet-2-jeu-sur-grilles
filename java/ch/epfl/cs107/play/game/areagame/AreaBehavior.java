@@ -47,6 +47,7 @@ public abstract class AreaBehavior
         }
 
         public List<DiscreteCoordinates> getCurrentCells(List<DiscreteCoordinates> discreteCoordinatesList) {
+            // todo je suis pas sure du tout a revoir avec Lucas.
             discreteCoordinatesList.add(coordone);
             return discreteCoordinatesList;
         };
