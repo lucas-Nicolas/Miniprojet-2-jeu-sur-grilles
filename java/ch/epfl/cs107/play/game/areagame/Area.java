@@ -36,9 +36,10 @@ public abstract class Area implements Playable {
     private AreaBehavior areaBehavior;
     //to know if a area has already been played
     private boolean savedGame;
+    private String title;
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
-    private  String title;
+
 
 
 
@@ -224,6 +225,5 @@ public abstract class Area implements Playable {
     public String getTitle(){
         return title;
     }
-
 }
 

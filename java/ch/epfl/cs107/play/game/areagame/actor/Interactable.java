@@ -2,7 +2,6 @@ package ch.epfl.cs107.play.game.areagame.actor;
 
 
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
-
 import java.util.List;
 
 /**
