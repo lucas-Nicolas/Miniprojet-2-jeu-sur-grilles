@@ -81,7 +81,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         // TODO implements me #PROJECT #TUTO
         if (!isMoving || getCurrentMainCellCoordinates() == targetMainCellCoordinates) {
             // TODO : add area conditions here
-            if (areaMovesCondition(getLeavingCells(), getEnteringCells())) {
+            if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
                 if (framesForCurrentMove > 1) {
                     framesForCurrentMove = 1;
