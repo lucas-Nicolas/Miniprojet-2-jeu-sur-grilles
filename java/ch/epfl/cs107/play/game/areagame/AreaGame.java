@@ -85,6 +85,10 @@ abstract public class AreaGame implements Game {
     }
 
 
+    protected Area getCurrentArea() {
+        return currentArea;
+    }
+
     @Override
     public void update(float deltaTime) {
         // TODO implements me #PROJECT #TUTO

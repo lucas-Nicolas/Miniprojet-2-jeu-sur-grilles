@@ -40,6 +40,9 @@ public abstract class AreaBehavior {
 
     }
 
+    public Cell[][] getCells() {
+        return cells;
+    }
     // TODO implements me #PROJECT #TUTO
 
     /**
@@ -57,7 +60,7 @@ public abstract class AreaBehavior {
 
         public List<DiscreteCoordinates> getCurrentCells() {
             // todo je suis pas sure du tout a revoir avec Lucas.
-            LinkedList<DiscreteCoordinates> coor = new LinkedList<DiscreteCoordinates>();
+            List<DiscreteCoordinates> coor = new LinkedList<DiscreteCoordinates>();
             coor.add(coordonnee);
             return coor;
         }
@@ -121,4 +124,5 @@ public abstract class AreaBehavior {
     public Image getBehaviorMap() {
         return behaviorMap;
     }
+
 }

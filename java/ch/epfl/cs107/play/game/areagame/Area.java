@@ -47,11 +47,13 @@ public abstract class Area implements Playable {
 
 
 
+
     /**
      * Add an actor to the actors list
      * @param a (Actor): the actor to add, not null
      * @param forced (Boolean): if true, the method ends
      */
+
 
     private void addActor(Actor a, boolean forced) {
         if (a != null){
@@ -246,7 +248,12 @@ public abstract class Area implements Playable {
 
     @Override
     public String getTitle(){
+
         return title;
+    }
+
+    public Window getWindow() {
+        return window;
     }
 
     public final boolean enterAreaCells(Interactable entity, List<DiscreteCoordinates> coordinates){

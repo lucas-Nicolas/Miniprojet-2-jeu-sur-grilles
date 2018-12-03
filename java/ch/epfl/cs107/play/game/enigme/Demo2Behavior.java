@@ -46,6 +46,8 @@ public class Demo2Behavior extends AreaBehavior {
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {
                 Demo2CellType cellType = Demo2CellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
+                //on oublie pas d'initialiser les cellules
+                getCells()[x][y] = new Demo2Cell(x,y,cellType);
                 //NOT SURE About this one
             }
         }
@@ -62,27 +64,31 @@ public class Demo2Behavior extends AreaBehavior {
 
         @Override
         protected boolean canEnter(Interactable entity) {
+
+            if(type == Demo2CellType.NULL){
+            return false;//retourne faux si l'entité veut entrer dans un mur et vrai sinon
+            }
             return true;
         }
 
         @Override
         protected boolean canLeave(Interactable entity) {
-            return true;
+            return true;//toute cellule peut être quittée
         }
 
         @Override
         public boolean takeCellSpace() {
-            return false;
+            return false;//les entités sont traversables
         }
 
         @Override
         public boolean isViewInteractable() {
-            return false;
+            return false;//n'accepte pas les interactions à distance
         }
 
         @Override
         public boolean isCellInteractable() {
-            return false;
+            return true;//interactions au contact
         }
     }
 

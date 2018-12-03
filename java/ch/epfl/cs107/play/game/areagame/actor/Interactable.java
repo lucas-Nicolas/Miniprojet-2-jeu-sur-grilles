@@ -12,7 +12,7 @@ import java.util.List;
 public interface Interactable {
     // TODO implements me #PROJECT #TUTO
     public List<DiscreteCoordinates> getCurrentCells();
-    public boolean takeCellSpace();
-    public boolean isViewInteractable();
-    public boolean isCellInteractable();
+    public boolean takeCellSpace();//entités traversables ou non ?
+    public boolean isViewInteractable();//interactions à distance ou non ?
+    public boolean isCellInteractable();//interactions au contact ou non ?
 }
