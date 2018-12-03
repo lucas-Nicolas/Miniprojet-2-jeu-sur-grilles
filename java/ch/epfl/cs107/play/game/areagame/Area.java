@@ -11,6 +11,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -148,6 +149,9 @@ public abstract class Area implements Playable {
         actors = new LinkedList<>();
         registeredActors = new LinkedList<>();
         unregisteredActors = new LinkedList<>();
+        interactablesToLeave = new HashMap<>();
+        interactablesToEnter = new HashMap<>();
+
         this.fileSystem = fileSystem;
         this.window = window;
         viewCenter = Vector.ZERO;
