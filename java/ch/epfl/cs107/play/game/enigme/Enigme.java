@@ -1,10 +1,15 @@
 package ch.epfl.cs107.play.game.enigme;
 
+import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
+import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
+import ch.epfl.cs107.play.game.enigme.area.Level2;
+import ch.epfl.cs107.play.game.enigme.area.Level3;
+import ch.epfl.cs107.play.game.enigme.area.LevelSelector;
+
+import ch.epfl.cs107.play.game.enigme.area.Level1;
 import ch.epfl.cs107.play.io.FileSystem;
-import ch.epfl.cs107.play.window.Window;
-import ch.epfl.cs107.play.game.areagame.AreaGame;
-import ch.epfl.cs107.play.io.FileSystem;
+import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
 
 
@@ -13,12 +18,12 @@ import ch.epfl.cs107.play.window.Window;
  * When initializing the player is added to the current area
  */
 public class Enigme extends AreaGame {
-
-    /// The player is a concept of RPG games
-    // TODO implements me #PROJECT
-
-
-    /// Enigme implements Playable
+    private EnigmePlayer player;
+    private final int SCALE_FACTOR = 22;
+    @Override
+    public int getFrameRate() {
+        return 24;
+    }
 
     @Override
     public String getTitle() {
@@ -27,18 +32,29 @@ public class Enigme extends AreaGame {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
-        // TODO implements me #PROJECT
+        if(super.begin(window, fileSystem)){
+            Area levelSelector = new LevelSelector();
+            Area level1 = new Level1();
+            Area level2 = new Level2();
+            Area level3 = new Level3();
+
+            addArea(levelSelector);
+            addArea(level1);
+            addArea(level2);
+            addArea(level3);
+
+            setCurrentArea("LevelSelector", true);
+            player = new EnigmePlayer(levelSelector,new DiscreteCoordinates(5,5));
+            getCurrentArea().registerActor(player);
+            getCurrentArea().setViewCandidate(player);
+            return true;
+        }
         return false;
     }
 
     @Override
     public void update(float deltaTime) {
-        // TODO implements me #PROJECT
-    }
+        super.update(deltaTime);
 
-
-    @Override
-    public int getFrameRate() {
-        return 24;
     }
 }
