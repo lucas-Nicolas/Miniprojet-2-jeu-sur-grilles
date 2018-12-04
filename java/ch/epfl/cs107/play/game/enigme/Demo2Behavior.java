@@ -92,6 +92,10 @@ public class Demo2Behavior extends AreaBehavior {
         public boolean isCellInteractable() {
             return true;//interactions au contact
         }
+        @Override
+        public boolean isDoor(){
+            return (type == Demo2CellType.DOOR);
+        }
     }
 
 

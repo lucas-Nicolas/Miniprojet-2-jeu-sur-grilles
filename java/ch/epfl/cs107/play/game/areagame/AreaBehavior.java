@@ -77,6 +77,8 @@ public abstract class AreaBehavior {
 
 
         protected abstract boolean canLeave(Interactable entity);
+
+        protected abstract boolean isDoor();
     }
 
 
@@ -99,6 +101,14 @@ public abstract class AreaBehavior {
         }
         return true;
 
+    }
+    public boolean isDoor(List<DiscreteCoordinates> coordinates){
+        for (DiscreteCoordinates coord : coordinates) {
+            if (!cells[coord.x][coord.y].isDoor()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected void leave(Interactable entity, List<DiscreteCoordinates> coordinates){

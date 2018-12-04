@@ -267,6 +267,10 @@ public abstract class Area implements Playable {
         return false;
     }
 
+    public final boolean isDoor(List<DiscreteCoordinates> coordinates){
+        return areaBehavior.isDoor(coordinates);
+    }
+
     public Window getWindow() {
         return window;
     }

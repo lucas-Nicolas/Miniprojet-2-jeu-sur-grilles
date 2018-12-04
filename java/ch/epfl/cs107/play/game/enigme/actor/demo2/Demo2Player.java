@@ -104,7 +104,6 @@ public class Demo2Player extends MovableAreaEntity {
 
         }else if(upArrow.isDown()){
             if(this.getOrientation() == Orientation.UP ){
-                System.out.println("lol ça devrait marcher mais non");
                 move(ANIMATION_DURATION);
             }else{
                 this.setOrientation(Orientation.UP);
@@ -129,7 +128,9 @@ public class Demo2Player extends MovableAreaEntity {
     @Override
     public boolean move(int framesForMove){
     boolean canMove = super.move(framesForMove);
-    if(getEnteringCells().)
+    if(getOwnerArea().isDoor(getCurrentCells())){
+        isGoingThroughDoor=true;
+    }
     return canMove;
     }
 }
