@@ -69,7 +69,6 @@ public class Demo2Player extends MovableAreaEntity {
         getOwnerArea().unregisterActor(this);
         setOwnerArea(area);
         isGoingThroughDoor = false;
-
     }
 
     @Override
@@ -126,10 +125,11 @@ public class Demo2Player extends MovableAreaEntity {
     }
     @Override
     public boolean move(int framesForMove){
-    boolean canMove = super.move(framesForMove);
+
     if(getOwnerArea().isDoor(getEnteringCells())){
         isGoingThroughDoor=true;
     }
+    boolean canMove = super.move(framesForMove);
     return canMove;
     }
 }

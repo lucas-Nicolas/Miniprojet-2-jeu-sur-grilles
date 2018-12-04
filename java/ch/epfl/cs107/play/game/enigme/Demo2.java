@@ -43,17 +43,16 @@ public class Demo2 extends AreaGame {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        player.update(deltaTime);
 
         if(player.isGoingThroughDoor()){
 
             if(getCurrentArea().getTitle().equals("LevelSelector")){
-                setCurrentArea("Level1",true);
+                setCurrentArea("Level1",false);
                 player.enterArea(getCurrentArea(), new DiscreteCoordinates(5,2));
                 getCurrentArea().setViewCandidate(player);
 
             }else if(getCurrentArea().getTitle().equals("Level1")){
-                setCurrentArea("LevelSelector",true);
+                setCurrentArea("LevelSelector",false);
                 player.enterArea(getCurrentArea(), new DiscreteCoordinates(5,5));
                 getCurrentArea().setViewCandidate(player);
             }

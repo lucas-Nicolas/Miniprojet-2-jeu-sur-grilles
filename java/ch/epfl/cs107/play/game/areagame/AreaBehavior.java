@@ -19,7 +19,7 @@ import java.util.Set;
 public abstract class AreaBehavior {
 
     /// The behavior is an Image of size height x width
-    // TODO implements me #PROJECT #TUTO
+
     private final Image behaviorMap;
     private final int width, height;
     private final Cell[][] cells;
@@ -32,7 +32,7 @@ public abstract class AreaBehavior {
      * @param fileName (String): name of the file containing the behavior image, not null
      */
     public AreaBehavior(Window window, String fileName) {
-        // TODO implements me #PROJECT #TUTO
+
         behaviorMap = window.getImage(ResourcePath.getBehaviors(fileName), null, false);
         width = behaviorMap.getWidth();
         height = behaviorMap.getHeight();
@@ -43,7 +43,7 @@ public abstract class AreaBehavior {
     public Cell[][] getCells() {
         return cells;
     }
-    // TODO implements me #PROJECT #TUTO
+
 
     /**
      * Each game will have its own Cell extension.
