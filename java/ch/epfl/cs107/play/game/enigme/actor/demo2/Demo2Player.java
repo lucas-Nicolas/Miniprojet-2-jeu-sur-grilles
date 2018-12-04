@@ -125,11 +125,10 @@ public class Demo2Player extends MovableAreaEntity {
     }
     @Override
     public boolean move(int framesForMove){
-
+        //isDoor function return if the going cells are doors
     if(getOwnerArea().isDoor(getEnteringCells())){
         isGoingThroughDoor=true;
     }
-    boolean canMove = super.move(framesForMove);
-    return canMove;
+    return super.move(framesForMove);
     }
 }

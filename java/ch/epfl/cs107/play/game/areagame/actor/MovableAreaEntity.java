@@ -24,7 +24,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
     // The target cell (i.e. where the mainCell will be after the motion)
     private DiscreteCoordinates targetMainCellCoordinates;
 
-    // TODO implements me #PROJECT #TUTO
+
     protected final List<DiscreteCoordinates> getLeavingCells() {
         return getCurrentCells();
     }
@@ -52,7 +52,6 @@ public abstract class MovableAreaEntity extends AreaEntity {
      */
     public MovableAreaEntity(Area area, Orientation orientation, DiscreteCoordinates position) {
         super(area, orientation, position);
-        // TODO implements me #PROJECT #TUTO
         resetMotion();
     }
 
@@ -76,7 +75,6 @@ public abstract class MovableAreaEntity extends AreaEntity {
      */
 
     protected boolean move(int framesForMove) {
-        // TODO implements me #PROJECT #TUTO
         if (!isMoving || getCurrentMainCellCoordinates() == targetMainCellCoordinates) {
             if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
@@ -101,13 +99,12 @@ public abstract class MovableAreaEntity extends AreaEntity {
 
     @Override
     public void update(float deltaTime) {
-        // TODO implements me #PROJECT #TUTO
         if((isMoving) && (getCurrentMainCellCoordinates()!=targetMainCellCoordinates)){
             Vector distance = getOrientation().toVector();
             distance = distance.mul(1.0f / framesForCurrentMove);
             setCurrentPosition(getPosition().add(distance));
             resetMotion();
-            //todo sans le reset Motion sa part a l'inifinie
+            //todo sans le reset Motion ça part a l'inifini
             }else{
             resetMotion();
         }
@@ -117,7 +114,6 @@ public abstract class MovableAreaEntity extends AreaEntity {
 
     @Override
     public Vector getVelocity() {
-        // TODO implements me #PROJECT #TUTO
         // the velocity must be computed as the orientation vector (getOrientation().toVector() mutiplied by 
     	// framesForCurrentMove
         Vector distance = getOrientation().toVector();

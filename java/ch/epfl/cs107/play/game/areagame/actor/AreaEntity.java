@@ -14,7 +14,6 @@ import ch.epfl.cs107.play.math.Vector;
  */
 public abstract class AreaEntity extends Entity implements Interactable{
 
-    // TODO implements me #PROJECT #TUTO
     /// an AreaEntity knows its own Area
     private Area ownerArea;
     /// Orientation of the AreaEntity in the Area
@@ -63,6 +62,7 @@ public abstract class AreaEntity extends Entity implements Interactable{
         if(DiscreteCoordinates.isCoordinates(v)) {
             super.setCurrentPosition(v.round());
             currentMainCellCoordinates = new DiscreteCoordinates((int)v.round().x , (int)v.round().y);
+            //todo demander assistant
         }else{
             super.setCurrentPosition(v);
         }

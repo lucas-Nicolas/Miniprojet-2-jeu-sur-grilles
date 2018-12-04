@@ -45,7 +45,6 @@ public class Demo2 extends AreaGame {
         super.update(deltaTime);
 
         if(player.isGoingThroughDoor()){
-
             if(getCurrentArea().getTitle().equals("LevelSelector")){
                 setCurrentArea("Level1",false);
                 player.enterArea(getCurrentArea(), new DiscreteCoordinates(5,2));

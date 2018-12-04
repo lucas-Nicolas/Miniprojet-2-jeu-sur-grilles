@@ -124,8 +124,6 @@ public abstract class Area implements Playable {
      * @return (int) : the width in number of cols
      */
     public final int getWidth(){
-        // TODO implements me #PROJECT #TUTO
-
         return areaBehavior.getWidth();
     }
 
@@ -134,7 +132,6 @@ public abstract class Area implements Playable {
      * @return (int) : the height in number of rows
      */
     public final int getHeight(){
-        // TODO implements me #PROJECT #TUTO
         return areaBehavior.getHeight();
     }
 
@@ -248,7 +245,6 @@ public abstract class Area implements Playable {
 
     @Override
     public String getTitle(){
-
         return title;
     }
 
