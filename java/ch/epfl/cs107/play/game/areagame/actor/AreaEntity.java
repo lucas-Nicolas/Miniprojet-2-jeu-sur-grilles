@@ -31,31 +31,38 @@ public abstract class AreaEntity extends Entity implements Interactable{
     public AreaEntity(Area area, Orientation orientation, DiscreteCoordinates position) {
 
         super(position.toVector());
-        // TODO implements me #PROJECT #TUTO
-        ownerArea=area;
-        this.orientation=orientation;
-        currentMainCellCoordinates=position;
+
+        ownerArea = area;
+        this.orientation = orientation;
+        currentMainCellCoordinates = position;
     }
 
+    public AreaEntity( Area area, DiscreteCoordinates position) {
+        super(position.toVector());
+        this.ownerArea = area;
+        this.currentMainCellCoordinates = position;
+        orientation = Orientation.DOWN;
+    }
 
     /**
      * Getter for the coordinates of the main cell occupied by the AreaEntity
      * @return (DiscreteCoordinates)
      */
     protected DiscreteCoordinates getCurrentMainCellCoordinates(){
-        // TODO implements me #PROJECT #TUTO
         return currentMainCellCoordinates;
     }
 
     protected Orientation getOrientation(){
         return orientation;
     }
+
     protected void setOrientation(Orientation orientation){
         this.orientation=orientation;
     }
     protected void setCurrentPosition(Vector v){
         if(DiscreteCoordinates.isCoordinates(v)) {
-            v.round();
+            super.setCurrentPosition(v.round());
+            currentMainCellCoordinates = new DiscreteCoordinates((int)v.round().x , (int)v.round().y);
         }else{
             super.setCurrentPosition(v);
         }

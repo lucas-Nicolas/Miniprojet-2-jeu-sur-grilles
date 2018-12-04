@@ -59,7 +59,6 @@ public abstract class AreaBehavior {
         }
 
         public List<DiscreteCoordinates> getCurrentCells() {
-            // todo je suis pas sure du tout a revoir avec Lucas.
             List<DiscreteCoordinates> coor = new LinkedList<DiscreteCoordinates>();
             coor.add(coordonnee);
             return coor;
@@ -73,11 +72,10 @@ public abstract class AreaBehavior {
             this.contenu.remove(entity);
         }
 
-        //TODO  Not sure about that one
+
         protected abstract boolean canEnter(Interactable entity);
 
 
-        //TODO  Not sure about that one
         protected abstract boolean canLeave(Interactable entity);
     }
 
@@ -102,11 +100,13 @@ public abstract class AreaBehavior {
         return true;
 
     }
+
     protected void leave(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
             cells[coord.x][coord.y].leave(entity);
         }
     }
+
     protected void enter(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
             cells[coord.x][coord.y].enter(entity);

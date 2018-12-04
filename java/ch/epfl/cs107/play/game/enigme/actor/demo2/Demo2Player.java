@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.enigme.actor.demo2;
 
 import ch.epfl.cs107.play.game.areagame.Area;
+import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.MovableAreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
@@ -20,6 +21,11 @@ public class Demo2Player extends MovableAreaEntity {
 
     public Demo2Player(Area area, Orientation orientation, DiscreteCoordinates position) {
         super(area, orientation, position);
+        this.isGoingThroughDoor = false;
+    }
+
+    public Demo2Player(Area area, DiscreteCoordinates position) {
+        super(area, position);
         this.isGoingThroughDoor = false;
     }
 
@@ -89,6 +95,7 @@ public class Demo2Player extends MovableAreaEntity {
             }
 
         }else if (downArrow.isDown()){
+
             if(this.getOrientation().equals(Orientation.DOWN)){
                 move(ANIMATION_DURATION);
             }else{
@@ -97,12 +104,14 @@ public class Demo2Player extends MovableAreaEntity {
 
         }else if(upArrow.isDown()){
             if(this.getOrientation() == Orientation.UP ){
+                System.out.println("lol ça devrait marcher mais non");
                 move(ANIMATION_DURATION);
             }else{
                 this.setOrientation(Orientation.UP);
             }
 
         }else if (rightArrow.isDown()){
+
             if(this.getOrientation() == Orientation.RIGHT){
                 move(ANIMATION_DURATION);
             }else{
@@ -112,5 +121,14 @@ public class Demo2Player extends MovableAreaEntity {
         }
 
 
+
+
+
+    }
+    @Override
+    public boolean move(int framesForMove){
+    boolean canMove = super.move(framesForMove);
+
+    return canMove;
     }
 }

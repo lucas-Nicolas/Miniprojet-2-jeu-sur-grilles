@@ -62,13 +62,15 @@ public class Demo2Behavior extends AreaBehavior {
 
         }
 
+        public Demo2CellType getType() {
+            return type;
+        }
+
         @Override
         protected boolean canEnter(Interactable entity) {
 
-            if(type == Demo2CellType.NULL){
-            return false;//retourne faux si l'entité veut entrer dans un mur et vrai sinon
-            }
-            return true;
+            return !(type == Demo2CellType.WALL || type == Demo2CellType.NULL);//retourne faux si l'entité veut entrer dans un mur et vrai sinon
+
         }
 
         @Override

@@ -32,16 +32,10 @@ public abstract class MovableAreaEntity extends AreaEntity {
     ;
 
     protected final List<DiscreteCoordinates> getEnteringCells() {
-        ArrayList<DiscreteCoordinates> coor = (ArrayList<DiscreteCoordinates>) getCurrentCells();
-        DiscreteCoordinates temp;
-        LinkedList<DiscreteCoordinates> entering = new LinkedList<DiscreteCoordinates>();
-        int grilleLongeur = getOwnerArea().getWidth();
-        int grilleHauteur = getOwnerArea().getHeight();
-        for (int i = 0; i < coor.size(); i++) {
-            temp = coor.get(i).jump(getOrientation().toVector());
-            if (temp.x < grilleLongeur && temp.y < grilleHauteur) {
-                entering.add(temp);
-            }
+        List<DiscreteCoordinates> coord = getCurrentCells();
+        List<DiscreteCoordinates> entering = new LinkedList<>();
+        for (int i = 0; i < coord.size(); i++) {
+            entering.add(coord.get(i).jump(getOrientation().toVector()));
         }
         return entering;
     }
@@ -62,11 +56,15 @@ public abstract class MovableAreaEntity extends AreaEntity {
         resetMotion();
     }
 
+    public MovableAreaEntity(Area area, DiscreteCoordinates position){
+        super(area, position);
+        resetMotion();
+    }
+
     /**
      * Initialize or reset the current motion information
      */
     protected void resetMotion() {
-        // TODO implements me #PROJECT #TUTO
         isMoving = false;
         framesForCurrentMove = 0;
         targetMainCellCoordinates = getCurrentMainCellCoordinates();
@@ -80,7 +78,6 @@ public abstract class MovableAreaEntity extends AreaEntity {
     protected boolean move(int framesForMove) {
         // TODO implements me #PROJECT #TUTO
         if (!isMoving || getCurrentMainCellCoordinates() == targetMainCellCoordinates) {
-            // TODO : add area conditions here
             if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
                 if (framesForCurrentMove > 1) {
@@ -105,8 +102,12 @@ public abstract class MovableAreaEntity extends AreaEntity {
     @Override
     public void update(float deltaTime) {
         // TODO implements me #PROJECT #TUTO
-        if(isMoving && getCurrentMainCellCoordinates()!=targetMainCellCoordinates){
-            setCurrentPosition(getPosition().add(getVelocity()));
+        if((isMoving) && (getCurrentMainCellCoordinates()!=targetMainCellCoordinates)){
+            Vector distance = getOrientation().toVector();
+            distance = distance.mul(1.0f / framesForCurrentMove);
+            setCurrentPosition(getPosition().add(distance));
+            resetMotion();
+            //todo sans le reset Motion sa part a l'inifinie
             }else{
             resetMotion();
         }
@@ -120,7 +121,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         // the velocity must be computed as the orientation vector (getOrientation().toVector() mutiplied by 
     	// framesForCurrentMove
         Vector distance = getOrientation().toVector();
-        distance = distance.mul(1.0f / framesForCurrentMove);
+        distance = distance.mul(framesForCurrentMove);
         return distance;
     }
 

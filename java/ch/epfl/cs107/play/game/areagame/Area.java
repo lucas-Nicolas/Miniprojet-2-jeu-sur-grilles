@@ -252,10 +252,6 @@ public abstract class Area implements Playable {
         return title;
     }
 
-    public Window getWindow() {
-        return window;
-    }
-
     public final boolean enterAreaCells(Interactable entity, List<DiscreteCoordinates> coordinates){
         if(areaBehavior.canEnter(entity,coordinates)){
             interactablesToEnter.put(entity,coordinates);
@@ -269,6 +265,10 @@ public abstract class Area implements Playable {
             return true;
         }
         return false;
+    }
+
+    public Window getWindow() {
+        return window;
     }
 }
 

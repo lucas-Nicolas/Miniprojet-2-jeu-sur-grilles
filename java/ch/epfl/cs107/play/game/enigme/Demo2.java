@@ -12,7 +12,7 @@ import ch.epfl.cs107.play.window.Window;
 
 public class Demo2 extends AreaGame {
     private Demo2Player player;
-
+    private final int SCALE_FACTOR = 22;
     @Override
     public int getFrameRate() {
         return 24;
@@ -32,8 +32,9 @@ public class Demo2 extends AreaGame {
             addArea(room0);
             addArea(room1);
             setCurrentArea("LevelSelector", true);
-            player = new Demo2Player(room0, Orientation.UP,new DiscreteCoordinates(5,5));
+            player = new Demo2Player(room0, Orientation.DOWN,new DiscreteCoordinates(5,5));
             getCurrentArea().registerActor(player);
+            getCurrentArea().setViewCandidate(player);
             return true;
         }
         return false;
@@ -42,6 +43,8 @@ public class Demo2 extends AreaGame {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        player.update(deltaTime);
+
         if(player.isGoingThroughDoor()){
             if(getCurrentArea().getTitle().equals("LevelSelector")){
                 setCurrentArea("Level1",false);
