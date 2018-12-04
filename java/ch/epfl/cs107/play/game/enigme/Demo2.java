@@ -32,7 +32,7 @@ public class Demo2 extends AreaGame {
             addArea(room0);
             addArea(room1);
             setCurrentArea("LevelSelector", true);
-            player = new Demo2Player(room0, Orientation.DOWN,new DiscreteCoordinates(5,5));
+            player = new Demo2Player(room0,new DiscreteCoordinates(5,5));
             getCurrentArea().registerActor(player);
             getCurrentArea().setViewCandidate(player);
             return true;
@@ -46,16 +46,21 @@ public class Demo2 extends AreaGame {
         player.update(deltaTime);
 
         if(player.isGoingThroughDoor()){
+
             if(getCurrentArea().getTitle().equals("LevelSelector")){
-                setCurrentArea("Level1",false);
-                player.setGoingThroughDoor(false);
+                setCurrentArea("Level1",true);
                 player.enterArea(getCurrentArea(), new DiscreteCoordinates(5,2));
+                getCurrentArea().setViewCandidate(player);
 
             }else if(getCurrentArea().getTitle().equals("Level1")){
-                setCurrentArea("LevelSelector",false);
-                player.setGoingThroughDoor(false);
+                setCurrentArea("LevelSelector",true);
                 player.enterArea(getCurrentArea(), new DiscreteCoordinates(5,5));
+                getCurrentArea().setViewCandidate(player);
             }
         }
+
+
+
+
     }
 }

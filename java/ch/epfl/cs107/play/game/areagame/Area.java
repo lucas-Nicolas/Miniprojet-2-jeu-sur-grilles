@@ -274,8 +274,5 @@ public abstract class Area implements Playable {
     public Window getWindow() {
         return window;
     }
-
-
-
 }
 

@@ -20,4 +20,5 @@ public class Demo2Area extends Area {
     public float getCameraScaleFactor(){
         return 22;
     }
+
 }

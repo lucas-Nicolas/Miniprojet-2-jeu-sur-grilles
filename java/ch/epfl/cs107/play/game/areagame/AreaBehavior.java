@@ -59,7 +59,7 @@ public abstract class AreaBehavior {
         }
 
         public List<DiscreteCoordinates> getCurrentCells() {
-            List<DiscreteCoordinates> coor = new LinkedList<DiscreteCoordinates>();
+            List<DiscreteCoordinates> coor = new LinkedList<>();
             coor.add(coordonnee);
             return coor;
         }
@@ -104,7 +104,7 @@ public abstract class AreaBehavior {
     }
     public boolean isDoor(List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
-            if (!cells[coord.x][coord.y].isDoor()) {
+            if (cells[coord.x][coord.y].isDoor()) {
                 return true;
             }
         }
