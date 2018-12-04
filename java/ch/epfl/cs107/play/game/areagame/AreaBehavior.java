@@ -125,4 +125,6 @@ public abstract class AreaBehavior {
         return behaviorMap;
     }
 
+
+
 }

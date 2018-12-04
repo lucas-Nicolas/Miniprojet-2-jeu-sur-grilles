@@ -67,9 +67,9 @@ public class Demo2Player extends MovableAreaEntity {
     public void enterArea(Area area, DiscreteCoordinates position){
         area.registerActor(this);
         setCurrentPosition(position.toVector());
-        isGoingThroughDoor = true;
         this.resetMotion();
         getOwnerArea().unregisterActor(this);
+        isGoingThroughDoor = false;
 
     }
 
@@ -124,11 +124,12 @@ public class Demo2Player extends MovableAreaEntity {
 
 
 
+
     }
     @Override
     public boolean move(int framesForMove){
     boolean canMove = super.move(framesForMove);
-
+    if(getEnteringCells().)
     return canMove;
     }
 }

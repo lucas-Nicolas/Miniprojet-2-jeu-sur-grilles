@@ -59,7 +59,7 @@ public abstract class Area implements Playable {
         if (a != null){
             // Here decisions at the area level to decide if an actor // must be added or not
             boolean errorOccured = !actors.add(a);
-            if(a instanceof Interactable){errorOccured= errorOccured || !enterAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
+            if(a instanceof Interactable){ errorOccured= errorOccured || !enterAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
             if (errorOccured && !forced) {
                 System.out.println("Actor " + a + " cannot be " +
                         "completely added, so remove it from where it was ");
@@ -270,5 +270,8 @@ public abstract class Area implements Playable {
     public Window getWindow() {
         return window;
     }
+
+
+
 }
 
