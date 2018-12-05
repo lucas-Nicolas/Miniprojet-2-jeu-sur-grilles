@@ -58,12 +58,24 @@ public class Door extends AreaEntity {
 
 
     //todo implémenter les fonctions pour pouvoir faire fonctionner la méthode
-    public boolean isInDoor(DiscreteCoordinates a) {
+    //j'avais pas compris du coup j'ai fais le con mais sa peut servir peut etre
+    /*public boolean isInDoor(DiscreteCoordinates a) {
         for (DiscreteCoordinates door : positionsAroundMainCell) {
-            if (door.x == a.x && door.y == a.y) {
-
+            if (door.equals(a)) {
+                return true;
             }
         }
-        return true;
+        if(getCurrentMainCellCoordinates().equals(a)){
+            return true;
+        }
+        return false;
+    }*/
+
+    public DiscreteCoordinates getArrivalPosition() {
+        return arrivalPosition;
+    }
+
+    public String getAreaGoingTo() {
+        return areaGoingTo;
     }
 }

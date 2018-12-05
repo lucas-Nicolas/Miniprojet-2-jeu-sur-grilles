@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.enigme;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
+import ch.epfl.cs107.play.game.enigme.actor.Door;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
 import ch.epfl.cs107.play.game.enigme.area.Level2;
 import ch.epfl.cs107.play.game.enigme.area.Level3;
@@ -11,6 +12,8 @@ import ch.epfl.cs107.play.game.enigme.area.Level1;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
+
+import java.util.ArrayList;
 
 
 /**
@@ -56,6 +59,10 @@ public class Enigme extends AreaGame {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-
+        if (player.isPassingDoor()){
+            Door door = player.getpassedDoor();
+            setCurrentArea(door.getAreaGoingTo(),false);
+            player.enterArea(getCurrentArea(),door.getArrivalPosition());
+        }
     }
 }
