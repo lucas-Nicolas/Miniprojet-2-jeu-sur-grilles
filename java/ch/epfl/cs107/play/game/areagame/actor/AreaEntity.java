@@ -58,6 +58,7 @@ public abstract class AreaEntity extends Entity implements Interactable{
     protected void setOrientation(Orientation orientation){
         this.orientation=orientation;
     }
+
     protected void setCurrentPosition(Vector v){
         if(DiscreteCoordinates.isCoordinates(v)) {
             super.setCurrentPosition(v.round());

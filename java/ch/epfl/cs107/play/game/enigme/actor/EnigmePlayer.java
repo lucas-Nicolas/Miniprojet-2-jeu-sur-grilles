@@ -56,10 +56,6 @@ public class EnigmePlayer extends MovableAreaEntity {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
-    public boolean isPassingDoor() {
-        return isPassingDoor;
-    }
-
 
     public void enterArea(Area area, DiscreteCoordinates position) {
         area.registerActor(this);
@@ -124,6 +120,10 @@ public class EnigmePlayer extends MovableAreaEntity {
     }
     public Door getpassedDoor(){
         return passedDoor;
+    }
+
+    public boolean isPassingDoor() {
+        return isPassingDoor;
     }
 
 

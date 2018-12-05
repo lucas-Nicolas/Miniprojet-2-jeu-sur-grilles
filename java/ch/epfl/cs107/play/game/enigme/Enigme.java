@@ -56,5 +56,6 @@ public class Enigme extends AreaGame {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+
     }
 }

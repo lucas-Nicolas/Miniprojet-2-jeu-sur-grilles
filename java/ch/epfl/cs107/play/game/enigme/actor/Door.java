@@ -13,11 +13,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Door extends AreaEntity {
-    private Area areaGoingTo;
+    private String areaGoingTo;
     private DiscreteCoordinates arrivalPosition;
     private List<DiscreteCoordinates> positionsAroundMainCell;
 
-    public Door(Area areaLeaving,Area areaGoingTo, Orientation orientation, DiscreteCoordinates arrivalPosition, DiscreteCoordinates currentMainCellCoordinates ,  DiscreteCoordinates... positionsAroundMainCell) {
+    public Door(Area areaLeaving, String areaGoingTo, DiscreteCoordinates arrivalPosition, Orientation orientation, DiscreteCoordinates currentMainCellCoordinates, DiscreteCoordinates... positionsAroundMainCell) {
         super(areaLeaving, orientation, currentMainCellCoordinates);
 
         this.areaGoingTo = areaGoingTo;
@@ -29,7 +29,7 @@ public class Door extends AreaEntity {
 
     @Override
     public boolean takeCellSpace() {
-        return false;
+        return true;
     }
 
     @Override
@@ -56,5 +56,14 @@ public class Door extends AreaEntity {
         return current;
     }
 
+
     //todo implémenter les fonctions pour pouvoir faire fonctionner la méthode
+    public boolean isInDoor(DiscreteCoordinates a) {
+        for (DiscreteCoordinates door : positionsAroundMainCell) {
+            if (door.x == a.x && door.y == a.y) {
+
+            }
+        }
+        return true;
+    }
 }

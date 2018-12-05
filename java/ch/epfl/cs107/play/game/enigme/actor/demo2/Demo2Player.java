@@ -116,12 +116,6 @@ public class Demo2Player extends MovableAreaEntity {
             }
 
         }
-
-
-
-
-
-
     }
     @Override
     public boolean move(int framesForMove){

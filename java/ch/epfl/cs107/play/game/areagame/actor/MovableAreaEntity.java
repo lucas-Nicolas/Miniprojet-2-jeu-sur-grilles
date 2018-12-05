@@ -99,12 +99,10 @@ public abstract class MovableAreaEntity extends AreaEntity {
 
     @Override
     public void update(float deltaTime) {
-        if((isMoving) && (getCurrentMainCellCoordinates()!=targetMainCellCoordinates)){
+        if((isMoving) && !(getCurrentMainCellCoordinates().equals(targetMainCellCoordinates))){
             Vector distance = getOrientation().toVector();
             distance = distance.mul(1.0f / framesForCurrentMove);
             setCurrentPosition(getPosition().add(distance));
-            resetMotion();
-            //todo sans le reset Motion ça part a l'inifini
             }else{
             resetMotion();
         }
