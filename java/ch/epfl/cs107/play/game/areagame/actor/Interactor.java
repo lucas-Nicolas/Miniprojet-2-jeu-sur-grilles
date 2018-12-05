@@ -15,7 +15,6 @@ public interface Interactor {
     public List<DiscreteCoordinates> getFieldOfViewCells();
     public boolean wantsCellInteraction();
     public boolean wantsViewInteraction();
-
-    // TODO implements me #PROJECT #TUTO
+    public void interactWith(Interactable other);
 
 }
