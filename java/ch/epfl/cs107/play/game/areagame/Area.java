@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.areagame;
 import ch.epfl.cs107.play.game.Playable;
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
+import ch.epfl.cs107.play.game.areagame.actor.Interactor;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.Transform;
@@ -29,6 +30,7 @@ public abstract class Area implements Playable {
     private List<Actor> actors;
     private List<Actor> registeredActors;
     private List<Actor> unregisteredActors;
+    private LinkedList<Interactor> interactors;
     private Map<Interactable, List<DiscreteCoordinates>> interactablesToEnter;
     private Map<Interactable, List<DiscreteCoordinates>> interactablesToLeave;
     // Camera Parameter
@@ -59,7 +61,12 @@ public abstract class Area implements Playable {
         if (a != null){
             // Here decisions at the area level to decide if an actor // must be added or not
             boolean errorOccured = !actors.add(a);
-            if(a instanceof Interactable){ errorOccured= errorOccured || !enterAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
+            if(a instanceof Interactable){
+                errorOccured= errorOccured || !enterAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());
+            }
+            if(a instanceof Interactor) {
+                errorOccured = errorOccured || !interactors.add((Interactor) a);
+            }
             if (errorOccured && !forced) {
                 System.out.println("Actor " + a + " cannot be " +
                         "completely added, so remove it from where it was ");
@@ -78,7 +85,13 @@ public abstract class Area implements Playable {
     private void removeActor(Actor a, boolean forced){
         if (a != null) {
             boolean errorOccured = !actors.remove(a);
-            if(a instanceof Interactable){errorOccured= errorOccured || !leaveAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());}
+            if(a instanceof Interactable){
+                errorOccured= errorOccured || !leaveAreaCells(((Interactable)a),((Interactable)a).getCurrentCells());
+            }
+            if(a instanceof Interactor) {
+                errorOccured = errorOccured || !interactors.remove((Interactor) a);
+            }
+
             if (errorOccured && !forced) {
                 System.out.println("Actor " + a + " cannot be " +
                         "completely removed , so add it to where it was ");
@@ -150,6 +163,7 @@ public abstract class Area implements Playable {
         unregisteredActors = new LinkedList<>();
         interactablesToLeave = new HashMap<>();
         interactablesToEnter = new HashMap<>();
+        interactors = new LinkedList<>();
 
         this.fileSystem = fileSystem;
         this.window = window;
@@ -174,6 +188,7 @@ public abstract class Area implements Playable {
         for (Actor actor : actors) {
             actor.update(deltaTime);
         }
+
         updateCamera();
         for (Actor actor : actors) {
             actor.draw(window);
