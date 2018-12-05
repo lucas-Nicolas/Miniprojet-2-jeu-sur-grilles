@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.areagame;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
+import ch.epfl.cs107.play.game.areagame.actor.Interactor;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Image;
@@ -50,11 +51,11 @@ public abstract class AreaBehavior {
      */
     public abstract class Cell implements Interactable {
         private DiscreteCoordinates coordonnee;
-        private Set<Interactable> contenu;
+        private Set<Interactable> entities;
 
         public Cell(int x, int y) {
             coordonnee = new DiscreteCoordinates(x, y);
-            contenu = new HashSet<>();
+            entities = new HashSet<>();
 
         }
 
@@ -65,11 +66,11 @@ public abstract class AreaBehavior {
         }
 
         private void enter(Interactable entity) {
-            this.contenu.add(entity);
+            this.entities.add(entity);
         }
 
         private void leave(Interactable entity) {
-            this.contenu.remove(entity);
+            this.entities.remove(entity);
         }
 
 
@@ -79,6 +80,19 @@ public abstract class AreaBehavior {
         protected abstract boolean canLeave(Interactable entity);
 
         protected abstract boolean isDoor();
+
+        private void cellInteractionOf(Interactor interactor){
+            for(Interactable interactable : entities){
+                if(interactable.isCellInteractable()) interactor.interactWith(interactable);
+            }
+        }
+
+        private void viewInteractionOf(Interactor interactor){
+            for(Interactable interactable : entities){
+                if(interactable.isCellInteractable()) interactor.interactWith(interactable);
+            }
+        }
+
     }
 
 
@@ -135,6 +149,20 @@ public abstract class AreaBehavior {
         return behaviorMap;
     }
 
+    public void cellInteractionOf(Interactor interactor){
+        LinkedList<DiscreteCoordinates> coord = (LinkedList<DiscreteCoordinates>) interactor.getCurrentCells();
+        for (int i = 0; i <coord.size() ; i++) {
+            cells[coord.get(i).x][coord.get(i).y].cellInteractionOf(interactor);
+        }
+        
+    }
+
+    public void viewInteractionOf(Interactor interactor){
+        LinkedList<DiscreteCoordinates> coord = (LinkedList<DiscreteCoordinates>) interactor.getFieldOfViewCells();
+        for (int i = 0; i < coord.size() ; i++) {
+            cells[coord.get(i).x][coord.get(i).y].viewInteractionOf(interactor);
+        }
+    }
 
 
 }

@@ -189,6 +189,15 @@ public abstract class Area implements Playable {
             actor.update(deltaTime);
         }
 
+        for (Interactor interactor : interactors) {
+            if (interactor.wantsCellInteraction()) {
+                // demander à la grille de mettre en place les interactions de contact
+                }
+            if (interactor.wantsViewInteraction()) {
+                // demander à la grille de mettre en place les interaction distantes
+            }
+        }
+
         updateCamera();
         for (Actor actor : actors) {
             actor.draw(window);
