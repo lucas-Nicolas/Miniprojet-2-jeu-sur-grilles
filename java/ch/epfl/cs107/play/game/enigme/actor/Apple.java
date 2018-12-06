@@ -4,6 +4,8 @@ import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -21,7 +23,7 @@ public class Apple extends AreaEntity implements Interactable {
 
     @Override
     public void draw(Canvas canvas) {
-        APPLE.draw(canvas);
+            APPLE.draw(canvas);
     }
 
     @Override
@@ -46,4 +48,14 @@ public class Apple extends AreaEntity implements Interactable {
         return false;
     }
     //Todo agir sur isCollected quand on aura mis en place les interractions
+
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
+        ((EnigmeInteractionVisitor)v).interactWith(this);
+    }
+
+    public void setCollected(boolean collected) {
+        isCollected = collected;
+    }
 }

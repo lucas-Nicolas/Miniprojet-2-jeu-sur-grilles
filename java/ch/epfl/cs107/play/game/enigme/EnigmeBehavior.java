@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.enigme;
 
 import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.window.Window;
 
 public class EnigmeBehavior extends AreaBehavior {
@@ -46,16 +47,16 @@ public class EnigmeBehavior extends AreaBehavior {
             for (int x = 0; x < getWidth(); x++) {
                 EnigmeBehavior.EnigmeCellType cellType = EnigmeBehavior.EnigmeCellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
                 //on oublie pas d'initialiser les cellules
-                getCells()[x][y] = new EnigmeBehavior.Demo2Cell(x,y,cellType);
+                getCells()[x][y] = new EnigmeBehavior.EnigmeCell(x,y,cellType);
                 //NOT SURE About this one
             }
         }
     }
 
-    public class Demo2Cell extends Cell{
+    public class EnigmeCell extends Cell{
         private EnigmeBehavior.EnigmeCellType type;
 
-        private Demo2Cell(int x, int y, EnigmeBehavior.EnigmeCellType type){
+        private EnigmeCell(int x, int y, EnigmeBehavior.EnigmeCellType type){
             super(x, y);
             this.type = type;
 
@@ -94,6 +95,11 @@ public class EnigmeBehavior extends AreaBehavior {
         @Override
         public boolean isDoor(){
             return (type == EnigmeBehavior.EnigmeCellType.DOOR);
+        }
+
+        @Override
+        public void acceptInteraction(AreaInteractionVisitor v) {
+
         }
     }
 }

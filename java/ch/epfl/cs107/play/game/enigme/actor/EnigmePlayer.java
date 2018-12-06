@@ -1,9 +1,9 @@
 package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
-import ch.epfl.cs107.play.game.areagame.actor.MovableAreaEntity;
-import ch.epfl.cs107.play.game.areagame.actor.Orientation;
-import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.actor.*;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
@@ -13,20 +13,43 @@ import java.util.Collections;
 import java.util.List;
 
 public class EnigmePlayer extends MovableAreaEntity {
+    private class EnigmePlayerHandler implements EnigmeInteractionVisitor {
+        @Override
+        public void interactWith(Door door){
+        //Fait en sorte que le joueur passe la porte
+
+
+        }
+        @Override
+        public void interactWith(Apple apple){
+            //fait en sorte que la pomme soit ramassée
+            apple.setCollected(true);
+        }
+
+    }
+
+
     private boolean isPassingDoor;
     private final Sprite GHOST = new Sprite("ghost.1", 1, 1.f, this);
     private final static int ANIMATION_DURATION = 8;
     private Door passedDoor;
+    private final EnigmePlayerHandler handler;
 
 
     public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position) {
         super(area, orientation, position);
         this.isPassingDoor = false;
+        handler = new EnigmePlayerHandler();
     }
 
     public EnigmePlayer(Area area, DiscreteCoordinates position) {
         super(area, position);
         this.isPassingDoor = false;
+        handler = new EnigmePlayerHandler();
+    }
+
+    public EnigmePlayerHandler getHandler() {
+        return handler;
     }
 
     @Override
@@ -125,7 +148,12 @@ public class EnigmePlayer extends MovableAreaEntity {
     public boolean isPassingDoor() {
         return isPassingDoor;
     }
+    public void interactWith(Interactable other){
+        other.acceptInteraction(handler);
+    }
 
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
 
-
+    }
 }

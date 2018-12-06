@@ -2,7 +2,9 @@ package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
+import ch.epfl.cs107.play.game.areagame.actor.MovableAreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 import javafx.scene.shape.Ellipse;
@@ -58,18 +60,16 @@ public class Door extends AreaEntity {
 
 
     //todo implémenter les fonctions pour pouvoir faire fonctionner la méthode
-    //j'avais pas compris du coup j'ai fais le con mais sa peut servir peut etre
-    /*public boolean isInDoor(DiscreteCoordinates a) {
-        for (DiscreteCoordinates door : positionsAroundMainCell) {
-            if (door.equals(a)) {
+    //j'avais pas compris du coup j'ai fait le con mais ça peut servir peut etre
+    //je pense pas que ce que j'ai fait marche non plus mais bon ça à l'air pas si mal je regarde demain
+    public boolean isInDoor(MovableAreaEntity a) {
+        for (DiscreteCoordinates door : getCurrentCells()) {
+            if (door.equals(new DiscreteCoordinates((int)a.getPosition().x , (int)a.getPosition().y))) {
                 return true;
             }
         }
-        if(getCurrentMainCellCoordinates().equals(a)){
-            return true;
-        }
         return false;
-    }*/
+    }
 
     public DiscreteCoordinates getArrivalPosition() {
         return arrivalPosition;
@@ -77,5 +77,10 @@ public class Door extends AreaEntity {
 
     public String getAreaGoingTo() {
         return areaGoingTo;
+    }
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
+
     }
 }

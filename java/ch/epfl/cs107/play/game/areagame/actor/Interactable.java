@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.areagame.actor;
 
 
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import java.util.List;
 
@@ -10,9 +11,10 @@ import java.util.List;
  * This interface makes sense only in the "AreaGame" context with Actor contained into Area Cell
  */
 public interface Interactable {
-    // TODO implements me #PROJECT #TUTO
-    public List<DiscreteCoordinates> getCurrentCells();
-    public boolean takeCellSpace();//entités traversables ou non ?
-    public boolean isViewInteractable();//interactions à distance ou non ?
-    public boolean isCellInteractable();//interactions au contact ou non ?
+
+    List<DiscreteCoordinates> getCurrentCells();
+    boolean takeCellSpace();//entités traversables ou non ?
+    boolean isViewInteractable();//interactions à distance ou non ?
+    boolean isCellInteractable();//interactions au contact ou non ?
+    void acceptInteraction(AreaInteractionVisitor v);
 }

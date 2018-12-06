@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.MovableAreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
@@ -32,6 +33,11 @@ public class Demo2Player extends MovableAreaEntity {
     @Override
     public void draw(Canvas canvas) {
         GHOST.draw(canvas);
+
+    }
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
 
     }
 

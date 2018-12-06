@@ -3,11 +3,6 @@ package ch.epfl.cs107.play.game.areagame.actor;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.game.areagame.Area;
-import ch.epfl.cs107.play.math.DiscreteCoordinates;
-import ch.epfl.cs107.play.math.Vector;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,8 +29,8 @@ public abstract class MovableAreaEntity extends AreaEntity {
     protected final List<DiscreteCoordinates> getEnteringCells() {
         List<DiscreteCoordinates> coord = getCurrentCells();
         List<DiscreteCoordinates> entering = new LinkedList<>();
-        for (int i = 0; i < coord.size(); i++) {
-            entering.add(coord.get(i).jump(getOrientation().toVector()));
+        for (DiscreteCoordinates coords : coord) {
+            entering.add(coords.jump(getOrientation().toVector()));
         }
         return entering;
     }
@@ -75,7 +70,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
      */
 
     protected boolean move(int framesForMove) {
-        if (!isMoving || getCurrentMainCellCoordinates() == targetMainCellCoordinates) {
+        if (!isMoving || getCurrentMainCellCoordinates()== targetMainCellCoordinates ) {
             if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
                 if (framesForCurrentMove > 1) {
