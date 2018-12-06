@@ -11,10 +11,10 @@ import java.util.List;
  * This interface makes sense only in the "Area Context" with Actor contained into Area Cell
  */
 public interface Interactor {
-    public List<DiscreteCoordinates> getCurrentCells();
-    public List<DiscreteCoordinates> getFieldOfViewCells();
-    public boolean wantsCellInteraction();
-    public boolean wantsViewInteraction();
-    public void interactWith(Interactable other);
+    List<DiscreteCoordinates> getCurrentCells();
+    List<DiscreteCoordinates> getFieldOfViewCells();
+    boolean wantsCellInteraction();
+    boolean wantsViewInteraction();
+    void interactWith(Interactable other);
 
 }

@@ -100,6 +100,7 @@ public class EnigmePlayer extends MovableAreaEntity {
         Button downArrow = keyboard.get(Keyboard.DOWN);
         Button upArrow = keyboard.get(Keyboard.UP);
         Button rightArrow = keyboard.get(Keyboard.RIGHT);
+        Button l = keyboard.get(Keyboard.L);
 
 
         //pour chaque direction si le personnage est déjà orienté vers
@@ -133,14 +134,21 @@ public class EnigmePlayer extends MovableAreaEntity {
                 this.setOrientation(Orientation.RIGHT);
             }
 
+        }else if(l.isDown()){
+
         }
     }
 
-    public void setIsPassingDoor(Door door){
-        isPassingDoor= true;
+    public void PassedDoor(Door door){
+        isPassingDoor= false;
         passedDoor = door;
 
     }
+
+    public void setPassingDoor(boolean passingDoor) {
+        isPassingDoor = passingDoor;
+    }
+
     public Door getpassedDoor(){
         return passedDoor;
     }

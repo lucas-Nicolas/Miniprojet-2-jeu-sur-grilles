@@ -9,16 +9,12 @@ import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class Apple extends AreaEntity implements Interactable {
+public class Apple extends Collectable implements Interactable {
     private final Sprite APPLE = new Sprite("apple.1",1,1.f,this);
-    private boolean isCollected;
 
     public Apple(Area area, DiscreteCoordinates position) {
         super(area, position);
-        isCollected = false;
+
     }
 
     @Override
@@ -26,12 +22,6 @@ public class Apple extends AreaEntity implements Interactable {
             APPLE.draw(canvas);
     }
 
-    @Override
-    public List<DiscreteCoordinates> getCurrentCells() {
-        List<DiscreteCoordinates> currentCells = new LinkedList<>();
-        currentCells.add(getCurrentMainCellCoordinates());
-        return currentCells;
-    }
 
     @Override
     public boolean takeCellSpace() {
@@ -56,6 +46,6 @@ public class Apple extends AreaEntity implements Interactable {
     }
 
     public void setCollected(boolean collected) {
-        isCollected = collected;
+        setIsCollected(collected);
     }
 }

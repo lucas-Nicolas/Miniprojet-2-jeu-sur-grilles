@@ -7,10 +7,8 @@ import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
-import javafx.scene.shape.Ellipse;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -81,6 +79,5 @@ public class Door extends AreaEntity {
 
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
-
     }
 }
