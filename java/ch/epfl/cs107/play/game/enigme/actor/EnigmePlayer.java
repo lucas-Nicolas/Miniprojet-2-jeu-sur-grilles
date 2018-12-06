@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.enigme.actor;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.area.EnigmeArea;
 import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Button;
@@ -10,13 +11,15 @@ import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
-public class EnigmePlayer extends MovableAreaEntity {
+public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private class EnigmePlayerHandler implements EnigmeInteractionVisitor {
         @Override
         public void interactWith(Door door){
-        //Fait en sorte que le joueur passe la porte
+            //Fait en sorte que le joueur passe la porte
+
 
 
         }
@@ -94,13 +97,14 @@ public class EnigmePlayer extends MovableAreaEntity {
         super.update(deltaTime);
 
 
-        //on crée des boutons de la même façon que dans demo 1 pour chaque direction
+
         Keyboard keyboard = getOwnerArea().getWindow().getKeyboard();
+
+        //on crée des boutons de la même façon que dans demo 1 pour chaque direction
         Button leftArrow = keyboard.get(Keyboard.LEFT);
         Button downArrow = keyboard.get(Keyboard.DOWN);
         Button upArrow = keyboard.get(Keyboard.UP);
         Button rightArrow = keyboard.get(Keyboard.RIGHT);
-        Button l = keyboard.get(Keyboard.L);
 
 
         //pour chaque direction si le personnage est déjà orienté vers
@@ -133,14 +137,11 @@ public class EnigmePlayer extends MovableAreaEntity {
             } else {
                 this.setOrientation(Orientation.RIGHT);
             }
-
-        }else if(l.isDown()){
-
         }
     }
 
     public void PassedDoor(Door door){
-        isPassingDoor= false;
+        isPassingDoor= true;
         passedDoor = door;
 
     }
@@ -163,5 +164,27 @@ public class EnigmePlayer extends MovableAreaEntity {
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
 
+    }
+
+    @Override
+    public List<DiscreteCoordinates> getFieldOfViewCells() {
+        List<DiscreteCoordinates> coord = getCurrentCells();
+        List<DiscreteCoordinates> fieldOfView = new LinkedList<>();
+        for (DiscreteCoordinates coords : coord) {
+            fieldOfView.add(coords.jump(getOrientation().toVector()));
+        }
+        return fieldOfView;
+    }
+
+    @Override
+    public boolean wantsCellInteraction() {
+        return true;
+    }
+
+    @Override
+    public boolean wantsViewInteraction() {
+        Keyboard keyboard = getOwnerArea().getWindow().getKeyboard();
+        Button l = keyboard.get(Keyboard.L);
+        return l.isPressed() ;
     }
 }

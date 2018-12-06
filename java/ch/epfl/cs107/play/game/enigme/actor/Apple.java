@@ -1,7 +1,6 @@
 package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
-import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
@@ -19,7 +18,7 @@ public class Apple extends Collectable implements Interactable {
 
     @Override
     public void draw(Canvas canvas) {
-            APPLE.draw(canvas);
+        APPLE.draw(canvas);
     }
 
 

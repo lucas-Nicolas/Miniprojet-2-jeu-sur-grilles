@@ -10,7 +10,7 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Collectable extends AreaEntity implements Interactable {
+public abstract class Collectable extends AreaEntity implements Interactable {
     private boolean isCollected;
     public Collectable(Area area, DiscreteCoordinates position) {
         super(area, position);
@@ -56,6 +56,11 @@ public class Collectable extends AreaEntity implements Interactable {
         return isCollected;
     }
 
+    @Override
+    public void update(float deltaTime) {
 
-
+        if(isCollected){
+            getOwnerArea().unregisterActor(this);
+        }
+    }
 }

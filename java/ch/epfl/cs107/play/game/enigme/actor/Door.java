@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.MovableAreaEntity;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -60,7 +61,7 @@ public class Door extends AreaEntity {
     //todo implémenter les fonctions pour pouvoir faire fonctionner la méthode
     //j'avais pas compris du coup j'ai fait le con mais ça peut servir peut etre
     //je pense pas que ce que j'ai fait marche non plus mais bon ça à l'air pas si mal je regarde demain
-    public boolean isInDoor(MovableAreaEntity a) {
+    public boolean isinDoor(MovableAreaEntity a) {
         for (DiscreteCoordinates door : getCurrentCells()) {
             if (door.equals(new DiscreteCoordinates((int)a.getPosition().x , (int)a.getPosition().y))) {
                 return true;
@@ -79,5 +80,6 @@ public class Door extends AreaEntity {
 
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
+        ((EnigmeInteractionVisitor)v).interactWith(this);
     }
 }

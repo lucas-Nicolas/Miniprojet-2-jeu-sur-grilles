@@ -3,7 +3,11 @@ package ch.epfl.cs107.play.game.enigme;
 import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class EnigmeBehavior extends AreaBehavior {
     public enum EnigmeCellType{
@@ -48,7 +52,6 @@ public class EnigmeBehavior extends AreaBehavior {
                 EnigmeBehavior.EnigmeCellType cellType = EnigmeBehavior.EnigmeCellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
                 //on oublie pas d'initialiser les cellules
                 getCells()[x][y] = new EnigmeBehavior.EnigmeCell(x,y,cellType);
-                //NOT SURE About this one
             }
         }
     }
@@ -66,10 +69,13 @@ public class EnigmeBehavior extends AreaBehavior {
             return type;
         }
 
+
+
         @Override
         protected boolean canEnter(Interactable entity) {
 
-            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL);//retourne faux si l'entité veut entrer dans un mur et vrai sinon
+            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL);
+            //retourne faux si l'entité veut entrer dans un mur et vrai sinon
 
         }
 
@@ -94,12 +100,18 @@ public class EnigmeBehavior extends AreaBehavior {
         }
         @Override
         public boolean isDoor(){
-            return (type == EnigmeBehavior.EnigmeCellType.DOOR);
+            return false;//méthode ne correspondant pas aux attentes de la 3ème partie mais étant requise étant donné que la classe hérite de areaBehavior
         }
 
         @Override
         public void acceptInteraction(AreaInteractionVisitor v) {
 
         }
+    }
+
+    @Override
+    public boolean isDoor(List<DiscreteCoordinates> coordinates) {
+        List<DiscreteCoordinates> doors = new LinkedList<>();
+        return  false;
     }
 }

@@ -83,13 +83,17 @@ public abstract class AreaBehavior {
 
         private void cellInteractionOf(Interactor interactor){
             for(Interactable interactable : entities){
-                if(interactable.isCellInteractable()) interactor.interactWith(interactable);
+                if(interactable.isCellInteractable()){
+                    interactor.interactWith(interactable);
+                }
             }
         }
 
         private void viewInteractionOf(Interactor interactor){
             for(Interactable interactable : entities){
-                if(interactable.isCellInteractable()) interactor.interactWith(interactable);
+                if(interactable.isCellInteractable()) {
+                    interactor.interactWith(interactable);
+                }
             }
         }
 
@@ -150,7 +154,7 @@ public abstract class AreaBehavior {
     }
 
     public void cellInteractionOf(Interactor interactor){
-        LinkedList<DiscreteCoordinates> coord = (LinkedList<DiscreteCoordinates>) interactor.getCurrentCells();
+        List<DiscreteCoordinates> coord = interactor.getCurrentCells();
         for (int i = 0; i <coord.size() ; i++) {
             cells[coord.get(i).x][coord.get(i).y].cellInteractionOf(interactor);
         }
@@ -158,7 +162,7 @@ public abstract class AreaBehavior {
     }
 
     public void viewInteractionOf(Interactor interactor){
-        LinkedList<DiscreteCoordinates> coord = (LinkedList<DiscreteCoordinates>) interactor.getFieldOfViewCells();
+        List<DiscreteCoordinates> coord =  interactor.getFieldOfViewCells();
         for (int i = 0; i < coord.size() ; i++) {
             cells[coord.get(i).x][coord.get(i).y].viewInteractionOf(interactor);
         }

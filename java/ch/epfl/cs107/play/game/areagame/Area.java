@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.Playable;
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Interactor;
+import ch.epfl.cs107.play.game.enigme.actor.Door;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.Transform;
@@ -192,9 +193,11 @@ public abstract class Area implements Playable {
         for (Interactor interactor : interactors) {
             if (interactor.wantsCellInteraction()) {
                 // demander à la grille de mettre en place les interactions de contact
+                areaBehavior.cellInteractionOf(interactor);
                 }
             if (interactor.wantsViewInteraction()) {
                 // demander à la grille de mettre en place les interaction distantes
+                areaBehavior.viewInteractionOf(interactor);
             }
         }
 
@@ -293,6 +296,10 @@ public abstract class Area implements Playable {
 
     public Window getWindow() {
         return window;
+    }
+
+    protected List<Actor> getActors(){
+        return actors;
     }
 }
 
