@@ -33,7 +33,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         for (DiscreteCoordinates coords : coord) {
             temp = coords.jump(getOrientation().toVector());
             if(temp.x < getOwnerArea().getWidth() && temp.y < getOwnerArea().getWidth() && 0<= temp.x && 0<= temp.y) {
-                entering.add(coords.jump(getOrientation().toVector()));
+                entering.add(temp);
             }
         }
         return entering;
@@ -77,7 +77,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         if (!isMoving  || getCurrentMainCellCoordinates().equals(targetMainCellCoordinates) ) {
             if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
-                if (framesForCurrentMove > 1) {
+                if (framesForCurrentMove < 1) {
                     framesForCurrentMove = 1;
                 }
                 Vector orientation = getOrientation().toVector();

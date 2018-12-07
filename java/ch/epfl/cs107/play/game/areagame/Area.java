@@ -126,7 +126,6 @@ public abstract class Area implements Playable {
         if (a != null) {
 
             boolean errorOccured = !unregisteredActors.add(a);
-
             return !errorOccured;
         }
 
