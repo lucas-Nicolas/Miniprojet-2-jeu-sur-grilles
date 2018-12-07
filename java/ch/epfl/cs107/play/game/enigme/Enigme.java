@@ -14,6 +14,9 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -46,7 +49,7 @@ public class Enigme extends AreaGame {
             addArea(level2);
             addArea(level3);
 
-            setCurrentArea("LevelSelector", true);
+            setCurrentArea("LevelSelector", false);
             player = new EnigmePlayer(levelSelector,new DiscreteCoordinates(5,5));
             getCurrentArea().registerActor(player);
             getCurrentArea().setViewCandidate(player);

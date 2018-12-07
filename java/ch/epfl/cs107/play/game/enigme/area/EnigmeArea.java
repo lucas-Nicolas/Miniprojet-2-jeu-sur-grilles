@@ -15,9 +15,10 @@ import java.util.List;
 public class EnigmeArea extends Area {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
+        boolean begin  = super.begin(window, fileSystem);
         setBehavior(new EnigmeBehavior(window, getTitle()));
         registerActor(new Background(this));
-        return super.begin(window, fileSystem);
+        return begin;
     }
 
     public float getCameraScaleFactor(){

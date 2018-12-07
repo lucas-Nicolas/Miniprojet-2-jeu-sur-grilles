@@ -59,14 +59,14 @@ abstract public class AreaGame implements Game {
 
     /**@return (Window) : the Graphic and Audio context*/
     protected final Window getWindow(){
-        // TODO implements me #PROJECT #TUTO
-        return null;
+
+        return window;
     }
 
     /**@return (FIleSystem): the linked file system*/
     protected final FileSystem getFileSystem(){
-        // TODO implements me #PROJECT #TUTO
-        return null;
+
+        return fileSystem;
     }
 
 
@@ -94,6 +94,9 @@ abstract public class AreaGame implements Game {
     public void end() {
         // TODO save the game states somewhere
 
+    }
+    protected Map<String, Area> getAreas(){
+        return areas;
     }
 
 }

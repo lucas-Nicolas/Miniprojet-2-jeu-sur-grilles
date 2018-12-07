@@ -19,9 +19,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         @Override
         public void interactWith(Door door){
             //Fait en sorte que le joueur passe la porte
-
-
-
+        passedDoor(door);
         }
         @Override
         public void interactWith(Apple apple){
@@ -140,7 +138,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         }
     }
 
-    public void PassedDoor(Door door){
+    public void passedDoor(Door door){
         isPassingDoor= true;
         passedDoor = door;
 

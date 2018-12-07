@@ -11,8 +11,9 @@ public class Level1 extends EnigmeArea {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
+        boolean begin  = super.begin(window, fileSystem);
         registerActor(new Door(this,"LevelSelector",new DiscreteCoordinates(5,0), Orientation.DOWN,new DiscreteCoordinates(1,6)));
-        return super.begin(window, fileSystem);
+        return begin;
     }
 
     public String getTitle() {
