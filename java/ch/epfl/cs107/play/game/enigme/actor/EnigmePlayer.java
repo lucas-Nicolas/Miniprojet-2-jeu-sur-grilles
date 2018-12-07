@@ -26,17 +26,6 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         public void interactWith(Apple apple){
             //fait en sorte que la pomme soit ramassée
             apple.setCollected(true);
-            System.out.println("loo");
-        }
-
-        @Override
-        public void interactWith(EnigmeBehavior.EnigmeCell enigmeCell) {
-            System.out.println("lol");
-            if(enigmeCell.isCellInteractable()){
-                enigmeCell.acceptInteraction(this);
-            }else if(enigmeCell.isViewInteractable()){
-
-            }
         }
     }
 

@@ -218,8 +218,8 @@ public abstract class Area implements Playable {
      * Suspend method: Can be overridden, called before resume other
      */
     public void suspend(){
-        // Do nothing by default
         purgeRegistration();
+
         //set the resume value to true so we know there is a current are
         savedGame = true;
     }
