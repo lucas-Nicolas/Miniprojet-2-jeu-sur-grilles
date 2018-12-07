@@ -130,6 +130,7 @@ public abstract class AreaBehavior {
      */
     public boolean canEnter(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
+            System.out.println(coord);
             for (Interactable interactableOnCell : cells[coord.x][coord.y].entities) {
                 if(interactableOnCell.takeCellSpace()){
                     return false;

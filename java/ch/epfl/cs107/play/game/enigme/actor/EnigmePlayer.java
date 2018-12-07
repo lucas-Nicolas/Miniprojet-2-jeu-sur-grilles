@@ -95,7 +95,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     public void enterArea(Area area, DiscreteCoordinates position) {
         area.registerActor(this);
         setCurrentPosition(position.toVector());
+        System.out.println(getCurrentMainCellCoordinates());
         this.resetMotion();
+        getOwnerArea().suspend();
         getOwnerArea().unregisterActor(this);
         setOwnerArea(area);
         isPassingDoor = false;
