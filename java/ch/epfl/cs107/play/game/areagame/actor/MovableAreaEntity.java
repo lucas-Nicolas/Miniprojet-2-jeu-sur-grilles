@@ -70,7 +70,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
      */
 
     protected boolean move(int framesForMove) {
-        if (!isMoving || getCurrentMainCellCoordinates()== targetMainCellCoordinates ) {
+        if (!isMoving  || getCurrentMainCellCoordinates().equals(targetMainCellCoordinates) ) {
             if (getOwnerArea().leaveAreaCells(this,getLeavingCells()) && getOwnerArea().enterAreaCells(this,getEnteringCells())) {
                 framesForCurrentMove = framesForMove;
                 if (framesForCurrentMove > 1) {

@@ -20,14 +20,14 @@ public class LevelSelector extends EnigmeArea {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         boolean begin  = super.begin(window, fileSystem);
-        registerActor(new Door(this, "Level1", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(1, 2)));
-        registerActor(new Door(this, "Level2", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(2, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(3, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(4, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(5, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(6, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(7, 2)));
-        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(8, 2)));
+        registerActor(new Door(this, "Level1", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(1, 7)));
+        registerActor(new Door(this, "Level2", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(2, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(3, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(4, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(5, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(6, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(7, 7)));
+        registerActor(new Door(this, "", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(8, 7)));
         return begin;
     }
 

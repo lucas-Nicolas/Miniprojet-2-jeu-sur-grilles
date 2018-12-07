@@ -83,7 +83,7 @@ public class Demo2Player extends MovableAreaEntity {
 
 
        //on crée des boutons de la même façon que dans demo 1 pour chaque direction
-        Keyboard keyboard = getOwnerArea().getWindow().getKeyboard();
+        Keyboard keyboard = getOwnerArea().getKeyboard();
         Button leftArrow = keyboard.get(Keyboard.LEFT);
         Button downArrow = keyboard.get(Keyboard.DOWN);
         Button upArrow = keyboard.get(Keyboard.UP);

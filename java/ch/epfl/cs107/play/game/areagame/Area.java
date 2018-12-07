@@ -151,8 +151,7 @@ public abstract class Area implements Playable {
 
     /** @return the Window Keyboard for inputs */
     public final Keyboard getKeyboard () {
-        // TODO implements me #PROJECT #TUTO
-        return null;
+        return window.getKeyboard();
     }
 
     /// Area implements Playable
@@ -251,13 +250,10 @@ public abstract class Area implements Playable {
         unregisteredActors.clear();
 
 
-        //on itère sur les les dictionnaires de manière analogue
-        for (Map.Entry<Interactable, List<DiscreteCoordinates>> entry : interactablesToLeave.entrySet()) {
-            leaveAreaCells(entry.getKey(),entry.getValue());
-        }
-        for (Map.Entry<Interactable, List<DiscreteCoordinates>> entry : interactablesToEnter.entrySet()) {
-            enterAreaCells(entry.getKey(),entry.getValue());
-        }
+        //on itère sur les les dictionnaires de manière analogue avec cette belle fonctionnalité java 8
+        interactablesToLeave.forEach((interactable,coordinatesList) -> areaBehavior.leave(interactable,coordinatesList));
+        interactablesToEnter.forEach((interactable,coordinatesList) -> areaBehavior.enter(interactable,coordinatesList));
+
         //on vide également les dictionnaires
         interactablesToEnter.clear();
         interactablesToLeave.clear();
@@ -292,14 +288,6 @@ public abstract class Area implements Playable {
 
     public final boolean isDoor(List<DiscreteCoordinates> coordinates){
         return areaBehavior.isDoor(coordinates);
-    }
-
-    public Window getWindow() {
-        return window;
-    }
-
-    protected List<Actor> getActors(){
-        return actors;
     }
 }
 

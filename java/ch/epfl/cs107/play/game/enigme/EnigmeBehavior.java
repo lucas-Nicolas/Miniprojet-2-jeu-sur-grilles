@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.enigme.actor.Door;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
 
@@ -71,13 +72,13 @@ public class EnigmeBehavior extends AreaBehavior {
         }
 
 
-
         @Override
         protected boolean canEnter(Interactable entity) {
+            //les portes doivent pouvoir être libremernt placées
             if (entity instanceof Door) {
                 return true;
             }
-            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL);
+            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL || ge);
             //retourne faux si l'entité veut entrer dans un mur et vrai sinon
 
         }
@@ -108,6 +109,7 @@ public class EnigmeBehavior extends AreaBehavior {
 
         @Override
         public void acceptInteraction(AreaInteractionVisitor v) {
+            ((EnigmeInteractionVisitor)v).interactWith(this);
 
         }
     }

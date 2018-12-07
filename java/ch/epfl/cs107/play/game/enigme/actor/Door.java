@@ -30,7 +30,7 @@ public class Door extends AreaEntity {
 
     @Override
     public boolean takeCellSpace() {
-        return true;
+        return false;
     }
 
     @Override
@@ -55,19 +55,6 @@ public class Door extends AreaEntity {
         current.addAll(positionsAroundMainCell);
 
         return current;
-    }
-
-
-    //todo implémenter les fonctions pour pouvoir faire fonctionner la méthode
-    //j'avais pas compris du coup j'ai fait le con mais ça peut servir peut etre
-    //je pense pas que ce que j'ai fait marche non plus mais bon ça à l'air pas si mal je regarde demain
-    public boolean isinDoor(MovableAreaEntity a) {
-        for (DiscreteCoordinates door : getCurrentCells()) {
-            if (door.equals(new DiscreteCoordinates((int)a.getPosition().x , (int)a.getPosition().y))) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public DiscreteCoordinates getArrivalPosition() {

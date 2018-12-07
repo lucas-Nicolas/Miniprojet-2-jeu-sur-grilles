@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.enigme.actor;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.EnigmeBehavior;
 import ch.epfl.cs107.play.game.enigme.area.EnigmeArea;
 import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
@@ -27,6 +28,15 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
             apple.setCollected(true);
         }
 
+        @Override
+        public void interactWith(EnigmeBehavior.EnigmeCell enigmeCell) {
+            System.out.println("lol");
+            if(enigmeCell.isCellInteractable()){
+                enigmeCell.acceptInteraction(this);
+            }else if(enigmeCell.isViewInteractable()){
+
+            }
+        }
     }
 
 
@@ -88,6 +98,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         getOwnerArea().unregisterActor(this);
         setOwnerArea(area);
         isPassingDoor = false;
+        getOwnerArea().setViewCandidate(this);
     }
 
     @Override
@@ -96,7 +107,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
 
 
-        Keyboard keyboard = getOwnerArea().getWindow().getKeyboard();
+        Keyboard keyboard = getOwnerArea().getKeyboard();
 
         //on crée des boutons de la même façon que dans demo 1 pour chaque direction
         Button leftArrow = keyboard.get(Keyboard.LEFT);
@@ -161,6 +172,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
+        ((EnigmeInteractionVisitor)v).interactWith(this);
 
     }
 
@@ -181,7 +193,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     @Override
     public boolean wantsViewInteraction() {
-        Keyboard keyboard = getOwnerArea().getWindow().getKeyboard();
+        Keyboard keyboard = getOwnerArea().getKeyboard();
         Button l = keyboard.get(Keyboard.L);
         return l.isPressed() ;
     }

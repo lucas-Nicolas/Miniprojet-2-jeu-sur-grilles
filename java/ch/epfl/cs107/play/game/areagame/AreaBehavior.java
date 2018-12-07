@@ -59,6 +59,8 @@ public abstract class AreaBehavior {
 
         }
 
+
+
         public List<DiscreteCoordinates> getCurrentCells() {
             List<DiscreteCoordinates> coor = new LinkedList<>();
             coor.add(coordonnee);
@@ -74,13 +76,29 @@ public abstract class AreaBehavior {
         }
 
 
+        /**
+         * @param entity
+         *
+         * @return if a cell can be entered by the entity
+         */
         protected abstract boolean canEnter(Interactable entity);
 
-
+        /**
+         * @param entity
+         * @return if a cell can be left by the entity or not
+         */
         protected abstract boolean canLeave(Interactable entity);
 
+        /**
+         * Determines if the cell is a door or not
+         * @return
+         */
         protected abstract boolean isDoor();
 
+        /**
+         * Does all the cell interactions related to a particular interactor
+         * @param interactor
+         */
         private void cellInteractionOf(Interactor interactor){
             for(Interactable interactable : entities){
                 if(interactable.isCellInteractable()){
@@ -89,6 +107,10 @@ public abstract class AreaBehavior {
             }
         }
 
+        /**
+         * Does all the view interactions related to a particular interactor
+         * @param interactor
+         */
         private void viewInteractionOf(Interactor interactor){
             for(Interactable interactable : entities){
                 if(interactable.isCellInteractable()) {
@@ -100,8 +122,12 @@ public abstract class AreaBehavior {
     }
 
 
-
-
+    /**
+     * Checks for each cell in the coordinates given if the entity can enter the cell
+     * @param entity
+     * @param coordinates
+     * @return boolean
+     */
     public boolean canEnter(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
             if (!cells[coord.x][coord.y].canEnter(entity)) {
@@ -111,6 +137,13 @@ public abstract class AreaBehavior {
         return true;
 
     }
+    /**
+     * Checks for each cell in the coordinates given if the entity can leave the cell
+     * @param entity
+     * @param coordinates
+     * @return boolean
+     */
+
     public boolean canLeave(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
             if (!cells[coord.x][coord.y].canLeave(entity)) {
@@ -154,17 +187,17 @@ public abstract class AreaBehavior {
     }
 
     public void cellInteractionOf(Interactor interactor){
-        List<DiscreteCoordinates> coord = interactor.getCurrentCells();
-        for (int i = 0; i <coord.size() ; i++) {
-            cells[coord.get(i).x][coord.get(i).y].cellInteractionOf(interactor);
+        List<DiscreteCoordinates> coordinatesList = interactor.getCurrentCells();
+        for (DiscreteCoordinates coordinates : coordinatesList) {
+            cells[coordinates.x][coordinates.y].cellInteractionOf(interactor);
         }
         
     }
 
     public void viewInteractionOf(Interactor interactor){
-        List<DiscreteCoordinates> coord =  interactor.getFieldOfViewCells();
-        for (int i = 0; i < coord.size() ; i++) {
-            cells[coord.get(i).x][coord.get(i).y].viewInteractionOf(interactor);
+        List<DiscreteCoordinates> coordinatesList =  interactor.getFieldOfViewCells();
+        for (DiscreteCoordinates coordinates : coordinatesList) {
+            cells[coordinates.x][coordinates.y].viewInteractionOf(interactor);
         }
     }
 

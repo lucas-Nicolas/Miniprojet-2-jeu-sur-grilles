@@ -63,9 +63,8 @@ public class Enigme extends AreaGame {
         super.update(deltaTime);
 
         if (player.isPassingDoor()){
-            Door door = player.getpassedDoor();
-            setCurrentArea(door.getAreaGoingTo(),false);
-            player.enterArea(getCurrentArea(),door.getArrivalPosition());
+            setCurrentArea(player.getpassedDoor().getAreaGoingTo(),false);
+            player.enterArea(getCurrentArea(),player.getpassedDoor().getArrivalPosition());
         }
     }
 }
