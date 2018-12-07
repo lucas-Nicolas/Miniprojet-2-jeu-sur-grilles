@@ -59,7 +59,9 @@ public abstract class AreaBehavior {
 
         }
 
-
+        protected Set<Interactable> getEntities(){
+            return entities;
+        }
 
         public List<DiscreteCoordinates> getCurrentCells() {
             List<DiscreteCoordinates> coor = new LinkedList<>();
