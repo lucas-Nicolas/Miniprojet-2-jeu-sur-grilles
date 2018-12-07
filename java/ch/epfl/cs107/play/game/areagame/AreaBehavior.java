@@ -111,7 +111,7 @@ public abstract class AreaBehavior {
          */
         private void viewInteractionOf(Interactor interactor){
             for(Interactable interactable : entities){
-                if(interactable.isCellInteractable()) {
+                if(interactable.isViewInteractable()) {
                     interactor.interactWith(interactable);
                 }
             }

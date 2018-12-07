@@ -25,14 +25,4 @@ public class EnigmeArea extends Area {
         return 22;
     }
 
-    /*public List<Door> getDoors(){
-        List<Door> doors = new LinkedList<>();
-        for (Actor actor : getActors()) {
-            if(actor instanceof Door){
-                Door door = (Door)actor;
-                doors.add(door);
-            }
-        }
-        return doors;
-    }useless je pense en fait*/
 }

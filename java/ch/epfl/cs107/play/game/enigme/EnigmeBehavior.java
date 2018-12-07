@@ -116,7 +116,6 @@ public class EnigmeBehavior extends AreaBehavior {
 
     @Override
     public boolean isDoor(List<DiscreteCoordinates> coordinates) {
-        List<DiscreteCoordinates> doors = new LinkedList<>();
         return  false;
     }
 }
