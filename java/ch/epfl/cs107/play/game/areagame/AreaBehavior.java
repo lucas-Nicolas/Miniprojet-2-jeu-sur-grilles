@@ -59,10 +59,6 @@ public abstract class AreaBehavior {
 
         }
 
-        protected Set<Interactable> getEntities(){
-            return entities;
-        }
-
         public List<DiscreteCoordinates> getCurrentCells() {
             List<DiscreteCoordinates> coor = new LinkedList<>();
             coor.add(coordonnee);
@@ -126,12 +122,19 @@ public abstract class AreaBehavior {
 
     /**
      * Checks for each cell in the coordinates given if the entity can enter the cell
+     *
+     * ADDED Pour chaque cellule on vérifie si l'espace n'est pas déjà occupé avant même d'appeler la fonction canEnter
      * @param entity
      * @param coordinates
      * @return boolean
      */
     public boolean canEnter(Interactable entity, List<DiscreteCoordinates> coordinates){
         for (DiscreteCoordinates coord : coordinates) {
+            for (Interactable interactableOnCell : cells[coord.x][coord.y].entities) {
+                if(interactableOnCell.takeCellSpace()){
+                    return false;
+                }
+            }
             if (!cells[coord.x][coord.y].canEnter(entity)) {
                 return false;
             }

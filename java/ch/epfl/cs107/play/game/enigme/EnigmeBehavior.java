@@ -78,11 +78,6 @@ public class EnigmeBehavior extends AreaBehavior {
             if (entity instanceof Door) {
                 return true;
             }
-            for (Interactable interactableOnCell : getEntities()) {
-                if(interactableOnCell.takeCellSpace()){
-                    return false;
-                }
-            }
             return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL);
             //retourne faux si l'entité veut entrer dans un mur et vrai sinon
 
