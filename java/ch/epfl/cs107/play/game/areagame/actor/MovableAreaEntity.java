@@ -29,8 +29,10 @@ public abstract class MovableAreaEntity extends AreaEntity {
     protected final List<DiscreteCoordinates> getEnteringCells() {
         List<DiscreteCoordinates> coord = getCurrentCells();
         List<DiscreteCoordinates> entering = new LinkedList<>();
+        DiscreteCoordinates temp;
         for (DiscreteCoordinates coords : coord) {
-            if(coords.x < getOwnerArea().getWidth() && coords.y < getOwnerArea().getWidth()&& 0<= coords.x && 0<= coords.y) {
+            temp = coords.jump(getOrientation().toVector());
+            if(temp.x < getOwnerArea().getWidth() && temp.y < getOwnerArea().getWidth() && 0<= temp.x && 0<= temp.y) {
                 entering.add(coords.jump(getOrientation().toVector()));
             }
         }
