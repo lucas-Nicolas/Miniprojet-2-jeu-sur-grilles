@@ -1,4 +1,4 @@
-package ch.epfl.cs107.play.game.enigme.actor.abstraits;
+package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;

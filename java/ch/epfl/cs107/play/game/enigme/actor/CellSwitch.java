@@ -1,9 +1,9 @@
-package ch.epfl.cs107.play.game.enigme.actor.abstraits;
+package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 
-public abstract  class CellSwitch extends Switch {
+public abstract class CellSwitch extends Switch {
 
     public CellSwitch(Area area, DiscreteCoordinates position) {
         super(area, position, false);
@@ -25,4 +25,3 @@ public abstract  class CellSwitch extends Switch {
         return true;
     }
 }
-
