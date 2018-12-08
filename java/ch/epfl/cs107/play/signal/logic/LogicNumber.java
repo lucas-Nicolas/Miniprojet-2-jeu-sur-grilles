@@ -23,12 +23,12 @@ public class LogicNumber extends LogicSignal {
         for (Logic logic: e) {
             if(logic.isOn()){
                 a+=(float) Math.pow(2,n);
-                ++n;
             }
+            ++n;
         }
         if(12<n || nb<0 || Math.pow(2,e.size())< nb){
             return false;
-        }else return a == nb;
+        }else return a ==  nb;
 
     }
 }

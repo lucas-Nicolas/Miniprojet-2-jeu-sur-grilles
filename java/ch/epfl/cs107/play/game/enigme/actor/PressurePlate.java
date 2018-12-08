@@ -12,6 +12,7 @@ public class PressurePlate extends CellSwitch {
     private final Sprite groundLightOn = new Sprite("GroundLightOn", 1, 1f,this);
     private final Sprite groundPlateOff = new Sprite("GroundPlateOff", 1, 1f,this);
     private final float deactivationTime;
+    private long pushTime;
 
     public PressurePlate(Area area, DiscreteCoordinates position, float deactivationTime) {
         super(area, position);
@@ -20,7 +21,7 @@ public class PressurePlate extends CellSwitch {
 
     public PressurePlate(Area area, DiscreteCoordinates position) {
         super(area, position);
-        this.deactivationTime = 0.3f;
+        this.deactivationTime = 1f;
     }
 
     @Override
@@ -29,8 +30,17 @@ public class PressurePlate extends CellSwitch {
     }
     @Override
     protected void setIsActivated() {
-        super.setIsActivated();
-        Timer timer = new Timer();
-        super.setIsActivated();
+
+        pushTime = System.nanoTime();
+            super.setIsActivated();
+    }
+
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()) {
+            super.setIsActivated();
+
+        }
     }
 }
