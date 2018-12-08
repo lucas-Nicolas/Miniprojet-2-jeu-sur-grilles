@@ -22,6 +22,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
             //Fait en sorte que le joueur passe la porte
         passedDoor(door);
         }
+
         @Override
         public void interactWith(Apple apple){
             //fait en sorte que la pomme soit ramassée
