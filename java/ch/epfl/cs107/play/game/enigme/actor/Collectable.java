@@ -29,10 +29,6 @@ public abstract class Collectable extends AreaEntity implements Interactable {
         return true;
     }
 
-    @Override
-    public void acceptInteraction(AreaInteractionVisitor v) {
-
-    }
 
     @Override
     public boolean isViewInteractable() {
@@ -44,14 +40,11 @@ public abstract class Collectable extends AreaEntity implements Interactable {
         return false;
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-
-    }
 
     protected void setIsCollected(boolean bool){
         isCollected = bool;
     }
+
     protected boolean isCollected(){
         return isCollected;
     }
