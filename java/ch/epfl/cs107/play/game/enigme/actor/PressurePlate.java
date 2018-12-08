@@ -5,6 +5,9 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
+import java.util.Timer;
+
+
 public class PressurePlate extends CellSwitch {
     private final Sprite groundLightOn = new Sprite("GroundLightOn", 1, 1f,this);
     private final Sprite groundPlateOff = new Sprite("GroundPlateOff", 1, 1f,this);
@@ -26,12 +29,8 @@ public class PressurePlate extends CellSwitch {
     }
     @Override
     protected void setIsActivated() {
-        try {
-            Thread.sleep((long)(deactivationTime*1000));
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
+        super.setIsActivated();
+        Timer timer = new Timer();
         super.setIsActivated();
     }
 }

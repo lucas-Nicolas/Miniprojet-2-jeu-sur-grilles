@@ -103,8 +103,8 @@ public abstract class Area implements Playable {
 
     /**
      * Register an actor : will be added at next update
-     * @param a (Actor): the actor to register, not null
-     * @return (boolean): true if the actor is correctly registered
+     * @param a (Actor...): the actors to register, not null
+     * @return (boolean): true if the actors are correctly registered
      */
     public final boolean registerActor(Actor... a){
         if (a != null) {
