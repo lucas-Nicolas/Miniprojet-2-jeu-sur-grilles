@@ -5,35 +5,34 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
-public class PressureSwitch extends Switch {
-    private final Sprite on = new Sprite("GroundLightOn",1,1.f,this);
-    private final Sprite off = new Sprite("GroundLightOff",1,1.f,this);
-
-    public PressureSwitch(Area area, DiscreteCoordinates position) {
+public class Lever extends Switch {
+    private Sprite left = new Sprite("lever.big.left", 1, 1.f, this);
+    private Sprite right = new Sprite("lever.big.righ",1,1.f, this);
+    public Lever(Area area, DiscreteCoordinates position) {
         super(area, position, false);
-    };
+    }
 
     @Override
     public void draw(Canvas canvas) {
         if(isActivated()){
-            on.draw(canvas);
+            left.draw(canvas);
         }else{
-            off.draw(canvas);
+            right.draw(canvas);
         }
     }
 
     @Override
     public boolean takeCellSpace() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isViewInteractable() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCellInteractable() {
-        return true;
+        return false;
     }
 }

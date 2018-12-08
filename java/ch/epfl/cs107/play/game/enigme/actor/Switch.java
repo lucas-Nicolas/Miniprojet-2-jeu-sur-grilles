@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class Switch extends AreaEntity implements Logic {
-    boolean isActivated;
+    private boolean isActivated;
 
     public Switch(Area area, DiscreteCoordinates position, boolean isActivated) {
         super(area, position);
