@@ -1,4 +1,7 @@
 #Conception 
+#étape 1
+
+Nous avons modifié la méthode register actor en lui faisant admettre comme paramètre une ellipse afin de pouvoir ajouter tous les acteurs en une ligne de code dans les Aires de jeu plus complexes dans la suite du projet.
 
 #étape 4
 
