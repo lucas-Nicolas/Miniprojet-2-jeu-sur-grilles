@@ -5,7 +5,7 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
-public class PressurePlate extends Key.CellSwitch {
+public class PressurePlate extends CellSwitch {
     private final Sprite groundLightOn = new Sprite("GroundLightOn", 1, 1f,this);
     private final Sprite groundPlateOff = new Sprite("GroundPlateOff", 1, 1f,this);
     private final float deactivationTime;
