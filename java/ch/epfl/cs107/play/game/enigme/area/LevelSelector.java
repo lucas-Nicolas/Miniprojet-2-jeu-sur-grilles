@@ -21,7 +21,7 @@ public class LevelSelector extends EnigmeArea {
         boolean begin  = super.begin(window, fileSystem);
            begin = begin && registerActor(new Door(this, "Level1", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(1, 7)));
            begin = begin && registerActor(new Door(this, "Level2", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(2, 7)));
-           begin = begin && registerActor(new Door(this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(3, 7)));
+           begin = begin && registerActor(new Door(this, "Level3", new DiscreteCoordinates(5, 1), Orientation.UP, new DiscreteCoordinates(3, 7)));
            begin = begin && registerActor(new Door(this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(4, 7)));
            begin = begin && registerActor(new Door(this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(5, 7)));
            begin = begin && registerActor(new Door(this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(6, 7)));

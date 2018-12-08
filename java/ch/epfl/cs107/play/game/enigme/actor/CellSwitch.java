@@ -47,7 +47,6 @@ public abstract class CellSwitch extends Switch {
             super.acceptInteraction(v);
         }
         switchedOnPreviousFrame = true;
-
     }
 
 }
