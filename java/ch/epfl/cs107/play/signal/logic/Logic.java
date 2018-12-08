@@ -16,11 +16,13 @@ public interface Logic extends Signal {
     default public float getIntensity(float t){
         return getIntensity();
     };
+
     Logic TRUE = new Logic() {
         @Override public boolean isOn() {
             return true;
         }
     };
+
     Logic FALSE = new Logic() {
         @Override
         public boolean isOn() {

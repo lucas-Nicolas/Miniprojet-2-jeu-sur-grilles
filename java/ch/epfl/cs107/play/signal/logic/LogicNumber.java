@@ -8,8 +8,8 @@ public class LogicNumber extends LogicSignal {
     private Set<Logic> e;
 
     public LogicNumber(float nb, Set<Logic> e){
-        this.nb=nb;
-        this.e=e;
+        this.nb = nb;
+        this.e = e;
     }
 
     private float evaluationEnUnNombre(){
@@ -17,7 +17,9 @@ public class LogicNumber extends LogicSignal {
         int n=0;
         for (Logic logic: e) {
             if(logic.isOn()){
-                a+=Math.pow(2,n);
+                a += Math.pow(2,n);
+                ++n;
+
             }
         }
         return 0f;
@@ -32,9 +34,10 @@ public class LogicNumber extends LogicSignal {
         for (Logic logic: e) {
             if(logic.isOn()){
                 a+=(float) Math.pow(2,n);
+                ++n;
             }
         }
-        if(12<n || nb<0 || Math.pow(2,e.size())<nb){
+        if(12<n || nb<0 || Math.pow(2,e.size())< nb){
             return false;
         }else if(a==nb){
             return true;
