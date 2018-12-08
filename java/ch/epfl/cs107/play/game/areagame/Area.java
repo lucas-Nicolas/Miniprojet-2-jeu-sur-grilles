@@ -106,15 +106,22 @@ public abstract class Area implements Playable {
      * @param a (Actor): the actor to register, not null
      * @return (boolean): true if the actor is correctly registered
      */
-    public final boolean registerActor(Actor a){
+    public final boolean registerActor(Actor... a){
         if (a != null) {
+            boolean errorOccured = false;
+            for (Actor actor : a) {
+                if(actor==null){
+                    return false;
+                }
+                errorOccured = errorOccured || !registeredActors.add(actor);
 
-            boolean errorOccured = !registeredActors.add(a);
-
+            }
             return !errorOccured;
         }
         return false;
+
     }
+
 
     /**
      * Unregister an actor : will be removed at next update
