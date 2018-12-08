@@ -11,22 +11,11 @@ public class LogicNumber extends LogicSignal {
         this.nb = nb;
         this.e = e;
     }
-
-    private float evaluationEnUnNombre(){
-        float a= 0f;
-        int n=0;
-        for (Logic logic: e) {
-            if(logic.isOn()){
-                a += Math.pow(2,n);
-                ++n;
-
-            }
-        }
-        return 0f;
-    };
-
-
-    //todo javadoc
+    /**
+     * returns true if the evaluation of the set e as a number is equal to nb false otherwise
+     *
+     * @return
+     */
     @Override
     public boolean isOn() {
         float a= 0f;
@@ -39,10 +28,7 @@ public class LogicNumber extends LogicSignal {
         }
         if(12<n || nb<0 || Math.pow(2,e.size())< nb){
             return false;
-        }else if(a==nb){
-            return true;
-        }
-        return false;
+        }else return a == nb;
 
     }
 }
