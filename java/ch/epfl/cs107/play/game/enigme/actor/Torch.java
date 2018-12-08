@@ -33,4 +33,14 @@ public class Torch extends Switch {
     public boolean takeCellSpace() {
         return true;
     }
+
+    @Override
+    public boolean isCellInteractable() {
+        return false;
+    }
+
+    @Override
+    public boolean isViewInteractable() {
+        return true;
+    }
 }
