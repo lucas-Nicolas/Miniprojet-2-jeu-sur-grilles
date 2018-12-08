@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.signal.logic;
 
 abstract class LogicSignal implements Logic{
 
+    @Override
     public final float getIntensity(){
         return Logic.super.getIntensity();
     }
