@@ -13,24 +13,6 @@ public class PressureSwitch extends CellSwitch {
         super(area, position);
     };
 
-
-
-
-    @Override
-    public boolean takeCellSpace() {
-        return false;
-    }
-
-    @Override
-    public boolean isViewInteractable() {
-        return false;
-    }
-
-    @Override
-    public boolean isCellInteractable() {
-        return true;
-    }
-
     @Override
     public void draw(Canvas canvas) {
         super.draw(on, off, canvas);
