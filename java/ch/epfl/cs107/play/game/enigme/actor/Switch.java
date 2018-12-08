@@ -17,12 +17,15 @@ public abstract class Switch extends AreaEntity implements Logic {
         super(area, position);
         this.isActivated = isActivated;
     }
+
     protected boolean isActivated(){
         return isActivated;
     }
+
     protected void setIsActivated(){
         isActivated = !isActivated;
     }
+
     @Override
     public List<DiscreteCoordinates> getCurrentCells() {
         return Collections.singletonList(getCurrentMainCellCoordinates());

@@ -33,6 +33,11 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         public void interactWith(Key key) {
             key.setIsCollected(true);
         }
+
+        @Override
+        public void interactWith(Switch bouton) {
+            bouton.setIsActivated();
+        }
     }
 
 
