@@ -6,20 +6,13 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Lever extends Switch {
-    private Sprite left = new Sprite("lever.big.left", 1, 1.f, this);
-    private Sprite right = new Sprite("lever.big.righ",1,1.f, this);
+    private Sprite on = new Sprite("lever.big.left", 1, 1.f, this);
+    private Sprite off = new Sprite("lever.big.righ",1,1.f, this);
     public Lever(Area area, DiscreteCoordinates position) {
         super(area, position, false);
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        if(isActivated()){
-            left.draw(canvas);
-        }else{
-            right.draw(canvas);
-        }
-    }
+
 
     @Override
     public boolean takeCellSpace() {
