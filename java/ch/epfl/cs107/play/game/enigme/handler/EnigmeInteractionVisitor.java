@@ -6,7 +6,7 @@ import ch.epfl.cs107.play.game.enigme.actor.Apple;
 import ch.epfl.cs107.play.game.enigme.actor.Door;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
 import ch.epfl.cs107.play.game.enigme.actor.Key;
-import ch.epfl.cs107.play.game.enigme.actor.Switch;
+import ch.epfl.cs107.play.game.enigme.actor.abstraits.Switch;
 
 public interface  EnigmeInteractionVisitor extends AreaInteractionVisitor {
 

@@ -8,6 +8,8 @@ import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
+import ch.epfl.cs107.play.game.enigme.actor.abstraits.Switch;
+import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.TextAlign;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
@@ -34,14 +36,15 @@ public class Dialog implements Graphics {
 
     /**
      * Default Dialog Constructor
-     * @param text (String): string of the dialog, not null
+     *
+     * @param text           (String): string of the dialog, not null
      * @param backgroundName (String): Background file name (i.e only the name, with neither path, nor file extension), may be null
-     * @param area (Area): this owner area to compute scale factor ratios, not null
+     * @param area           (Area): this owner area to compute scale factor ratios, not null
      */
     public Dialog(String text, String backgroundName, Area area) {
 
-        DX = area.getCameraScaleFactor()/2;
-        DY = area.getCameraScaleFactor()/2;
+        DX = area.getCameraScaleFactor() / 2;
+        DY = area.getCameraScaleFactor() / 2;
         final float height = area.getCameraScaleFactor() / 4;
         final float width = area.getCameraScaleFactor();
 
@@ -56,7 +59,7 @@ public class Dialog implements Graphics {
 
         lines = new TextGraphics[3];
 
-        lines[0] = new TextGraphics("", fontSize, Color.BLACK, null, 0.0f, false, false, firstLineAnchor, TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE,  1.0f, 1001);
+        lines[0] = new TextGraphics("", fontSize, Color.BLACK, null, 0.0f, false, false, firstLineAnchor, TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 1001);
         lines[1] = new TextGraphics("", fontSize, Color.BLACK, null, 0.0f, false, false, secondLineAnchor, TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 1001);
         lines[2] = new TextGraphics("", fontSize, Color.BLACK, null, 0.0f, false, false, thirdLineAnchor, TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 1001);
 
@@ -65,9 +68,10 @@ public class Dialog implements Graphics {
 
     /**
      * Reset the dialog window with a new dialog text
+     *
      * @param newText (String), not null
      */
-    public void resetDialog(String newText){
+    public void resetDialog(String newText) {
         this.text = newText;
         this.cursor = 0;
         push();
@@ -76,46 +80,45 @@ public class Dialog implements Graphics {
     /**
      * From the cursor display on the three available lines the next chars of the stream
      * Notice: this method assume it will never face to single word longer or equals than MAX_LINE_SIZE
+     *
      * @return (boolean) if the dialog can be closed or not
      */
-    public boolean push(){
+    public boolean push() {
 
-        int lengthToPush = text.length()-cursor;
+        int lengthToPush = text.length() - cursor;
         // Simply close the dialog
-        if(lengthToPush <= 0)
+        if (lengthToPush <= 0)
             return true;
 
         // For each line
-        for(int i = 0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
 
             // If some text still need to be pushed : fill the next line
-            if(lengthToPush <= 0) {
+            if (lengthToPush <= 0) {
                 lines[i].setText("");
-            }
-            else if(lengthToPush <= MAX_LINE_SIZE) {
+            } else if (lengthToPush <= MAX_LINE_SIZE) {
                 lines[i].setText(text.substring(cursor));
                 cursor += lengthToPush;
-            }
-            else{
+            } else {
                 int maxSize = MAX_LINE_SIZE;
                 String toConcat = "";
 
-                if(i == 2){
+                if (i == 2) {
                     maxSize -= 4;
                     toConcat += " ...";
                 }
 
-                String sub = text.substring(cursor, cursor+maxSize+1);
+                String sub = text.substring(cursor, cursor + maxSize + 1);
                 int last = sub.lastIndexOf(' ');
-                if(last == -1){
+                if (last == -1) {
                     System.out.println("Error: You get a Word longer than " + MAX_LINE_SIZE);
                 }
 
-                lines[i].setText(sub.substring(0, last)+toConcat);
-                cursor = cursor+last+1;
+                lines[i].setText(sub.substring(0, last) + toConcat);
+                cursor = cursor + last + 1;
             }
 
-            lengthToPush = text.length()-cursor;
+            lengthToPush = text.length() - cursor;
         }
         return false;
     }
@@ -129,7 +132,7 @@ public class Dialog implements Graphics {
         sprite.setRelativeTransform(transform);
         sprite.draw(canvas);
 
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             lines[i].setRelativeTransform(transform);
             lines[i].draw(canvas);
         }
