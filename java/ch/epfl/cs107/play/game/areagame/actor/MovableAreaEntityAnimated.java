@@ -1,22 +1,25 @@
-package ch.epfl.cs107.play.game.enigme.actor;
+package ch.epfl.cs107.play.game.areagame.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
-import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.RegionOfInterest;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
-public class EnigmePlayerAnimated extends EnigmePlayer {
+import java.util.List;
+
+public abstract class MovableAreaEntityAnimated extends MovableAreaEntity {
     private final int NUMBER_OF_SPRITES = 4;
+    private final Sprite SPRITE;
     private final Sprite[] spritesDOWW;
     private final Sprite[] spritesLEFT;
     private final Sprite[] spritesRIGHT;
     private final Sprite[] spritesUP;
     private int spriteIndex;
-
-    public EnigmePlayerAnimated(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
-        super(area, position, SPRITE,suiveur);
+    public MovableAreaEntityAnimated(Area area, DiscreteCoordinates position, String SPRITE) {
+        super(area, position);
+        this.SPRITE = new Sprite(SPRITE,1,1,this);
         spritesDOWW = new Sprite[NUMBER_OF_SPRITES];
         spritesUP = new Sprite[NUMBER_OF_SPRITES];
         spritesLEFT = new Sprite[NUMBER_OF_SPRITES];
@@ -32,9 +35,9 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
         }
     }
 
+
     @Override
     public void draw(Canvas canvas) {
-        getSuiveur().draw(canvas);
         if(isMoving()){
             spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;
         }
@@ -53,4 +56,6 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
                 break;
         }
     }
+
+
 }
