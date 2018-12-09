@@ -55,6 +55,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private final static int ANIMATION_DURATION = 8;
     private Door passedDoor;
     private final EnigmePlayerHandler handler;
+    private Suiveur suiveur;
+    private int vectorXWithSuiveur;
+    private int vectorYWithSuiveur;
 
 
     public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE) {
@@ -64,11 +67,12 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.SPRITE = new Sprite(SPRITE, 1, 1.f, this);
     }
 
-    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE) {
+    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
         super(area, position);
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
         this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
+        this.suiveur=suiveur;
     }
 
     public EnigmePlayerHandler getHandler() {
@@ -108,6 +112,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.resetMotion();
         isPassingDoor = false;
         getOwnerArea().unregisterActor(this);
+        suiveur.enterArea(area,position);
         getOwnerArea().suspend();
         setOwnerArea(area);
         getOwnerArea().setViewCandidate(this);
@@ -116,7 +121,6 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-
 
 
         Keyboard keyboard = getOwnerArea().getKeyboard();
@@ -131,7 +135,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         //pour chaque direction si le personnage est déjà orienté vers
         if (leftArrow.isDown()) {
             if (this.getOrientation() == Orientation.LEFT) {
-                move(ANIMATION_DURATION);
+                if(move(ANIMATION_DURATION)){
+
+                };
             } else {
                 this.setOrientation(Orientation.LEFT);
             }
@@ -139,14 +145,18 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         } else if (downArrow.isDown()) {
 
             if (this.getOrientation().equals(Orientation.DOWN)) {
-                move(ANIMATION_DURATION);
+                if(move(ANIMATION_DURATION)){
+
+                };
             } else {
                 this.setOrientation(Orientation.DOWN);
             }
 
         } else if (upArrow.isDown()) {
             if (this.getOrientation() == Orientation.UP) {
-                move(ANIMATION_DURATION);
+                if(move(ANIMATION_DURATION)){
+
+                };
             } else {
                 this.setOrientation(Orientation.UP);
             }
@@ -154,11 +164,14 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         } else if (rightArrow.isDown()) {
 
             if (this.getOrientation() == Orientation.RIGHT) {
-                move(ANIMATION_DURATION);
+                if(move(ANIMATION_DURATION)){
+
+                };
             } else {
                 this.setOrientation(Orientation.RIGHT);
             }
         }
+        manageSuiveur();
     }
 
     public void passedDoor(Door door){
@@ -204,5 +217,27 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         Keyboard keyboard = getOwnerArea().getKeyboard();
         Button l = keyboard.get(Keyboard.L);
         return l.isPressed() ;
+    }
+
+    private void manageSuiveur(){
+
+            vectorXWithSuiveur=getCurrentMainCellCoordinates().x-suiveur.getCurrentMainCellCoordinates().x;
+            vectorYWithSuiveur=getCurrentMainCellCoordinates().y-suiveur.getCurrentMainCellCoordinates().y;
+            if(Math.sqrt(Math.pow(vectorYWithSuiveur,2)+Math.pow(vectorXWithSuiveur,2))!=1){
+                suiveur.setNeedToMove(true);
+            }else{
+                if(vectorXWithSuiveur==0) {
+                    if (vectorYWithSuiveur > 0) {
+                        suiveur.setNeededOrientation(Orientation.UP);
+                    } else{
+                        suiveur.setNeededOrientation(Orientation.DOWN);
+                    }
+                } else if (vectorXWithSuiveur>0){
+                    suiveur.setNeededOrientation(Orientation.RIGHT);
+                }else {
+                    suiveur.setNeededOrientation(Orientation.LEFT);
+                }
+            }
+
     }
 }
