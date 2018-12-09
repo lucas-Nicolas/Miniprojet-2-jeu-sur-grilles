@@ -14,4 +14,7 @@ Nous avons choisi de rendre les portes dont le signal est désactivé non traver
 Toutefois nous avons par la suite décidé de diviser les switchs en deux catégories, les ViewSwitch, et les CellSwitch, les premiers étant des boutons acceptant les interactions à distance ( les leviers et les torches) et les seconds acceptant les interactions de contact (torches et leviers ).
 Cela nous a permis de pouvoir définir les caractéristiques communes à ces objets dans des super classes abstraites. Nous avon également ressenti le besoin de les séparer aussi pour pouvoir gérer la problématique des interacrtions de contact qui se répètent à chaque update si on adopte le même patron de conception que pour les boutons à distance.
 
-#étape 5
+#étape 5 
+
+Animations : 
+

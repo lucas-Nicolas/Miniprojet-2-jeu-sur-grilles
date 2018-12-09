@@ -51,7 +51,7 @@ public class Level3 extends EnigmeArea {
         e.add(l2);
         e.add(l3);
         Logic leverPass =new LogicNumber(5,e);
-        Torch torch= new Torch(this, new DiscreteCoordinates(7, 5), false);
+        Torch torch= new TorchAnimated(this, new DiscreteCoordinates(7, 5), false);
         registerActor(l1,l2,l3,torch);
         Or rock3Password = new Or(leverPass,torch);
         registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(4,8)));

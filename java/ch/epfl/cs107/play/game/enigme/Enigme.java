@@ -50,7 +50,7 @@ public class Enigme extends AreaGame {
             addArea(level3);
 
             setCurrentArea("LevelSelector", false);
-            player = new EnigmePlayer(levelSelector,new DiscreteCoordinates(5,5));
+            player = new EnigmePlayer(levelSelector,new DiscreteCoordinates(5,5),"ghost.1");
             getCurrentArea().registerActor(player);
             getCurrentArea().setViewCandidate(player);
             return true;

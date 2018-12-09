@@ -40,22 +40,24 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
 
     private boolean isPassingDoor;
-    private final Sprite GHOST = new Sprite("ghost.1", 1, 1.f, this);
+    private final Sprite SPRITE;
     private final static int ANIMATION_DURATION = 8;
     private Door passedDoor;
     private final EnigmePlayerHandler handler;
 
 
-    public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position) {
+    public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE) {
         super(area, orientation, position);
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
+        this.SPRITE = new Sprite(SPRITE, 1, 1.f, this);
     }
 
-    public EnigmePlayer(Area area, DiscreteCoordinates position) {
+    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE) {
         super(area, position);
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
+        this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
     }
 
     public EnigmePlayerHandler getHandler() {
@@ -64,7 +66,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     @Override
     public void draw(Canvas canvas) {
-        GHOST.draw(canvas);
+        SPRITE.draw(canvas);
 
     }
 
