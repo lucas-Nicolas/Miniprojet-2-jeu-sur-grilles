@@ -33,7 +33,6 @@ public class PressurePlate extends CellSwitch {
     }
     @Override
     protected void setIsActivated() {
-
         pushTime = System.nanoTime();
             super.setIsActivated();
     }
@@ -41,12 +40,8 @@ public class PressurePlate extends CellSwitch {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        if(isBlocked){
-            pushTime=System.nanoTime();
-        }
-        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()) {
+        if(((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated() && !isBlocked)) {
             super.setIsActivated();
-
         }
         isBlocked =false;
     }
@@ -57,7 +52,6 @@ public class PressurePlate extends CellSwitch {
 
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
-        super.acceptInteraction(v);
         ((EnigmeInteractionVisitor)v).interactWith(this);
     }
 }

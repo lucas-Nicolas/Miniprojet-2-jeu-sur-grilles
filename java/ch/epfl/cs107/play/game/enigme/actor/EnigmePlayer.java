@@ -38,6 +38,11 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         }
 
         @Override
+        public void interactWith(PressurePlate plate) {
+            plate.setIsActivated();
+        }
+
+        @Override
         public void interactWith(MovableRock movableRock) {
             movableRock.setOrientation(getOrientation());
             movableRock.move(8);

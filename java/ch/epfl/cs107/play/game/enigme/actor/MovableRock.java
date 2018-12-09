@@ -14,7 +14,6 @@ public class MovableRock extends MovableAreaEntity implements Interactor {
    private class MovableRockHandler implements EnigmeInteractionVisitor{
 
        public void interactWith(PressurePlate plate) {
-           System.out.println("sa marche");
            plate.setBlocked(true);
            plate.setIsActivated();
 

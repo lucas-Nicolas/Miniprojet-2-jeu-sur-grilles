@@ -31,22 +31,22 @@ public abstract class CellSwitch extends Switch {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        if(switchedOnPreviousFrame){
-            canBeSwitched = false;
-
-        }else {
-            canBeSwitched = true;
-        }
+        canBeSwitched=!switchedOnPreviousFrame;
         switchedOnPreviousFrame = false;
 
     }
 
     @Override
-    public void acceptInteraction(AreaInteractionVisitor v) {
+    protected void setIsActivated() {
         if(canBeSwitched) {
-            super.acceptInteraction(v);
+            super.setIsActivated();;
         }
         switchedOnPreviousFrame = true;
+    }
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
+            super.acceptInteraction(v);
     }
 
 }
