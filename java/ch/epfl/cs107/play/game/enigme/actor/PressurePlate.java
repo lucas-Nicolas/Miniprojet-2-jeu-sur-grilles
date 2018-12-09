@@ -13,6 +13,7 @@ public class PressurePlate extends CellSwitch {
     private final Sprite groundPlateOff = new Sprite("GroundPlateOff", 1, 1f,this);
     private final float deactivationTime;
     private long pushTime;
+    private boolean isBlocked;
 
     public PressurePlate(Area area, DiscreteCoordinates position, float deactivationTime) {
         super(area, position);
@@ -38,9 +39,14 @@ public class PressurePlate extends CellSwitch {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()) {
+        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()&& !isBlocked) {
             super.setIsActivated();
 
         }
+        isBlocked =false;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 }

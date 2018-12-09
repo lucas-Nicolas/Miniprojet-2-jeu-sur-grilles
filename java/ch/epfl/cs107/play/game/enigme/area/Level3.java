@@ -10,7 +10,6 @@ import ch.epfl.cs107.play.signal.logic.MultipleAnd;
 import ch.epfl.cs107.play.signal.logic.Or;
 import ch.epfl.cs107.play.window.Window;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -55,6 +54,7 @@ public class Level3 extends EnigmeArea {
         registerActor(l1,l2,l3,torch);
         Or rock3Password = new Or(leverPass,torch);
         registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(4,8)));
+        registerActor(new MovableRock(this, new DiscreteCoordinates(5,5)));
 
         return begin;
     }

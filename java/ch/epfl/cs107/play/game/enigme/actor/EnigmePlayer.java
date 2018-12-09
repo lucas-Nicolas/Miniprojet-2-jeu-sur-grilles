@@ -14,8 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
-
-
     private class EnigmePlayerHandler implements EnigmeInteractionVisitor {
         @Override
         public void interactWith(Door door){
@@ -37,6 +35,12 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         @Override
         public void interactWith(Switch bouton) {
             bouton.setIsActivated();
+        }
+
+        @Override
+        public void interactWith(MovableRock movableRock) {
+            movableRock.setOrientation(getOrientation());
+            movableRock.move(8);
         }
     }
 
@@ -62,14 +66,14 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
     }
 
-    protected Sprite getSPRITE(){
-        return SPRITE;
-    }
-
     public EnigmePlayerHandler getHandler() {
         return handler;
     }
 
+    @Override
+    public void draw(Canvas canvas) {
+        SPRITE.draw(canvas);
+    }
 
     @Override
     public boolean isCellInteractable() {
@@ -156,15 +160,6 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         isPassingDoor= true;
         passedDoor = door;
 
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        SPRITE.draw(canvas);
-    }
-
-    public void setPassingDoor(boolean passingDoor) {
-        isPassingDoor = passingDoor;
     }
 
     public Door getpassedDoor(){

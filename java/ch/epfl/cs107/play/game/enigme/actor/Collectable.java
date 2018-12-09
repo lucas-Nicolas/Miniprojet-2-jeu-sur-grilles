@@ -13,7 +13,10 @@ public abstract class Collectable extends AreaEntity {
     private boolean isCollected;
     public Collectable(Area area, DiscreteCoordinates position) {
         super(area, position);
-        isCollected = false;
+    }
+
+    public Collectable( Area ownerArea,DiscreteCoordinates position, String dialog) {
+        super(position, ownerArea, dialog);
     }
 
     @Override

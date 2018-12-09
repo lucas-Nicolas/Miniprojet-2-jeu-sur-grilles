@@ -15,6 +15,10 @@ public class Apple extends Collectable {
 
     }
 
+    public Apple( Area ownerArea,DiscreteCoordinates position, String dialog) {
+        super(ownerArea, position, dialog);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         APPLE.draw(canvas);

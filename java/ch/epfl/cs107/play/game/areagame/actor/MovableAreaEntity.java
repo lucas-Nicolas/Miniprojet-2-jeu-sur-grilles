@@ -59,6 +59,16 @@ public abstract class MovableAreaEntity extends AreaEntity {
         resetMotion();
     }
 
+    public MovableAreaEntity(DiscreteCoordinates position, Area ownerArea, Orientation orientation, String dialog) {
+        super(position, ownerArea, orientation, dialog);
+        resetMotion();
+    }
+
+    public MovableAreaEntity(DiscreteCoordinates position, Area ownerArea, String dialog) {
+        super(position, ownerArea, dialog);
+        resetMotion();
+    }
+
     /**
      * Initialize or reset the current motion information
      */
