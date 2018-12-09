@@ -8,15 +8,22 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class EnigmePlayerAnimated extends EnigmePlayer {
+    //nombre de sprite dans l'image donnée
     private final int NUMBER_OF_SPRITES = 4;
+
+    //on crée un array de sprites par orientation
     private final Sprite[] spritesDOWW;
     private final Sprite[] spritesLEFT;
     private final Sprite[] spritesRIGHT;
     private final Sprite[] spritesUP;
+    //variable déterminant sprite à afficher parmi
     private int spriteIndex;
 
+
     public EnigmePlayerAnimated(Area area, DiscreteCoordinates position, String SPRITE) {
+
         super(area, position, SPRITE);
+
         spritesDOWW = new Sprite[NUMBER_OF_SPRITES];
         spritesUP = new Sprite[NUMBER_OF_SPRITES];
         spritesLEFT = new Sprite[NUMBER_OF_SPRITES];
@@ -36,7 +43,7 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
     public void draw(Canvas canvas) {
         if(isMoving()){
             spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;
-        }
+        }else { spriteIndex = 0 ;}
         switch (getOrientation()){
             case UP:
                 spritesUP[spriteIndex].draw(canvas);
