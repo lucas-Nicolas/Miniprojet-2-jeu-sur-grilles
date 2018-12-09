@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.signal.logic;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 

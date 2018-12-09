@@ -45,7 +45,7 @@ public class Level3 extends EnigmeArea {
         Lever l1= new Lever(this, new DiscreteCoordinates(10, 5));
         Lever l2= new Lever(this, new DiscreteCoordinates(9, 5));
         Lever l3= new Lever(this, new DiscreteCoordinates(8, 5));
-        Set<Logic> e = new HashSet<>();
+        HashSet<Logic> e = new HashSet<>();
         e.add(l1);
         e.add(l2);
         e.add(l3);
