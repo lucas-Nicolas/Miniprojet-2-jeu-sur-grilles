@@ -19,10 +19,9 @@ public class SignalDoor extends Door {
     }
 
     @Override
-    public boolean isCellInteractable() {
-        return passKey.isOn();
+    public boolean takeCellSpace() {
+        return !passKey.isOn();
     }
-
     @Override
     public void draw(Canvas canvas) {
         if(passKey.isOn()){
