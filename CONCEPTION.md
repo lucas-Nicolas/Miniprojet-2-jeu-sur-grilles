@@ -18,3 +18,7 @@ Cela nous a permis de pouvoir définir les caractéristiques communes à ces obj
 
 Animations : 
 
+Pour les animations, première extension, nous avons choisi de faire une classe abstraite MovableAreaEntityAnimated regroupant tous nos acteurs futurs allant être animés par la suite, malheureusement nous n'avons pas trouvé d'alternative à la création d'une classe d'animé spécifique au Player car nous ne voulions pas ne plus pouvoir jouer avec le fantôme de base. 
+Nous avons fait le choix de suivre le pattern proposé dans le 7.2 avec des arrays de Sprites pour chaque direction.
+
+Suiveur : 
