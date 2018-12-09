@@ -17,12 +17,6 @@ public class SignalDoor extends Door {
         super(areaLeaving, areaGoingTo, arrivalPosition, orientation, currentMainCellCoordinates, positionsAroundMainCell);
         this.passKey = passKey;
     }
-
-    @Override
-    public boolean isCellInteractable() {
-        return passKey.isOn();
-    }
-
     @Override
     public boolean takeCellSpace() {
         return !passKey.isOn();
