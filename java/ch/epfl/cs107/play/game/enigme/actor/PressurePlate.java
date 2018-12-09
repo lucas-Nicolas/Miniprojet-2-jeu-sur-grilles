@@ -2,6 +2,8 @@ package ch.epfl.cs107.play.game.enigme.actor;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -39,7 +41,10 @@ public class PressurePlate extends CellSwitch {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()&& !isBlocked) {
+        if(isBlocked){
+            pushTime=System.nanoTime();
+        }
+        if((System.nanoTime()-pushTime) > deactivationTime*Math.pow(10,9) && isActivated()) {
             super.setIsActivated();
 
         }
@@ -48,5 +53,11 @@ public class PressurePlate extends CellSwitch {
 
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
+    }
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
+        super.acceptInteraction(v);
+        ((EnigmeInteractionVisitor)v).interactWith(this);
     }
 }
