@@ -124,6 +124,9 @@ public abstract class MovableAreaEntity extends AreaEntity {
             super.setOrientation(orientation);
         }
     }
+    protected boolean isMoving(){
+        return isMoving;
+    }
 
 
 }

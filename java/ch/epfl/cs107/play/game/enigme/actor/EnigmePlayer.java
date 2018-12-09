@@ -60,6 +60,10 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
     }
 
+    protected Sprite getSPRITE(){
+        return SPRITE;
+    }
+
     public EnigmePlayerHandler getHandler() {
         return handler;
     }

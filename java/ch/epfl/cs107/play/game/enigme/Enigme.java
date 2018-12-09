@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.enigme.actor.Door;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
+import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayerAnimated;
 import ch.epfl.cs107.play.game.enigme.area.Level2;
 import ch.epfl.cs107.play.game.enigme.area.Level3;
 import ch.epfl.cs107.play.game.enigme.area.LevelSelector;
@@ -50,7 +51,7 @@ public class Enigme extends AreaGame {
             addArea(level3);
 
             setCurrentArea("LevelSelector", false);
-            player = new EnigmePlayer(levelSelector,new DiscreteCoordinates(5,5),"ghost.1");
+            player = new EnigmePlayerAnimated(levelSelector,new DiscreteCoordinates(5,5),"girl.1");
             getCurrentArea().registerActor(player);
             getCurrentArea().setViewCandidate(player);
             return true;
