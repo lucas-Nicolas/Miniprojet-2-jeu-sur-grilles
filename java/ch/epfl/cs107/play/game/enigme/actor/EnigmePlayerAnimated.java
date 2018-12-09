@@ -15,8 +15,8 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
     private final Sprite[] spritesUP;
     private int spriteIndex;
 
-    public EnigmePlayerAnimated(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
-        super(area, position, SPRITE,suiveur);
+    public EnigmePlayerAnimated(Area area, DiscreteCoordinates position, String SPRITE) {
+        super(area, position, SPRITE);
         spritesDOWW = new Sprite[NUMBER_OF_SPRITES];
         spritesUP = new Sprite[NUMBER_OF_SPRITES];
         spritesLEFT = new Sprite[NUMBER_OF_SPRITES];
@@ -34,7 +34,6 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
 
     @Override
     public void draw(Canvas canvas) {
-        getSuiveur().draw(canvas);
         if(isMoving()){
             spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;
         }

@@ -13,7 +13,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EnigmePlayer extends Meneur implements Interactor  {
+public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
+
+
     private class EnigmePlayerHandler implements EnigmeInteractionVisitor {
         @Override
         public void interactWith(Door door){
@@ -46,15 +48,15 @@ public class EnigmePlayer extends Meneur implements Interactor  {
     private final EnigmePlayerHandler handler;
 
 
-    public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
-        super(area, orientation, position,suiveur);
+    public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE) {
+        super(area, orientation, position);
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
         this.SPRITE = new Sprite(SPRITE, 1, 1.f, this);
     }
 
-    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
-        super(area, position,suiveur);
+    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE) {
+        super(area, position);
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
         this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
@@ -68,11 +70,6 @@ public class EnigmePlayer extends Meneur implements Interactor  {
         return handler;
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        SPRITE.draw(canvas);
-        getSuiveur().draw(canvas);
-    }
 
     @Override
     public boolean isCellInteractable() {
@@ -159,6 +156,11 @@ public class EnigmePlayer extends Meneur implements Interactor  {
         isPassingDoor= true;
         passedDoor = door;
 
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        SPRITE.draw(canvas);
     }
 
     public void setPassingDoor(boolean passingDoor) {
