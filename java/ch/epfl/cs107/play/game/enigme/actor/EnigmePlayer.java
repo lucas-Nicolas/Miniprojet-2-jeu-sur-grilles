@@ -56,8 +56,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private Door passedDoor;
     private final EnigmePlayerHandler handler;
     private Suiveur suiveur;
-    private int vectorXWithSuiveur;
-    private int vectorYWithSuiveur;
+
 
 
     public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE) {
@@ -135,9 +134,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         //pour chaque direction si le personnage est déjà orienté vers
         if (leftArrow.isDown()) {
             if (this.getOrientation() == Orientation.LEFT) {
-                if(move(ANIMATION_DURATION)){
-
-                };
+                move(ANIMATION_DURATION);
             } else {
                 this.setOrientation(Orientation.LEFT);
             }
@@ -145,18 +142,14 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         } else if (downArrow.isDown()) {
 
             if (this.getOrientation().equals(Orientation.DOWN)) {
-                if(move(ANIMATION_DURATION)){
-
-                };
+                move(ANIMATION_DURATION);
             } else {
                 this.setOrientation(Orientation.DOWN);
             }
 
         } else if (upArrow.isDown()) {
             if (this.getOrientation() == Orientation.UP) {
-                if(move(ANIMATION_DURATION)){
-
-                };
+                move(ANIMATION_DURATION);
             } else {
                 this.setOrientation(Orientation.UP);
             }
@@ -164,9 +157,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         } else if (rightArrow.isDown()) {
 
             if (this.getOrientation() == Orientation.RIGHT) {
-                if(move(ANIMATION_DURATION)){
-
-                };
+                move(ANIMATION_DURATION);
             } else {
                 this.setOrientation(Orientation.RIGHT);
             }
@@ -220,12 +211,13 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     }
 
     private void manageSuiveur(){
-
-            vectorXWithSuiveur=getCurrentMainCellCoordinates().x-suiveur.getCurrentMainCellCoordinates().x;
-            vectorYWithSuiveur=getCurrentMainCellCoordinates().y-suiveur.getCurrentMainCellCoordinates().y;
-            if(Math.sqrt(Math.pow(vectorYWithSuiveur,2)+Math.pow(vectorXWithSuiveur,2))!=1){
+        int vectorXWithSuiveur = getCurrentMainCellCoordinates().x-suiveur.getCurrentMainCellCoordinates().x;
+        int vectorYWithSuiveur = getCurrentMainCellCoordinates().y-suiveur.getCurrentMainCellCoordinates().y;
+        float distance = (float)Math.sqrt(Math.pow(vectorYWithSuiveur,2)+Math.pow(vectorXWithSuiveur,2));
+            if(distance>0.9f||distance<1.1f){
                 suiveur.setNeedToMove(true);
-            }else{
+            }
+        System.out.println(distance);
                 if(vectorXWithSuiveur==0) {
                     if (vectorYWithSuiveur > 0) {
                         suiveur.setNeededOrientation(Orientation.UP);
@@ -239,5 +231,5 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
                 }
             }
 
-    }
+
 }
