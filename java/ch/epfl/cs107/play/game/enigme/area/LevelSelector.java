@@ -2,7 +2,9 @@ package ch.epfl.cs107.play.game.enigme.area;
 
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.enigme.actor.Door;
+import ch.epfl.cs107.play.game.enigme.actor.Safe;
 import ch.epfl.cs107.play.game.enigme.actor.SignalDoor;
+import ch.epfl.cs107.play.game.enigme.actor.Suiveur;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.signal.logic.Logic;
