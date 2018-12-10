@@ -210,25 +210,26 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         return l.isPressed() ;
     }
 
-    private void manageSuiveur(){
-        int vectorXWithSuiveur = getCurrentMainCellCoordinates().x-suiveur.getCurrentMainCellCoordinates().x;
-        int vectorYWithSuiveur = getCurrentMainCellCoordinates().y-suiveur.getCurrentMainCellCoordinates().y;
-        float distance = (float)Math.sqrt(Math.pow(vectorYWithSuiveur,2)+Math.pow(vectorXWithSuiveur,2));
-            if(distance!=1){
-                suiveur.setNeedToMove(true);
+    private void manageSuiveur() {
+        int vectorXWithSuiveur = getCurrentMainCellCoordinates().x - suiveur.getCurrentMainCellCoordinates().x;
+        int vectorYWithSuiveur = getCurrentMainCellCoordinates().y - suiveur.getCurrentMainCellCoordinates().y;
+        float distance = (float) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
+        if (vectorXWithSuiveur == 0) {
+            if (vectorYWithSuiveur > 0) {
+                suiveur.setNeededOrientation(Orientation.UP);
+            } else {
+                suiveur.setNeededOrientation(Orientation.DOWN);
             }
-                if(vectorXWithSuiveur==0) {
-                    if (vectorYWithSuiveur > 0) {
-                        suiveur.setNeededOrientation(Orientation.UP);
-                    } else{
-                        suiveur.setNeededOrientation(Orientation.DOWN);
-                    }
-                } else if (vectorXWithSuiveur>0){
-                    suiveur.setNeededOrientation(Orientation.RIGHT);
-                }else {
-                    suiveur.setNeededOrientation(Orientation.LEFT);
-                }
-            }
+        } else if (vectorXWithSuiveur > 0) {
+            suiveur.setNeededOrientation(Orientation.RIGHT);
+        } else {
+            suiveur.setNeededOrientation(Orientation.LEFT);
+        }
+
+        if (distance != 1) {
+            suiveur.setNeedToMove(true);
+        }
 
 
+    }
 }
