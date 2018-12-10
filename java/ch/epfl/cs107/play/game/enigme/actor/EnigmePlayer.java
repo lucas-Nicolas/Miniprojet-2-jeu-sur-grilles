@@ -56,6 +56,8 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private Door passedDoor;
     private final EnigmePlayerHandler handler;
     private Suiveur suiveur;
+    //vie
+    private Vie vie;
 
 
 
@@ -64,6 +66,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.isPassingDoor = false;
         handler = new EnigmePlayerHandler();
         this.SPRITE = new Sprite(SPRITE, 1, 1.f, this);
+        this.vie = new Vie(100,this);
     }
 
     public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
@@ -72,6 +75,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         handler = new EnigmePlayerHandler();
         this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
         this.suiveur=suiveur;
+        this.vie = new Vie(100,this);
     }
 
     public EnigmePlayerHandler getHandler() {
@@ -81,6 +85,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     @Override
     public void draw(Canvas canvas) {
         SPRITE.draw(canvas);
+        vie.draw(canvas);
     }
 
     @Override
@@ -231,5 +236,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         }
 
 
+    }
+
+    protected Vie getVie() {
+        return vie;
     }
 }

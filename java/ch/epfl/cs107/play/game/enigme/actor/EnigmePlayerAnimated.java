@@ -51,5 +51,6 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
                 spritesRIGHT[spriteIndex].draw(canvas);
                 break;
         }
+        getVie().draw(canvas);
     }
 }
