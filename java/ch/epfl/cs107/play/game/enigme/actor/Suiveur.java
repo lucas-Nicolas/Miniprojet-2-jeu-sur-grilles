@@ -15,7 +15,7 @@ public class Suiveur extends MovableAreaEntityAnimated {
 
     private boolean needToMove;
     private Orientation neededOriantation;
-    private int frameForMove=8;
+    private int frameForMove=7;
 
 
     public Suiveur(Area area, DiscreteCoordinates position, String SPRITE) {
