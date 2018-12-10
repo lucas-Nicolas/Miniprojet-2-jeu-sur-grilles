@@ -5,3 +5,6 @@ Pour jouer à ces minis jeux les contrôles sont assez simples, Les déplacement
 #Niveaux 
 
 Les portes 1,2,3 sont les implémentations basiques de ce qui était demandé dans les premières étapes, nous ne les avons pas changées, Si ce n'est pour l'ajout du coffre qui est activé par la torche ou le 5 en levier comme le SignalRock numéro 3. Nous avons également ajouté à ce niveau une potion de soin dont l'utilisation est assez explicite et une movable rock avec laquelle il suffit d'interagir pour la déplacer.
+
+#Vie
+Le chiffre en dessous du joueur indique son nombre de points de vies, si ce nombre tombe à 0, le jeu recommence au début et tout progrès sera perdu...

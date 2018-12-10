@@ -17,6 +17,7 @@ public abstract class Collectable extends AreaEntity {
 
     public Collectable(Area area, DiscreteCoordinates position) {
         super(area, position);
+        key = Logic.TRUE;
     }
 
     public Collectable(Area area, DiscreteCoordinates position, Safe key) {

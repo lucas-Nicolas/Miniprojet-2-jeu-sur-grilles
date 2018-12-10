@@ -40,6 +40,7 @@ Pour revenir à nos débuts (étape 1), nous avons implémenté cette classe  Mo
 Points de vie : 
 
 Nous avons également doté notre personnage d'un attribut de la classe Vie, cette classe à pour but d'afficher un texte de la classe Textgraphics qui sera accroché au joueur et de gérer l'évolution de ce texte ainsi que celle de la variable qu'elle contient ( le nombre de points de vie) . Nous avons procédé ainsi pour que les interactions du joueur avec les différents autres acteurs puissent facilement avoir un impact sur sa vie. Pour ce faire il suffit simplement de doter les acteurs voulu d'un entier en attribut  indiquant le nombre de dommages qu'ils infligent et de faire un constructeur par défaut et un constructeur précisant cette valeur si nécessaire. Pour accompagner cette fonctionalité nous avons créé une classe health potion rendant des points de vie à notre personnage et fait que pousser un rocher fasse perdre des points de vie à notre héros.
+Par ailleurs, lorsque le personnage meurt, le jeu recommence au début.
 
 Coffre : 
 
