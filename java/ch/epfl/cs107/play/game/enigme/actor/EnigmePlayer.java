@@ -214,10 +214,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         int vectorXWithSuiveur = getCurrentMainCellCoordinates().x-suiveur.getCurrentMainCellCoordinates().x;
         int vectorYWithSuiveur = getCurrentMainCellCoordinates().y-suiveur.getCurrentMainCellCoordinates().y;
         float distance = (float)Math.sqrt(Math.pow(vectorYWithSuiveur,2)+Math.pow(vectorXWithSuiveur,2));
-            if(distance>0.9f||distance<1.1f){
+            if(distance!=1){
                 suiveur.setNeedToMove(true);
             }
-        System.out.println(distance);
                 if(vectorXWithSuiveur==0) {
                     if (vectorYWithSuiveur > 0) {
                         suiveur.setNeededOrientation(Orientation.UP);
