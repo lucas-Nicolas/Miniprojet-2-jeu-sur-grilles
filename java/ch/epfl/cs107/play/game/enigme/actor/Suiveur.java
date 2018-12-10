@@ -15,6 +15,7 @@ public class Suiveur extends MovableAreaEntityAnimated {
 
     private boolean needToMove;
     private Orientation neededOriantation;
+    private int frameForMove=8;
 
 
     public Suiveur(Area area, DiscreteCoordinates position, String SPRITE) {
@@ -47,13 +48,19 @@ public class Suiveur extends MovableAreaEntityAnimated {
         this.needToMove=needToMove;
     }
 
+    public void setFrameForMove(int frameForMove) {
+        this.frameForMove = frameForMove;
+    }
+
+
+
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
         if(!isMoving()){
             setOrientation(neededOriantation);
             if(needToMove) {
-                move();
+                move(frameForMove);
             }
             needToMove=false;
 
