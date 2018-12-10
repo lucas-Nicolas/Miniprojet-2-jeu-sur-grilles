@@ -21,7 +21,11 @@ public class Suiveur extends MovableAreaEntityAnimated {
     public Suiveur(Area area, DiscreteCoordinates position, String SPRITE) {
         super(area, position, SPRITE);
     }
-//todo corriger les fautes
+
+    public Suiveur(Area area, DiscreteCoordinates position, String SPRITE, int numberOfSprites) {
+        super(area, position, SPRITE, numberOfSprites);
+    }
+    //todo corriger les fautes
     /*
     Because it has to folow someone all his attribut regarding moving is public
 

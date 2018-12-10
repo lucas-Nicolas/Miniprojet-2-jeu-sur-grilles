@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class HealthPotion extends Collectable {
-    private final Sprite potion = new Sprite("potion.4",1,1,this);
+    private final Sprite potion = new Sprite("potion.3",0.7f,0.7f,this);
 
 
     public HealthPotion(Area area, DiscreteCoordinates position) {

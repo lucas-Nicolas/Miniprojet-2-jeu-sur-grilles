@@ -46,7 +46,7 @@ public class Enigme extends AreaGame {
             addArea(level3);
 
             setCurrentArea("LevelSelector", false);
-            Suiveur suiveur = new Suiveur(levelSelector,new DiscreteCoordinates(5,4),"girl.1");
+            Suiveur suiveur = new Suiveur(levelSelector,new DiscreteCoordinates(5,4),"flying.mob.3",1);
             player = new EnigmePlayerAnimated(levelSelector,new DiscreteCoordinates(5,5),"girl.1",suiveur);
             getCurrentArea().registerActor(player,suiveur);
             getCurrentArea().setViewCandidate(player);
