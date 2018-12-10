@@ -55,10 +55,14 @@ public class Enigme extends AreaGame {
         return false;
     }
 
+
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-
+        //restart if dead
+        if(player.isAlive()){
+            begin(getWindow(),getFileSystem());
+        }
         if (player.isPassingDoor()){
             setCurrentArea(player.getpassedDoor().getAreaGoingTo(),false);
             player.enterArea(getCurrentArea(),player.getpassedDoor().getArrivalPosition());
