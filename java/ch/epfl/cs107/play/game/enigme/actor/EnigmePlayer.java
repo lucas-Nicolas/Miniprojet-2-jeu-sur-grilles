@@ -134,10 +134,6 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-        if(vie.getVie() <= 0){
-            getOwnerArea().unregisterActor(this);
-        }
-
 
         Keyboard keyboard = getOwnerArea().getKeyboard();
 
@@ -259,5 +255,8 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     protected Vie getVie() {
         return vie;
+    }
+    public boolean isAlive(){
+        return (vie.getVie()<=0);
     }
 }
