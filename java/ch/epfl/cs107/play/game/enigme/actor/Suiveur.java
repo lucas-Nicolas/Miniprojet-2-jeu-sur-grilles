@@ -43,10 +43,6 @@ public class Suiveur extends MovableAreaEntityAnimated {
         setOwnerArea(area);
     }
 
-    @Override
-    public DiscreteCoordinates getCurrentMainCellCoordinates() {
-        return super.getCurrentMainCellCoordinates();
-    }
 
     public void setNeedToMove(boolean needToMove){
         this.needToMove=needToMove;

@@ -52,7 +52,6 @@ public class EnigmeBehavior extends AreaBehavior {
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {
                 EnigmeBehavior.EnigmeCellType cellType = EnigmeBehavior.EnigmeCellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
-                //on oublie pas d'initialiser les cellules
                 getCells()[x][y] = new EnigmeBehavior.EnigmeCell(x,y,cellType);
             }
         }

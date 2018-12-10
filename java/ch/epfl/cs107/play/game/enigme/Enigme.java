@@ -5,11 +5,8 @@ import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayerAnimated;
 import ch.epfl.cs107.play.game.enigme.actor.Suiveur;
-import ch.epfl.cs107.play.game.enigme.area.Level2;
-import ch.epfl.cs107.play.game.enigme.area.Level3;
-import ch.epfl.cs107.play.game.enigme.area.LevelSelector;
+import ch.epfl.cs107.play.game.enigme.area.*;
 
-import ch.epfl.cs107.play.game.enigme.area.Level1;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
@@ -39,11 +36,13 @@ public class Enigme extends AreaGame {
             Area level1 = new Level1();
             Area level2 = new Level2();
             Area level3 = new Level3();
+            Area level4 = new Enigme1();
 
             addArea(levelSelector);
             addArea(level1);
             addArea(level2);
             addArea(level3);
+            addArea(level4);
 
             setCurrentArea("LevelSelector", false);
             Suiveur suiveur = new Suiveur(levelSelector,new DiscreteCoordinates(5,4),"flying.mob.3",1);
