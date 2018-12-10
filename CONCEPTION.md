@@ -22,3 +22,5 @@ Pour les animations, première extension, nous avons choisi de faire une classe 
 Nous avons fait le choix de suivre le pattern proposé dans le 7.2 avec des arrays de Sprites pour chaque direction.
 
 Suiveur : 
+
+//todo ecrire sur le nouveau moyen de deplacement courir et marcher

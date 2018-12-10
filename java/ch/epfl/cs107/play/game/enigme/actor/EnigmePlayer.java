@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -59,7 +60,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     private boolean isPassingDoor;
     private final Sprite SPRITE;
-    private final static int ANIMATION_DURATION = 8;
+    private int ANIMATION_DURATION = 8;
     private Door passedDoor;
     private final EnigmePlayerHandler handler;
     private Suiveur suiveur;
@@ -145,8 +146,15 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         Button downArrow = keyboard.get(Keyboard.DOWN);
         Button upArrow = keyboard.get(Keyboard.UP);
         Button rightArrow = keyboard.get(Keyboard.RIGHT);
-
-
+        Button K = keyboard.get(Keyboard.K);
+        //for run implementation
+        if(K.isDown()){
+            ANIMATION_DURATION=4;
+            suiveur.setFrameForMove(3);
+        }else{
+            ANIMATION_DURATION=8;
+            suiveur.setFrameForMove(7);
+        }
         //pour chaque direction si le personnage est déjà orienté vers
         if (leftArrow.isDown()) {
             if (this.getOrientation() == Orientation.LEFT) {
@@ -229,7 +237,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private void manageSuiveur() {
         int vectorXWithSuiveur = getCurrentMainCellCoordinates().x - suiveur.getCurrentMainCellCoordinates().x;
         int vectorYWithSuiveur = getCurrentMainCellCoordinates().y - suiveur.getCurrentMainCellCoordinates().y;
-        float distance = (float) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
+        int distance = (int) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
         if (vectorXWithSuiveur == 0) {
             if (vectorYWithSuiveur > 0) {
                 suiveur.setNeededOrientation(Orientation.UP);

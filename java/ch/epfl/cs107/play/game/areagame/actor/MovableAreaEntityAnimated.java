@@ -10,7 +10,6 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.util.List;
 
 public abstract class MovableAreaEntityAnimated extends MovableAreaEntity {
-    private int framesForMove=8;
     private final int NUMBER_OF_SPRITES = 4;
     private final Sprite SPRITE;
     private final Sprite[] spritesDOWW;
@@ -78,7 +77,7 @@ public abstract class MovableAreaEntityAnimated extends MovableAreaEntity {
         }
     }
 
-    protected boolean move() {
+    protected boolean move(int framesForMove) {
         return super.move(framesForMove);
     }
 }
