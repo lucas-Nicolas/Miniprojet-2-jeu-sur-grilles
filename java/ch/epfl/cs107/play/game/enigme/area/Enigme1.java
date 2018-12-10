@@ -5,7 +5,7 @@ import ch.epfl.cs107.play.window.Window;
 
 public class Enigme1 extends EnigmeArea {
     private final String title = "Enigme1";
-    private final float scaleFactor = 18;
+    private final float scaleFactor = 15;
 
     @Override
     public String getTitle() {

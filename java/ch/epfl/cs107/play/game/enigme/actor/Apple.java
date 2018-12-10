@@ -14,14 +14,16 @@ public class Apple extends Collectable {
         super(area, position);
 
     }
+    public Apple(Area area, DiscreteCoordinates position, Safe key) {
+        super(area, position,key);
 
-    public Apple( Area ownerArea,DiscreteCoordinates position, String dialog) {
-        super(ownerArea, position, dialog);
     }
 
     @Override
     public void draw(Canvas canvas) {
+        if(getKey().isOn()){
         APPLE.draw(canvas);
+        }
     }
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {

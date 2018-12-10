@@ -15,14 +15,18 @@ public class Key extends Collectable implements Logic {
         super(area, position);
     }
 
-    public Key(Area ownerArea, DiscreteCoordinates position, String dialog) {
-        super(ownerArea, position, dialog);
+    public Key(Area ownerArea, DiscreteCoordinates position, Safe key) {
+        super(ownerArea, position, key);
     }
 
     @Override
     public void draw(Canvas canvas) {
-        KEY.draw(canvas);
-        if (getDialog()!=null){getDialog().draw(canvas);}
+        if(getKey().isOn()) {
+
+            KEY.draw(canvas);
+        }
+
+
 
 
     }

@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.signal.logic.Logic;
 import ch.epfl.cs107.play.window.Canvas;
 
 import java.util.Collections;
@@ -17,10 +18,15 @@ public class HealthPotion extends Collectable {
     public HealthPotion(Area area, DiscreteCoordinates position) {
         super(area, position);
     }
+    public HealthPotion(Area area, DiscreteCoordinates position, Safe key) {
+        super(area, position,key);
+    }
 
     @Override
     public void draw(Canvas canvas) {
-        potion.draw(canvas);
+        if(getKey().isOn()) {
+            potion.draw(canvas);
+        }
     }
 
     @Override
@@ -28,20 +34,7 @@ public class HealthPotion extends Collectable {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
-    @Override
-    public boolean takeCellSpace() {
-        return true;
-    }
 
-    @Override
-    public boolean isViewInteractable() {
-        return true;
-    }
-
-    @Override
-    public boolean isCellInteractable() {
-        return false;
-    }
 
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {

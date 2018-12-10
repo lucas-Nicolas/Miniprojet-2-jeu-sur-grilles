@@ -55,6 +55,11 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
             vie.setDeltaVie(10);
             potion.setIsCollected(true);
         }
+
+        @Override
+        public void interactWith(Safe safe) {
+            safe.open();
+        }
     }
 
 

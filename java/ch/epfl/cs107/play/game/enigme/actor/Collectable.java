@@ -3,7 +3,9 @@ package ch.epfl.cs107.play.game.enigme.actor;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.signal.logic.Logic;
 import ch.epfl.cs107.play.window.Canvas;
 
 import java.util.Collections;
@@ -11,12 +13,15 @@ import java.util.List;
 
 public abstract class Collectable extends AreaEntity {
     private boolean isCollected;
+    private Logic key;
+
     public Collectable(Area area, DiscreteCoordinates position) {
         super(area, position);
     }
 
-    public Collectable( Area ownerArea,DiscreteCoordinates position, String dialog) {
-        super(position, ownerArea, dialog);
+    public Collectable(Area area, DiscreteCoordinates position, Safe key) {
+        super(area, position);
+        this.key = key;
     }
 
     @Override
@@ -26,13 +31,13 @@ public abstract class Collectable extends AreaEntity {
 
     @Override
     public boolean takeCellSpace() {
-        return true;
+        return key.isOn();
     }
 
 
     @Override
     public boolean isViewInteractable() {
-        return true;
+        return key.isOn();
     }
 
     @Override
@@ -56,4 +61,9 @@ public abstract class Collectable extends AreaEntity {
             getOwnerArea().unregisterActor(this);
         }
     }
+
+    protected Logic getKey() {
+        return key;
+    }
+
 }

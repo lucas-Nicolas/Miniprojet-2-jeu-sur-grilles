@@ -12,30 +12,28 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.util.Collections;
 import java.util.List;
 
-public class Safe extends AreaEntity {
+public class Safe extends AreaEntity implements Logic {
     private Logic key;
     private boolean open;
-    private AreaEntity contenu;
-    private final Sprite coffre = new Sprite("Safe",1,1,this);
+    private final Sprite coffre = new Sprite("safe.2",1,1,this);
 
-    //take the same place as the contenu.
-    public Safe(Area area,Logic key,AreaEntity contenu) {
-        super(area, new DiscreteCoordinates((int)contenu.getPosition().x,(int)contenu.getPosition().y));
+
+    public Safe(Area area,DiscreteCoordinates position,Logic key) {
+        super(area, position);
         this.key=key;
-        this.contenu=contenu;
     }
+
 
     @Override
     public void update(float deltaTime) {
         if(open){
-            getOwnerArea().registerActor(contenu);
             getOwnerArea().unregisterActor(this);
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
-
+        coffre.draw(canvas);
     }
 
     @Override
@@ -61,5 +59,14 @@ public class Safe extends AreaEntity {
     @Override
     public void acceptInteraction(AreaInteractionVisitor v) {
         ((EnigmeInteractionVisitor)v).interactWith(this);
+    }
+
+    public void open() {
+        this.open = true;
+    }
+
+    @Override
+    public boolean isOn() {
+        return open;
     }
 }

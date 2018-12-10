@@ -21,7 +21,7 @@ public abstract class AreaEntity extends Entity implements Interactable{
     private Orientation orientation;
     // / Coordinate of the main Cell linked to the entity
     private DiscreteCoordinates currentMainCellCoordinates;
-    private Dialog dialog;
+
 
     /**
      * Default AreaEntity constructor
@@ -42,22 +42,6 @@ public abstract class AreaEntity extends Entity implements Interactable{
         super(position.toVector());
         this.ownerArea = area;
         this.currentMainCellCoordinates = position;
-        orientation = Orientation.DOWN;
-    }
-
-    public AreaEntity(DiscreteCoordinates position, Area ownerArea, Orientation orientation, String dialog) {
-        super(position.toVector());
-        this.ownerArea = ownerArea;
-        this.orientation = orientation;
-        this.currentMainCellCoordinates = position;
-        this.dialog = new Dialog(dialog,ownerArea.getTitle(),ownerArea);
-    }
-
-    public AreaEntity(DiscreteCoordinates position, Area ownerArea, String dialog) {
-        super(position.toVector());
-        this.ownerArea = ownerArea;
-        this.currentMainCellCoordinates = position;
-        this.dialog = new Dialog(dialog,ownerArea.getTitle(),ownerArea);
         orientation = Orientation.DOWN;
     }
 
