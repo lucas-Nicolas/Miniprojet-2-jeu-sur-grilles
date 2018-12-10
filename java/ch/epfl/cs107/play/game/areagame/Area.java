@@ -2,13 +2,18 @@ package ch.epfl.cs107.play.game.areagame;
 
 import ch.epfl.cs107.play.game.Playable;
 import ch.epfl.cs107.play.game.actor.Actor;
+import ch.epfl.cs107.play.game.actor.GraphicsEntity;
+import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Interactor;
+import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.game.enigme.actor.Door;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
@@ -22,7 +27,7 @@ import java.util.Map;
 /**
  * Area is a "Part" of the AreaGame. It is characterized by its AreaBehavior and a List of Actors
  */
-public abstract class Area implements Playable {
+public abstract class Area implements Playable{
 
     // Context objects
     private Window window;
@@ -43,6 +48,7 @@ public abstract class Area implements Playable {
     //to know if a area has already been played
     private boolean savedGame;
     private String title;
+    private boolean pause;
 
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
@@ -190,26 +196,39 @@ public abstract class Area implements Playable {
 
     @Override
     public void update(float deltaTime) {
-        purgeRegistration();
-        for (Actor actor : actors) {
-            actor.update(deltaTime);
+        Keyboard keyboard = getKeyboard();
+        if(keyboard.get(Keyboard.SPACE).isPressed() ){
+            pause=!pause;
         }
+        if(!pause) {
+            purgeRegistration();
+            for (Actor actor : actors) {
+                actor.update(deltaTime);
+            }
 
-        for (Interactor interactor : interactors) {
-            if (interactor.wantsCellInteraction()) {
-                // demander à la grille de mettre en place les interactions de contact
-                areaBehavior.cellInteractionOf(interactor);
+            for (Interactor interactor : interactors) {
+                if (interactor.wantsCellInteraction()) {
+                    // demander à la grille de mettre en place les interactions de contact
+                    areaBehavior.cellInteractionOf(interactor);
                 }
-            if (interactor.wantsViewInteraction()) {
-                // demander à la grille de mettre en place les interaction distantes
-                areaBehavior.viewInteractionOf(interactor);
+                if (interactor.wantsViewInteraction()) {
+                    // demander à la grille de mettre en place les interaction distantes
+                    areaBehavior.viewInteractionOf(interactor);
+                }
+            }
+
+            updateCamera();
+            for (Actor actor : actors) {
+                actor.draw(window);
             }
         }
-
-        updateCamera();
-        for (Actor actor : actors) {
-            actor.draw(window);
+        else{
+            for (Actor actor : actors) {
+                actor.draw(window);
+            }
+            new GraphicsEntity(new Vector(0,0), new ImageGraphics(ResourcePath.getBackgrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);;
         }
+
     }
 
 
