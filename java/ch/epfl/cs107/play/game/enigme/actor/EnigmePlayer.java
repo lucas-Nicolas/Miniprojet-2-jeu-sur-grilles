@@ -1,0 +1,235 @@
+package ch.epfl.cs107.play.game.enigme.actor;
+
+import ch.epfl.cs107.play.game.areagame.Area;
+import ch.epfl.cs107.play.game.areagame.actor.*;
+import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.enigme.handler.EnigmeInteractionVisitor;
+import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.window.Button;
+import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Keyboard;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
+    private class EnigmePlayerHandler implements EnigmeInteractionVisitor {
+        @Override
+        public void interactWith(Door door){
+            //Fait en sorte que le joueur passe la porte
+        passedDoor(door);
+        }
+
+        @Override
+        public void interactWith(Apple apple){
+            //fait en sorte que la pomme soit ramassée
+            apple.setIsCollected(true);
+        }
+
+        @Override
+        public void interactWith(Key key) {
+            key.setIsCollected(true);
+        }
+
+        @Override
+        public void interactWith(Switch bouton) {
+            bouton.setIsActivated();
+        }
+
+        @Override
+        public void interactWith(PressurePlate plate) {
+            plate.setIsActivated();
+        }
+
+        @Override
+        public void interactWith(MovableRock movableRock) {
+            movableRock.setOrientation(getOrientation());
+            movableRock.move(8);
+        }
+    }
+
+
+    private boolean isPassingDoor;
+    private final Sprite SPRITE;
+    private final static int ANIMATION_DURATION = 8;
+    private Door passedDoor;
+    private final EnigmePlayerHandler handler;
+    private Suiveur suiveur;
+
+
+
+    public EnigmePlayer(Area area, Orientation orientation, DiscreteCoordinates position, String SPRITE) {
+        super(area, orientation, position);
+        this.isPassingDoor = false;
+        handler = new EnigmePlayerHandler();
+        this.SPRITE = new Sprite(SPRITE, 1, 1.f, this);
+    }
+
+    public EnigmePlayer(Area area, DiscreteCoordinates position, String SPRITE,Suiveur suiveur) {
+        super(area, position);
+        this.isPassingDoor = false;
+        handler = new EnigmePlayerHandler();
+        this.SPRITE= new Sprite(SPRITE, 1, 1.f, this);
+        this.suiveur=suiveur;
+    }
+
+    public EnigmePlayerHandler getHandler() {
+        return handler;
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        SPRITE.draw(canvas);
+    }
+
+    @Override
+    public boolean isCellInteractable() {
+        return true;
+    }
+
+    @Override
+    public boolean isViewInteractable() {
+        return true;
+    }
+
+
+    @Override
+    public boolean takeCellSpace() {
+        return true;
+    }
+
+    @Override
+    public List<DiscreteCoordinates> getCurrentCells() {
+        return Collections.singletonList(getCurrentMainCellCoordinates());
+    }
+
+
+    public void enterArea(Area area, DiscreteCoordinates position) {
+        area.registerActor(this);
+        setCurrentPosition(position.toVector());
+        this.resetMotion();
+        isPassingDoor = false;
+        getOwnerArea().unregisterActor(this);
+        suiveur.enterArea(area,position);
+        getOwnerArea().suspend();
+        setOwnerArea(area);
+        getOwnerArea().setViewCandidate(this);
+    }
+
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+
+
+        Keyboard keyboard = getOwnerArea().getKeyboard();
+
+        //on crée des boutons de la même façon que dans demo 1 pour chaque direction
+        Button leftArrow = keyboard.get(Keyboard.LEFT);
+        Button downArrow = keyboard.get(Keyboard.DOWN);
+        Button upArrow = keyboard.get(Keyboard.UP);
+        Button rightArrow = keyboard.get(Keyboard.RIGHT);
+
+
+        //pour chaque direction si le personnage est déjà orienté vers
+        if (leftArrow.isDown()) {
+            if (this.getOrientation() == Orientation.LEFT) {
+                move(ANIMATION_DURATION);
+            } else {
+                this.setOrientation(Orientation.LEFT);
+            }
+
+        } else if (downArrow.isDown()) {
+
+            if (this.getOrientation().equals(Orientation.DOWN)) {
+                move(ANIMATION_DURATION);
+            } else {
+                this.setOrientation(Orientation.DOWN);
+            }
+
+        } else if (upArrow.isDown()) {
+            if (this.getOrientation() == Orientation.UP) {
+                move(ANIMATION_DURATION);
+            } else {
+                this.setOrientation(Orientation.UP);
+            }
+
+        } else if (rightArrow.isDown()) {
+
+            if (this.getOrientation() == Orientation.RIGHT) {
+                move(ANIMATION_DURATION);
+            } else {
+                this.setOrientation(Orientation.RIGHT);
+            }
+        }
+        manageSuiveur();
+    }
+
+    public void passedDoor(Door door){
+        isPassingDoor= true;
+        passedDoor = door;
+
+    }
+
+    public Door getpassedDoor(){
+        return passedDoor;
+    }
+
+    public boolean isPassingDoor() {
+        return isPassingDoor;
+    }
+    public void interactWith(Interactable other){
+        other.acceptInteraction(handler);
+    }
+
+    @Override
+    public void acceptInteraction(AreaInteractionVisitor v) {
+        ((EnigmeInteractionVisitor)v).interactWith(this);
+
+    }
+
+    @Override
+    public List<DiscreteCoordinates> getFieldOfViewCells() {
+        List<DiscreteCoordinates> coord = getCurrentCells();
+        List<DiscreteCoordinates> fieldOfView = new LinkedList<>();
+        for (DiscreteCoordinates coords : coord) {
+            fieldOfView.add(coords.jump(getOrientation().toVector()));
+        }
+        return fieldOfView;
+    }
+
+    @Override
+    public boolean wantsCellInteraction() {
+        return true;
+    }
+
+    @Override
+    public boolean wantsViewInteraction() {
+        Keyboard keyboard = getOwnerArea().getKeyboard();
+        Button l = keyboard.get(Keyboard.L);
+        return l.isPressed() ;
+    }
+
+    private void manageSuiveur() {
+        int vectorXWithSuiveur = getCurrentMainCellCoordinates().x - suiveur.getCurrentMainCellCoordinates().x;
+        int vectorYWithSuiveur = getCurrentMainCellCoordinates().y - suiveur.getCurrentMainCellCoordinates().y;
+        float distance = (float) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
+        if (vectorXWithSuiveur == 0) {
+            if (vectorYWithSuiveur > 0) {
+                suiveur.setNeededOrientation(Orientation.UP);
+            } else {
+                suiveur.setNeededOrientation(Orientation.DOWN);
+            }
+        } else if (vectorXWithSuiveur > 0) {
+            suiveur.setNeededOrientation(Orientation.RIGHT);
+        } else {
+            suiveur.setNeededOrientation(Orientation.LEFT);
+        }
+
+        if (distance != 1) {
+            suiveur.setNeedToMove(true);
+        }
+
+
+    }
+}
