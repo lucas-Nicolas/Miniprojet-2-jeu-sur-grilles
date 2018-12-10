@@ -32,6 +32,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         DiscreteCoordinates temp;
         for (DiscreteCoordinates coords : coord) {
             temp = coords.jump(getOrientation().toVector());
+            //we check if the projection is within the area
             if(temp.x < getOwnerArea().getWidth() && temp.y < getOwnerArea().getHeight() && 0<= temp.x && 0<= temp.y) {
                 entering.add(temp);
             }

@@ -28,14 +28,14 @@ public class Safe extends AreaEntity {
     @Override
     public void update(float deltaTime) {
         if(open){
-            getOwnerArea().registerActor(contenu);
             getOwnerArea().unregisterActor(this);
+            getOwnerArea().registerActor(contenu);
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
-
+        coffre.draw(canvas);
     }
 
     @Override
@@ -43,9 +43,13 @@ public class Safe extends AreaEntity {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
+    public void open() {
+        open=true;
+    }
+
     @Override
     public boolean takeCellSpace() {
-        return true;
+        return !open;
     }
 
     @Override
