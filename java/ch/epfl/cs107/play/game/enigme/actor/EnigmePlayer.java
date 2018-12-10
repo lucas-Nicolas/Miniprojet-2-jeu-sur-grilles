@@ -256,7 +256,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     protected Vie getVie() {
         return vie;
     }
-    public boolean isAlive(){
-        return (vie.getVie()<=0);
+    public boolean isDead(){
+        return (vie.getVie() <= 0);
     }
 }

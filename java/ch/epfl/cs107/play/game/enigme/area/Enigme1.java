@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.window.Window;
 
 public class Enigme1 extends EnigmeArea {
     private final String title = "Enigme1";
+    private final float scaleFactor = 18;
 
     @Override
     public String getTitle() {
@@ -13,6 +14,12 @@ public class Enigme1 extends EnigmeArea {
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
+
         return super.begin(window, fileSystem);
+    }
+
+    @Override
+    public void setCameraScaleFactor() {
+        super.setCameraScaleFactor(scaleFactor);
     }
 }

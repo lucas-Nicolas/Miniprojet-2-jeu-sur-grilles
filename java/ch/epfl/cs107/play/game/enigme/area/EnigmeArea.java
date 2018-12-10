@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EnigmeArea extends Area {
+    private float cameraScaleFactor = 22;
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         boolean begin  = super.begin(window, fileSystem);
@@ -22,7 +23,16 @@ public class EnigmeArea extends Area {
     }
 
     public float getCameraScaleFactor(){
-        return 22;
+        return cameraScaleFactor;
     }
 
+    public void setCameraScaleFactor(float scaleFactor) {
+        cameraScaleFactor = scaleFactor;
+    }
+
+    @Override
+    public void setCameraScaleFactor() {
+        cameraScaleFactor = 22;
+
+    }
 }

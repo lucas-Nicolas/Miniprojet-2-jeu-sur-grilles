@@ -21,4 +21,6 @@ public class Demo2Area extends Area {
         return 22;
     }
 
+    @Override
+    public void setCameraScaleFactor() { }
 }

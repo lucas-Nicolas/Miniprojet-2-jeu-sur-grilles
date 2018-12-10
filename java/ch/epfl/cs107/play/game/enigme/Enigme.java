@@ -59,12 +59,14 @@ public class Enigme extends AreaGame {
     public void update(float deltaTime) {
         super.update(deltaTime);
         //restart if dead
-        if(player.isAlive()){
+        if(player.isDead()){
             begin(getWindow(),getFileSystem());
         }
         if (player.isPassingDoor()){
             setCurrentArea(player.getpassedDoor().getAreaGoingTo(),false);
+            getCurrentArea().setCameraScaleFactor();
             player.enterArea(getCurrentArea(),player.getpassedDoor().getArrivalPosition());
         }
     }
+
 }

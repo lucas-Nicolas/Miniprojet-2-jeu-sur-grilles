@@ -49,8 +49,8 @@ public class EnigmeBehavior extends AreaBehavior {
 
     public EnigmeBehavior(Window window, String fileName) {
         super(window, fileName);
-        for (int y = 0; y < getHeight(); y++) {
-            for (int x = 0; x < getWidth(); x++) {
+        for (int x = 0; x < getWidth(); ++x) {
+            for (int y = 0; y < getHeight(); ++y) {
                 EnigmeBehavior.EnigmeCellType cellType = EnigmeBehavior.EnigmeCellType.toType(getBehaviorMap().getRGB(getBehaviorMap().getHeight()-1-y,x));
                 getCells()[x][y] = new EnigmeBehavior.EnigmeCell(x,y,cellType);
             }
