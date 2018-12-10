@@ -1,10 +1,7 @@
 package ch.epfl.cs107.play.game.enigme.area;
 
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
-import ch.epfl.cs107.play.game.enigme.actor.Door;
-import ch.epfl.cs107.play.game.enigme.actor.Safe;
-import ch.epfl.cs107.play.game.enigme.actor.SignalDoor;
-import ch.epfl.cs107.play.game.enigme.actor.Suiveur;
+import ch.epfl.cs107.play.game.enigme.actor.*;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.signal.logic.Logic;
@@ -31,6 +28,9 @@ public class LevelSelector extends EnigmeArea {
         begin = begin && registerActor(new SignalDoor(Logic.FALSE,this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(6, 7)));
         begin = begin && registerActor(new SignalDoor(Logic.FALSE,this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(7, 7)));
         begin = begin && registerActor(new SignalDoor(Logic.FALSE,this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(8, 7)));
+        Key keySafe = new Key(this, new DiscreteCoordinates(2, 3));
+        registerActor(keySafe);
+        registerActor(new Safe(this,keySafe,new HealthPotion(this,new DiscreteCoordinates(4,3))));
         return begin;
     }
 
