@@ -55,6 +55,7 @@ public class Level3 extends EnigmeArea {
         Or rock3Password = new Or(leverPass,torch);
         registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(4,8)));
         registerActor(new MovableRock(this, new DiscreteCoordinates(5,5)));
+        registerActor(new HealthPotion(this,new DiscreteCoordinates(1,5)));
 
         return begin;
     }

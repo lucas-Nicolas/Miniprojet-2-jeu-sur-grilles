@@ -46,6 +46,13 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         public void interactWith(MovableRock movableRock) {
             movableRock.setOrientation(getOrientation());
             movableRock.move(8);
+            vie.setDeltaVie(-10);
+        }
+
+        @Override
+        public void interactWith(HealthPotion potion) {
+            vie.setDeltaVie(10);
+            potion.setIsCollected(true);
         }
     }
 
@@ -125,6 +132,10 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+
+        if(vie.getVie() <= 0){
+            getOwnerArea().unregisterActor(this);
+        }
 
 
         Keyboard keyboard = getOwnerArea().getKeyboard();
