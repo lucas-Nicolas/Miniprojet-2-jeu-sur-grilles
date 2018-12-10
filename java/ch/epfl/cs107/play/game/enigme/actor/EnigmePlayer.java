@@ -233,7 +233,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private void manageSuiveur() {
         int vectorXWithSuiveur = (int)(getPosition().x - suiveur.getPosition().x);
         int vectorYWithSuiveur = (int)(getPosition().y - suiveur.getPosition().y);
-        int distance = (int) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
+        float distance = (float) Math.sqrt(Math.pow(vectorYWithSuiveur, 2) + Math.pow(vectorXWithSuiveur, 2));
         if (vectorXWithSuiveur == 0) {
             if (vectorYWithSuiveur >= 1) {
                 suiveur.setNeededOrientation(Orientation.UP);
@@ -248,6 +248,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
         if (distance != 1) {
             suiveur.setNeedToMove(true);
+        }
+        if(distance >4){
+            suiveur.setCurrentPosition(getPosition());
         }
 
 

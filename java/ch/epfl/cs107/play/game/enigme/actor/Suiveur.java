@@ -52,7 +52,10 @@ public class Suiveur extends MovableAreaEntityAnimated {
         this.frameForMove = frameForMove;
     }
 
-
+    @Override
+    protected void setCurrentPosition(Vector v) {
+        super.setCurrentPosition(v);
+    }
 
     @Override
     public void update(float deltaTime) {
