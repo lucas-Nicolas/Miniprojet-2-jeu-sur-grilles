@@ -77,7 +77,4 @@ public abstract class AreaEntity extends Entity implements Interactable{
         this.ownerArea = ownerArea;
     }
 
-    protected Dialog getDialog(){
-        return dialog;
-    }
 }
