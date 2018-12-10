@@ -133,6 +133,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        manageSuiveur();
 
 
         Keyboard keyboard = getOwnerArea().getKeyboard();
@@ -182,7 +183,6 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
                 this.setOrientation(Orientation.RIGHT);
             }
         }
-        manageSuiveur();
     }
 
     public void passedDoor(Door door){

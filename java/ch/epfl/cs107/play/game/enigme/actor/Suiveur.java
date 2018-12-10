@@ -60,16 +60,13 @@ public class Suiveur extends MovableAreaEntityAnimated {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        setOrientation(neededOriantation);
         if(!isMoving()){
-            setOrientation(neededOriantation);
             if(needToMove) {
                 move(frameForMove);
             }
             needToMove=false;
-
-
         }
-
     }
 
     @Override
