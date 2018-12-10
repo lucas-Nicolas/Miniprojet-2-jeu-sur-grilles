@@ -227,7 +227,7 @@ public abstract class Area implements Playable{
             for (Actor actor : actors) {
                 actor.draw(window);
             }
-            new GraphicsEntity(new Vector(0,0), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
+            new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
         }
 
 
