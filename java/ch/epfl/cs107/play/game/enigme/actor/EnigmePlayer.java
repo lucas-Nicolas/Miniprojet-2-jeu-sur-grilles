@@ -166,7 +166,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         Button upArrow = keyboard.get(Keyboard.UP);
         Button rightArrow = keyboard.get(Keyboard.RIGHT);
         Button K = keyboard.get(Keyboard.K);
-        //for run implementation
+        //for run implementation, change the frameForCurentMove so the player are moving faster are slower.
         if(K.isDown()){
             ANIMATION_DURATION=4;
             suiveur.setFrameForMove(3);

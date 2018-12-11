@@ -61,6 +61,10 @@ public abstract class AreaEntity extends Entity implements Interactable{
         this.orientation=orientation;
     }
 
+    /**
+     * if he can set the possition of the entity into a cell coordinate.
+     *
+     */
     protected void setCurrentPosition(Vector v){
         if(DiscreteCoordinates.isCoordinates(v)) {
             super.setCurrentPosition(v.round());

@@ -196,12 +196,15 @@ public abstract class Area implements Playable{
         return true;
     }
 
+
     @Override
     public void update(float deltaTime) {
+        //checking a key to set te game to pause
         Keyboard keyboard = getKeyboard();
         if(keyboard.get(Keyboard.SPACE).isPressed() ){
             pause=!pause;
         }
+        //if the game is in pause then we do not uptade the game, we only draw the background and the pause image
         if(!pause) {
             purgeRegistration();
             for (Actor actor : actors) {
@@ -228,6 +231,7 @@ public abstract class Area implements Playable{
             for (Actor actor : actors) {
                 actor.draw(window);
             }
+            //draw the pause image
             new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
         }
 
@@ -260,7 +264,6 @@ public abstract class Area implements Playable{
 
     @Override
     public void end() {
-        // TODO save the AreaState somewhere
     }
 
     private final void purgeRegistration(){

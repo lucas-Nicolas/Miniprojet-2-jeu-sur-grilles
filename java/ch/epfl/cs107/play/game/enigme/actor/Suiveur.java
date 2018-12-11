@@ -26,7 +26,7 @@ public class Suiveur extends MovableAreaEntityAnimated {
     }
     //todo corriger les fautes
     /*
-    Because it has to folow someone all his attribut regarding moving is public
+    Because it his a folower all his attribut regarding moving is public, so the actor that posseses him can control him
 
      */
 

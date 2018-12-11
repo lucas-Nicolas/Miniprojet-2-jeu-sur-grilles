@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Window;
 
+import javax.swing.undo.CannotUndoException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * AreaGame is a type of Game displayed in a (MxN) Grid called Area
  * An AreaGame has multiple Areas
  */
-abstract public class AreaGame implements Game {
+abstract public class AreaGame extends Throwable implements Game {
 
     // Context objects
     private Window window;
@@ -50,7 +51,8 @@ abstract public class AreaGame implements Game {
         }else{
             currentArea= areas.get(name);
             if(currentArea==null){
-                //todo implement expetion of good choice see end 4.3
+                //because we can not undo the change we throw this exeption
+                throw new CannotUndoException();
             }
         }
         return null;
@@ -92,8 +94,6 @@ abstract public class AreaGame implements Game {
 
     @Override
     public void end() {
-        // TODO save the game states somewhere
-
     }
     protected Map<String, Area> getAreas(){
         return areas;
