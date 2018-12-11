@@ -71,6 +71,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     private Suiveur suiveur;
     //vie
     private Vie vie;
+    private boolean isRunning;
 
 
 
@@ -153,9 +154,11 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         if(K.isDown()){
             ANIMATION_DURATION=4;
             suiveur.setFrameForMove(3);
+            isRunning =true;
         }else{
             ANIMATION_DURATION=8;
             suiveur.setFrameForMove(7);
+            isRunning =false;
         }
         //pour chaque direction si le personnage est déjà orienté vers
         if (leftArrow.isDown()) {
@@ -267,4 +270,5 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
     public boolean isDead(){
         return (vie.getVie() <= 0);
     }
+    protected boolean isRunning(){return isRunning;}
 }

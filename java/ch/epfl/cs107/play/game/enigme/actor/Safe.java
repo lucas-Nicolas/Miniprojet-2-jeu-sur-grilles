@@ -28,7 +28,6 @@ public class Safe extends AreaEntity implements Logic {
     public void update(float deltaTime) {
         if(open){
             getOwnerArea().unregisterActor(this);
-            getOwnerArea().registerActor(contenu);
         }
     }
 
@@ -42,9 +41,6 @@ public class Safe extends AreaEntity implements Logic {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
-    public void open() {
-        open=true;
-    }
 
     @Override
     public boolean takeCellSpace() {

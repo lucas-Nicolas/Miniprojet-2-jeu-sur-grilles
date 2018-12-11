@@ -57,11 +57,16 @@ public abstract class MovableAreaEntityAnimated extends MovableAreaEntity {
         }
     }
 
-
+    /**
+     * dessine le sprite adapté selon l'orientation de l'entité concernée et alterne les sprites de sorte à animer l'entité.
+     * @param canvas target, not null
+     */
     @Override
     public void draw(Canvas canvas) {
         if(isMoving()){
             spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;
+        }else {
+            spriteIndex = 0;
         }
         switch (getOrientation()){
             case UP:

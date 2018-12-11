@@ -30,7 +30,7 @@ public class LevelSelector extends EnigmeArea {
         begin = begin && registerActor(new SignalDoor(Logic.FALSE,this, "", new DiscreteCoordinates(5, 5), Orientation.UP, new DiscreteCoordinates(8, 7)));
         Key keySafe = new Key(this, new DiscreteCoordinates(2, 3));
         registerActor(keySafe);
-        registerActor(new Safe(this,keySafe,new HealthPotion(this,new DiscreteCoordinates(4,3))));
+
         return begin;
     }
 

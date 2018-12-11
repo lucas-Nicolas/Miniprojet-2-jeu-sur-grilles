@@ -24,8 +24,11 @@ public abstract class MovableAreaEntity extends AreaEntity {
         return getCurrentCells();
     }
 
-    ;
-
+    /**
+     * retourne la ou les positions suivant la taille de l'entité où cette dernière veut se diriger
+     * mais cela si et seulement si ces projections son tà l'intérieur de l'aire de jeu pour éviter les erreurs.
+     * @return
+     */
     protected final List<DiscreteCoordinates> getEnteringCells() {
         List<DiscreteCoordinates> coord = getCurrentCells();
         List<DiscreteCoordinates> entering = new LinkedList<>();
@@ -40,7 +43,7 @@ public abstract class MovableAreaEntity extends AreaEntity {
         return entering;
     }
 
-    ;
+
 
 
     /**

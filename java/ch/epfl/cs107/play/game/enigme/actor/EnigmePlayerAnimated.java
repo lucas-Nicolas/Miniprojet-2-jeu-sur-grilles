@@ -5,7 +5,9 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.math.RegionOfInterest;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Keyboard;
 
 public class EnigmePlayerAnimated extends EnigmePlayer {
     private final int NUMBER_OF_SPRITES = 4;
@@ -36,7 +38,10 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
     public void draw(Canvas canvas) {
         if(isMoving()){
             spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;
+        }else{
+            spriteIndex = 0 ; //si le joueur ne bouge pas on lui affecte la première image.
         }
+
         switch (getOrientation()){
             case UP:
                 spritesUP[spriteIndex].draw(canvas);
@@ -50,6 +55,24 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
             case RIGHT:
                 spritesRIGHT[spriteIndex].draw(canvas);
                 break;
+        }
+        //si le joueur court, on l'anime une fois de plus
+        if(isRunning()){
+            spriteIndex = (++spriteIndex) % NUMBER_OF_SPRITES;;
+            switch (getOrientation()){
+                case UP:
+                    spritesUP[spriteIndex].draw(canvas);
+                    break;
+                case DOWN:
+                    spritesDOWW[spriteIndex].draw(canvas);
+                    break;
+                case LEFT:
+                    spritesLEFT[spriteIndex].draw(canvas);
+                    break;
+                case RIGHT:
+                    spritesRIGHT[spriteIndex].draw(canvas);
+                    break;
+            }
         }
         getVie().draw(canvas);
     }
