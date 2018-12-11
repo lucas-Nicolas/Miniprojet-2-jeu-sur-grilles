@@ -69,10 +69,20 @@ public abstract class AreaEntity extends Entity implements Interactable{
             super.setCurrentPosition(v);
         }
     }
+
+    /**
+     * Permet aux entités héritant de AreaEntity de pouvoir agir (notament se désenregistrer et s'enregistrer) sur l'aire dans laquelle ils se trouvent
+     * @return
+     */
     protected Area getOwnerArea(){
         return ownerArea;
     }
 
+
+    /**
+     * Permet aux entités mobiles de changer leur aire d'appartenance.
+     * @param ownerArea
+     */
     protected void setOwnerArea(Area ownerArea) {
         this.ownerArea = ownerArea;
     }

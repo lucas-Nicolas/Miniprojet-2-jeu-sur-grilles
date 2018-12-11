@@ -31,12 +31,21 @@ public class PressurePlate extends CellSwitch {
     public void draw(Canvas canvas) {
         super.draw(groundLightOn,groundPlateOff,canvas);
     }
+
+    /**
+     * Avant de lancer l'activation normale d'un cellSwitch, actualise pushtime au moment de l'activation de la pressure plate
+     */
     @Override
     protected void setIsActivated() {
         pushTime = System.nanoTime();
             super.setIsActivated();
     }
 
+    /**
+     * Vérifie si le rocher est bloqué ou si il et si le temps de désactivation de la pressure plate n'est pas dépassé, reset également le boolean
+     * isBlocked à false afin de ne pas bloquer la pressure plate infiniment si un rocher n'est pas dessus.
+     * @param deltaTime
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
@@ -46,6 +55,10 @@ public class PressurePlate extends CellSwitch {
         isBlocked =false;
     }
 
+    /**
+     * Permet au rocher de signifier que la plaque est bloquée pendant son séjour dessus à la différence de l'interaction avec un humain.
+     * @param blocked
+     */
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
     }

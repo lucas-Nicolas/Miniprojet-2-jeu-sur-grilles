@@ -28,6 +28,11 @@ public abstract class CellSwitch extends Switch {
     public boolean isCellInteractable() {
         return true;
     }
+
+    /**
+     * Permet aux boutons s'activant par contact de ne pas s'activer et se désactiver à l'infini lorsque le joueur se tient dessus.
+     * @param deltaTime
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);

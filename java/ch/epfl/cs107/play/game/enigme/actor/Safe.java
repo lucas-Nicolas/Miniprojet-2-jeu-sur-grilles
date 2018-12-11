@@ -23,7 +23,10 @@ public class Safe extends AreaEntity implements Logic {
         this.key=key;
     }
 
-
+    /**
+     * Fais en sorte que le coffre disparaisse lorsque le joueur l'ouvre
+     * @param deltaTime
+     */
     @Override
     public void update(float deltaTime) {
         if(open){
@@ -40,6 +43,7 @@ public class Safe extends AreaEntity implements Logic {
     public List<DiscreteCoordinates> getCurrentCells() {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
+
 
 
     @Override
@@ -62,10 +66,18 @@ public class Safe extends AreaEntity implements Logic {
         ((EnigmeInteractionVisitor)v).interactWith(this);
     }
 
+
+    /**
+     * Setter permetant au joueur lorsqu'il interagit avec le coffre de l'ouvrir
+     */
     public void open() {
         this.open = true;
     }
 
+    /**
+     * Permet aux entités contenues dans le coffre de savoir s'il est ouvert ou non et ainsi de conditionner leur apparition.
+     * @return
+     */
     @Override
     public boolean isOn() {
         return open;

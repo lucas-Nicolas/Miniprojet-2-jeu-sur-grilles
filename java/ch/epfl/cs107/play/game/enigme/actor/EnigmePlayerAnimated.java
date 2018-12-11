@@ -34,6 +34,11 @@ public class EnigmePlayerAnimated extends EnigmePlayer {
         }
     }
 
+    /**
+     * Dessine les différents sprites associés au joeur en fonction de son orientation et de sa vitesse
+     * remet le premier sprite si le joueur est à l'arrêt.
+     * @param canvas target, not null
+     */
     @Override
     public void draw(Canvas canvas) {
         if(isMoving()){

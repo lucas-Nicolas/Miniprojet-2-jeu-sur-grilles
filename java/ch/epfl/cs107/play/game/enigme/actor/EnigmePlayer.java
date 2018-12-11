@@ -92,10 +92,18 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         this.vie = new Vie(100,this);
     }
 
+    /**
+     * permet aux entités avec lesquelles le joueur interagit d'accepter l'interactions avec lui.
+     * @return
+     */
     public EnigmePlayerHandler getHandler() {
         return handler;
     }
 
+    /**
+     * Draws the player and displays his health below it.
+     * @param canvas target, not null
+     */
     @Override
     public void draw(Canvas canvas) {
         SPRITE.draw(canvas);
@@ -123,7 +131,11 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
-
+    /**
+     * Permet à un joueur de quitter son aire actuelle et d'entrer dans une nouvelle.
+     * @param area (Area) destination, not null.
+     * @param position (DiscreteCoordinates) not null, position of arrival
+     */
     public void enterArea(Area area, DiscreteCoordinates position) {
         area.registerActor(this);
         setCurrentPosition(position.toVector());
@@ -136,6 +148,10 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         getOwnerArea().setViewCandidate(this);
     }
 
+    /**
+     * Gère les déplacements du joueur en écoutant les touches sur lesquelles l'utilisateur appuie lorsqu'il joue.
+     * @param deltaTime
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
@@ -203,9 +219,18 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         return passedDoor;
     }
 
+    /**
+     * Indique au jeu que le joueur passe une porte.
+     * @return
+     */
     public boolean isPassingDoor() {
         return isPassingDoor;
     }
+
+    /**
+     * Permet au joueur de déléguer la gestion de ses interactions à son handler.
+     * @param other (Interactable) not null
+     */
     public void interactWith(Interactable other){
         other.acceptInteraction(handler);
     }
@@ -216,6 +241,10 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     }
 
+    /**
+     * retourne la case qui se situe devant le joueur ou les cases suivant sa taille
+     * @return
+     */
     @Override
     public List<DiscreteCoordinates> getFieldOfViewCells() {
         List<DiscreteCoordinates> coord = getCurrentCells();
@@ -238,6 +267,9 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         return l.isPressed() ;
     }
 
+    /**
+     * Gère les déplacements du suiveur en déterminant si il a besoin de se déplacer ou non.
+     */
     private void manageSuiveur() {
         int vectorXWithSuiveur = (int)(getPosition().x - suiveur.getPosition().x);
         int vectorYWithSuiveur = (int)(getPosition().y - suiveur.getPosition().y);
@@ -264,11 +296,25 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
     }
 
+    /**
+     * Permet aux joueurs animés d'agir eux aussi en fonction de leur vie d'où le protected.
+     * @return
+     */
     protected Vie getVie() {
         return vie;
     }
+
+    /**
+     * Permet au jeu de savoir si le joueur est mort et d'agir en conséquence.
+     * @return
+     */
     public boolean isDead(){
         return (vie.getVie() <= 0);
     }
+
+    /**
+     * Utile pour que les joueurs animés puissent gérer leurs animations en fonction de leur vitesse.
+     * @return
+     */
     protected boolean isRunning(){return isRunning;}
 }

@@ -20,10 +20,17 @@ public abstract class Switch extends AreaEntity implements Logic {
         this.isActivated = isActivated;
     }
 
+    /**
+     * Keeps track of the current state of the Switch.
+     * @return
+     */
     protected boolean isActivated(){
         return isActivated;
     }
 
+    /**
+     * Permet de gérer l'activation d'un bouton lors de l'interaction.
+     */
     protected void setIsActivated(){
         isActivated = !isActivated;
     }
@@ -33,6 +40,12 @@ public abstract class Switch extends AreaEntity implements Logic {
         return Collections.singletonList(getCurrentMainCellCoordinates());
     }
 
+    /**
+     *  Dessine le sprite adequat en fonction de l'état dans lequel se trouve le bouton.
+     * @param onDraw (Sprite) not null, sprite du switch allumé
+     * @param offDraw   (Sprite) not null, sprite du switch éteint
+     * @param canvas
+     */
     public void draw(Sprite onDraw, Sprite offDraw, Canvas canvas) {
         if(isActivated){
             onDraw.draw(canvas);
