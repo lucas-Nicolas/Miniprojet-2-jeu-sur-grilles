@@ -13,7 +13,7 @@ import java.util.Map;
  * AreaGame is a type of Game displayed in a (MxN) Grid called Area
  * An AreaGame has multiple Areas
  */
-abstract public class AreaGame extends Throwable implements Game {
+abstract public class AreaGame implements Game {
 
     // Context objects
     private Window window;
