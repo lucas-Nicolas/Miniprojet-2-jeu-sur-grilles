@@ -39,6 +39,8 @@ Pause :
  
 Pour mettre le jeu en pause, nous avons ici aussi pris une approche directe en arrêtant simplement de mettre à jour les acteur sans pour autant arrêter de les dessiner et de faire apparaître une icône de pause en bas de la fenêtre pour montrer à l'utilisateur que le jeux est bien en pause. tout se mécanisme s'active donc par le biais d'un simple boolean modifié  par la pression d'une touche qui bloque la mise à jour des acteurs et permet au sprite pause d'être dessiné en bas à gauche de l'écran
 
+De façon analogue nous avons introduit la possibilité d'afficher les commandes lorsque l'utilisateur appuie sur la touche I
+
 MovableRock : 
 
 Pour revenir à nos débuts (étape 1), nous avons implémenté cette classe  MovableRock qui est la seule à implémenter l'interface Interactor avec le joueur principal. Cette classe dispose donc de son propre Handler lui permettant de gérer les interactions avec les plaques de pression
