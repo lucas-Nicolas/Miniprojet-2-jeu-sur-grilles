@@ -16,10 +16,16 @@ Cela nous a permis de pouvoir définir les caractéristiques communes à ces obj
 
 #étape 5 
 
+Liste des extensions implémentées : Animations, Dialogues,Pause du jeu,  Suiveur, Course, Roche poussable, contrôles avancés (help et course), coffre
+
 Animations : 
 
 Pour les animations, première extension, nous avons choisi de faire une classe abstraite MovableAreaEntityAnimated regroupant tous nos acteurs futurs allant être animés par la suite, malheureusement nous n'avons pas trouvé d'alternative à la création d'une classe d'animé spécifique au Player car nous ne voulions pas ne plus pouvoir jouer avec le fantôme de base. 
 Nous avons fait le choix de suivre le pattern proposé dans le 7.2 avec des arrays de Sprites pour chaque direction.
+
+Dialogues : 
+
+Pour les dialogues, nous nous sommes contentés d'utiliser la classe fournie pour afficher un texte guidant l'utilisateur dans certaines phase du jeu. 
 
 Suiveur : 
 
@@ -45,4 +51,6 @@ Par ailleurs, lorsque le personnage meurt, le jeu recommence au début.
 Coffre : 
 
 Faute de temps pour cette extension, sa conception est loin d'être optimale, la classe Safe hérite d'AreaEntity et implémente l'interface logic, un coffre prend en attribut un signal qui indique s'il peut être dévérouillé ou non et renvoie par sa fonction is on un boolean qui indique si le joueur a interagi avec lui ou non. Malheureusement nous n'avons pas trouvé d'autre moyen de faire apparaître des objet qu'en modifiant la classe abstraite collectable et en lui rajoutant un logic qui implique que les objets ramassables sont lié par défaut avec un Logic.True sauf si on leur passe en argument un coffre. On retourne alors le boolean isOn() de ce logic pour savoir si l'objet est traversable et si il accepte les interactions. Il faut cependant aller dans chaque classe pour changer la méthode draw et faire que l'acteur ne soit dessiné que si le coffre est ouvert. 
+
+
 
