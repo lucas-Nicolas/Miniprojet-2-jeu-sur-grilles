@@ -58,7 +58,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
 
         @Override
         public void interactWith(Safe safe) {
-            safe.open();
+            safe.interact();
         }
     }
 

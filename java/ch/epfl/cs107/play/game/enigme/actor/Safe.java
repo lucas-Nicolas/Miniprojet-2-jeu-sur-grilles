@@ -16,11 +16,14 @@ public class Safe extends AreaEntity implements Logic {
     private Logic key;
     private boolean open;
     private final Sprite coffre = new Sprite("safe.2",1,1,this);
+    private Dialog messageNotKey;
+    private long timeMessageShown;
 
 
     public Safe(Area area,DiscreteCoordinates position,Logic key) {
         super(area, position);
         this.key=key;
+        messageNotKey = new Dialog("Il vous faut une clé ...", "dialog.3",area);
     }
 
     /**
@@ -37,6 +40,9 @@ public class Safe extends AreaEntity implements Logic {
     @Override
     public void draw(Canvas canvas) {
         coffre.draw(canvas);
+        if(System.nanoTime()-timeMessageShown<3*Math.pow(10,9)){
+        messageNotKey.draw(canvas);
+        }
     }
 
     @Override
@@ -53,7 +59,7 @@ public class Safe extends AreaEntity implements Logic {
 
     @Override
     public boolean isViewInteractable() {
-        return key.isOn();
+        return true;
     }
 
     @Override
@@ -68,10 +74,14 @@ public class Safe extends AreaEntity implements Logic {
 
 
     /**
-     * Setter permetant au joueur lorsqu'il interagit avec le coffre de l'ouvrir
+     * permet au joue..... ecrire
      */
-    public void open() {
-        this.open = true;
+    public void interact(){
+        if(key.isOn()){
+            this.open = true;
+        }else{
+            timeMessageShown = System.nanoTime();
+        }
     }
 
     /**
