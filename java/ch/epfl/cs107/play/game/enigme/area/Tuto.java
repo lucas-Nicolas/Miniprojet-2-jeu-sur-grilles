@@ -18,7 +18,7 @@ public class Tuto extends EnigmeArea {
     public boolean begin(Window window, FileSystem fileSystem) {
         boolean begin = super.begin(window, fileSystem);
 
-        //create Door and the Key to the Door
+        //create Door and the Key+Plate to the Door
         Key keyDoor =  new Key(this, new DiscreteCoordinates(1, 3));
         begin = begin && registerActor(keyDoor);
         PressurePlate plate = new PressurePlate(this, new DiscreteCoordinates(17, 6));
@@ -29,7 +29,7 @@ public class Tuto extends EnigmeArea {
         begin = begin && registerActor(new HealthPotion(this,new DiscreteCoordinates(18,7)));
 
 
-        //Second rock with PressureSwithch's
+        //First rock with PressureSwithch's
         PressureSwitch p1= new PressureSwitch(this, new DiscreteCoordinates(4, 4));
         PressureSwitch p2= new PressureSwitch(this, new DiscreteCoordinates(5, 4));
         PressureSwitch p3= new PressureSwitch(this, new DiscreteCoordinates(6, 4));
@@ -41,7 +41,7 @@ public class Tuto extends EnigmeArea {
         Logic rock2Password = new MultipleAnd(p1,p2,p3,p4,p5,p6,p7);
         registerActor(new SignalRock(rock2Password,this,new DiscreteCoordinates(5,8)));
 
-        //Third rock with lever or Torch
+        //Second rock with lever or Torch
         Lever l1= new Lever(this, new DiscreteCoordinates(12, 5));
         Lever l2= new Lever(this, new DiscreteCoordinates(11, 5));
         Lever l3= new Lever(this, new DiscreteCoordinates(10, 5));
@@ -55,7 +55,7 @@ public class Tuto extends EnigmeArea {
         Or rock3Password = new Or(leverPass,torch);
         registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(10,8)));
 
-
+        //create the safe and his key
         Key keySafe =  new Key(this, new DiscreteCoordinates(6, 17));
         registerActor(keySafe);
         Safe safe =new Safe(this,new DiscreteCoordinates(8,17),keySafe);
