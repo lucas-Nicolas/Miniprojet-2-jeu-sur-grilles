@@ -64,7 +64,6 @@ public class Enigme extends AreaGame {
         super.update(deltaTime);
         //restart if dead and show message
         if(player.isDead()){
-            if(timeMessageShown==0)
             timeMessageShown = System.nanoTime();
             begin(getWindow(),getFileSystem());
         }
@@ -72,8 +71,6 @@ public class Enigme extends AreaGame {
         if (System.nanoTime()-timeMessageShown<3*Math.pow(10,9)) {
             Dialog messageDeMort = new Dialog("Vous êtes mort ...", "dialog.3", getCurrentArea());
             messageDeMort.draw(getWindow());
-        }else{
-            timeMessageShown=0;
         }
 
         if (player.isPassingDoor()){
