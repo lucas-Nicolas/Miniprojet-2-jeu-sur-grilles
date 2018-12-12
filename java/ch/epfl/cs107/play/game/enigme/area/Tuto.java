@@ -7,7 +7,6 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.signal.logic.*;
 import ch.epfl.cs107.play.window.Window;
 
-import javax.xml.ws.handler.LogicalHandler;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
