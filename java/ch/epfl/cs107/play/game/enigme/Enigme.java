@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.enigme;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
+import ch.epfl.cs107.play.game.enigme.actor.Dialog;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayer;
 import ch.epfl.cs107.play.game.enigme.actor.EnigmePlayerAnimated;
 import ch.epfl.cs107.play.game.enigme.actor.Suiveur;
@@ -19,6 +20,7 @@ import ch.epfl.cs107.play.window.Window;
 public class Enigme extends AreaGame {
     private EnigmePlayer player;
     private final int SCALE_FACTOR = 22;
+    private long timeMessageShown;
     @Override
     public int getFrameRate() {
         return 24;
@@ -60,10 +62,20 @@ public class Enigme extends AreaGame {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        //restart if dead
+        //restart if dead and show message
         if(player.isDead()){
+            if(timeMessageShown==0)
+            timeMessageShown = System.nanoTime();
             begin(getWindow(),getFileSystem());
         }
+        //show message
+        if (System.nanoTime()-timeMessageShown<3*Math.pow(10,9)) {
+            Dialog messageDeMort = new Dialog("Vous êtes mort ...", "dialog.3", getCurrentArea());
+            messageDeMort.draw(getWindow());
+        }else{
+            timeMessageShown=0;
+        }
+
         if (player.isPassingDoor()){
             setCurrentArea(player.getpassedDoor().getAreaGoingTo(),false);
             getCurrentArea().setCameraScaleFactor();

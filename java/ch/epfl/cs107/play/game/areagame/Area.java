@@ -50,6 +50,8 @@ public abstract class Area implements Playable{
     private String title;
     //game pause
     private boolean pause;
+    //help menu
+    private boolean menu;
 
 	/** @return (float): camera scale factor, assume it is the same in x and y direction */
     public abstract float getCameraScaleFactor();
@@ -204,8 +206,11 @@ public abstract class Area implements Playable{
         if(keyboard.get(Keyboard.SPACE).isPressed() ){
             pause=!pause;
         }
+        if(keyboard.get(Keyboard.I).isPressed()){
+            menu=!menu;
+        }
         //if the game is in pause then we do not uptade the game, we only draw the background and the pause image
-        if(!pause) {
+        if(!pause&&!menu) {
             purgeRegistration();
             for (Actor actor : actors) {
                 actor.update(deltaTime);
@@ -228,11 +233,18 @@ public abstract class Area implements Playable{
             }
         }
         else{
-            for (Actor actor : actors) {
-                actor.draw(window);
+
+            if(pause){
+                for (Actor actor : actors) {
+                    actor.draw(window);
+                }
+                //draw the pause image
+                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
+            }else{
+                //draw the menu
+                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("menu"), 30f,20f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
             }
-            //draw the pause image
-            new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
+
         }
 
 
