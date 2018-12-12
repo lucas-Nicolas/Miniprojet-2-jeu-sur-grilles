@@ -201,11 +201,12 @@ public abstract class Area implements Playable{
 
     @Override
     public void update(float deltaTime) {
-        //checking a key to set te game to pause
+        //checking a key to set the game in pause
         Keyboard keyboard = getKeyboard();
         if(keyboard.get(Keyboard.SPACE).isPressed() ){
             pause=!pause;
         }
+        //checking a key to show the help menu
         if(keyboard.get(Keyboard.I).isPressed()){
             menu=!menu;
         }
@@ -235,7 +236,7 @@ public abstract class Area implements Playable{
         else{
 
             if(menu){
-                //draw the menu
+                //draw the help menu
                 new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("menu"), 30f,20f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
             }else {
                 for (Actor actor : actors) {
