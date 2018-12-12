@@ -74,7 +74,7 @@ public class Safe extends AreaEntity implements Logic {
 
 
     /**
-     * permet au joue..... ecrire
+     * Si le joueur a la bonne clé ouvre le coffre, sinon lui indique qu'il n'a pas la clé
      */
     public void interact(){
         if(key.isOn()){
