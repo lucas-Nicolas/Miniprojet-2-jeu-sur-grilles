@@ -234,18 +234,19 @@ public abstract class Area implements Playable{
         }
         else{
 
-            if(pause){
+            if(menu){
+                //draw the menu
+                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("menu"), 30f,20f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
+            }else {
                 for (Actor actor : actors) {
                     actor.draw(window);
                 }
                 //draw the pause image
-                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f,2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
-            }else{
-                //draw the menu
-                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor()/2,-getCameraScaleFactor()/2+1), new ImageGraphics(ResourcePath.getForegrounds("menu"), 30f,20f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
-            }
-
+                new GraphicsEntity(viewCenter.add(-getCameraScaleFactor() / 2, -getCameraScaleFactor() / 2 + 1), new ImageGraphics(ResourcePath.getForegrounds("pause"), 2f, 2f, null, Vector.ZERO, 1.0f, -Float.MAX_VALUE)).draw(window);
         }
+
+
+    }
 
 
     }
