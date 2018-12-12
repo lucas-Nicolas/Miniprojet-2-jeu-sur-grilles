@@ -32,21 +32,23 @@ public class Enigme extends AreaGame {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         if(super.begin(window, fileSystem)){
+            Area Tuto = new Tuto();
             Area levelSelector = new LevelSelector();
             Area level1 = new Level1();
             Area level2 = new Level2();
             Area level3 = new Level3();
             Area level4 = new Enigme1();
 
+            addArea(Tuto);
             addArea(levelSelector);
             addArea(level1);
             addArea(level2);
             addArea(level3);
             addArea(level4);
 
-            setCurrentArea("LevelSelector", false);
-            Suiveur suiveur = new Suiveur(levelSelector,new DiscreteCoordinates(5,4),"flying.mob.3",1);
-            player = new EnigmePlayerAnimated(levelSelector,new DiscreteCoordinates(5,5),"girl.1",suiveur);
+            setCurrentArea("Tuto", false);
+            Suiveur suiveur = new Suiveur(Tuto,new DiscreteCoordinates(9,16),"flying.mob.3",1);
+            player = new EnigmePlayerAnimated(Tuto,new DiscreteCoordinates(10,16),"girl.1",suiveur);
             getCurrentArea().registerActor(player,suiveur);
             getCurrentArea().setViewCandidate(player);
             return true;
