@@ -77,6 +77,7 @@ public class Enigme extends AreaGame {
             setCurrentArea(player.getpassedDoor().getAreaGoingTo(),false);
             getCurrentArea().setCameraScaleFactor();
             player.enterArea(getCurrentArea(),player.getpassedDoor().getArrivalPosition());
+            getCurrentArea().setViewCandidate(player);
         }
     }
 

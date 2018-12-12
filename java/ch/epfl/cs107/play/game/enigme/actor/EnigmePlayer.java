@@ -138,14 +138,14 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
      */
     public void enterArea(Area area, DiscreteCoordinates position) {
         area.registerActor(this);
+        getOwnerArea().unregisterActor(this);
+        getOwnerArea().unregisterActor(suiveur);
+        getOwnerArea().suspend();
         setCurrentPosition(position.toVector());
         this.resetMotion();
         isPassingDoor = false;
-        getOwnerArea().unregisterActor(this);
         suiveur.enterArea(area,position);
-        getOwnerArea().suspend();
         setOwnerArea(area);
-        getOwnerArea().setViewCandidate(this);
     }
 
     /**

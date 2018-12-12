@@ -38,9 +38,9 @@ public class Suiveur extends MovableAreaEntityAnimated {
         area.registerActor(this);
         setCurrentPosition(position.toVector());
         this.resetMotion();
-        getOwnerArea().unregisterActor(this);
         setOwnerArea(area);
     }
+
 
 
     public void setNeedToMove(boolean needToMove){
