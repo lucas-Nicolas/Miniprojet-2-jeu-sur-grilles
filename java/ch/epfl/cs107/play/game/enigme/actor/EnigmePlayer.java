@@ -26,6 +26,7 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         public void interactWith(Apple apple){
             //fait en sorte que la pomme soit ramassée
             apple.setIsCollected(true);
+            vie.setDeltaVie(2);
         }
 
         @Override
@@ -260,6 +261,10 @@ public class EnigmePlayer extends MovableAreaEntity implements Interactor  {
         return true;
     }
 
+    /**
+     * vérifie si la touche l est enfoncée et en déduit si l'utilisateur demande une interaction ou non
+     * @return
+     */
     @Override
     public boolean wantsViewInteraction() {
         Keyboard keyboard = getOwnerArea().getKeyboard();
