@@ -77,7 +77,7 @@ public class EnigmeBehavior extends AreaBehavior {
             if (entity instanceof Door) {
                 return true;
             }
-            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL || type == EnigmeBehavior.EnigmeCellType.WATER);
+            return !(type == EnigmeBehavior.EnigmeCellType.WALL || type == EnigmeBehavior.EnigmeCellType.NULL || type == EnigmeBehavior.EnigmeCellType.WATER );
             //retourne faux si l'entité veut entrer dans un mur et vrai sinon
 
         }

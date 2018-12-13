@@ -119,7 +119,7 @@ public class Level4 extends EnigmeArea {
                 keyOfDoorIsland,keyToHeaven,
                 healthPotion1,healthPotion2,healthPotion3,healthPotion4,healthPotion5,healthPotion6,healthPotion7,healthPotion8,
                 safe,safe1,safe2,safe3,safe4,movableRock1,movableRock2,movableRock3,
-                new SignalDoor(keyToDoor1,this,"Level4",new DiscreteCoordinates(9,5), Orientation.RIGHT,new DiscreteCoordinates(7,5)),
+                new SignalRock(keyToDoor1,this,new DiscreteCoordinates(7,5)),
                 new SignalDoor(keyOfDoorIsland,this,"LevelSelector",new DiscreteCoordinates(4,5), Orientation.DOWN,new DiscreteCoordinates(11,29)),
                 new SignalDoor(keyOfDoorIsland,this,"LevelSelector",new DiscreteCoordinates(4,5), Orientation.DOWN,new DiscreteCoordinates(12,29)),
                 new SignalDoor(lastPlate,this,"Level4",new DiscreteCoordinates(2,27),Orientation.UP, new DiscreteCoordinates(16,22)),
