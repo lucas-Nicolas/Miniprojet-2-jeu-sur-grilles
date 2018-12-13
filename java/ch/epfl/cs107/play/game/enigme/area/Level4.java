@@ -4,7 +4,6 @@ import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.enigme.actor.*;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
-import ch.epfl.cs107.play.signal.logic.And;
 import ch.epfl.cs107.play.signal.logic.Logic;
 import ch.epfl.cs107.play.signal.logic.LogicNumber;
 import ch.epfl.cs107.play.signal.logic.MultipleAnd;
@@ -45,7 +44,7 @@ public class Level4 extends EnigmeArea {
         LogicNumber keyToIslandRock = new LogicNumber(7,accesIsland);
 
         PressurePlate plateToSignalRock = new PressurePlate(this,new DiscreteCoordinates(27,7));
-        PressurePlate fakePlate = new PressurePlate(this,new DiscreteCoordinates(27,7)) ;
+        PressurePlate fakePlate = new PressurePlate(this,new DiscreteCoordinates(26,7)) ;
         PressurePlate  plateToDoor2= new PressurePlate(this, new DiscreteCoordinates(1,28));
         PressurePlate lastPlate = new PressurePlate(this,new DiscreteCoordinates(20,22));
 
