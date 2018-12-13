@@ -21,13 +21,11 @@ public class Level3 extends EnigmeArea {
         boolean begin = super.begin(window, fileSystem);
         //create Door and the Key to the Door
         Key keyDoor = new Key(this, new DiscreteCoordinates(1, 3));
-        registerActor(keyDoor);
-        registerActor(new SignalDoor(keyDoor, this, "LevelSelector", new DiscreteCoordinates(3, 5), Orientation.DOWN, new DiscreteCoordinates(5, 9)));
+        begin = begin && registerActor(keyDoor,new SignalDoor(keyDoor, this, "LevelSelector", new DiscreteCoordinates(3, 5), Orientation.DOWN, new DiscreteCoordinates(5, 9)));
 
         //First rock with PressurePlate
         PressurePlate plate = new PressurePlate(this, new DiscreteCoordinates(9, 8));
-        registerActor(plate);
-        registerActor(new SignalRock(plate, this, new DiscreteCoordinates(6,8)));
+        begin = begin && registerActor(plate,new SignalRock(plate, this, new DiscreteCoordinates(6,8)));
 
         //Second rock with PressureSwithch's
         PressureSwitch p1= new PressureSwitch(this, new DiscreteCoordinates(4, 4));
@@ -37,9 +35,9 @@ public class Level3 extends EnigmeArea {
         PressureSwitch p5= new PressureSwitch(this, new DiscreteCoordinates(4, 6));
         PressureSwitch p6= new PressureSwitch(this, new DiscreteCoordinates(5, 6));
         PressureSwitch p7= new PressureSwitch(this, new DiscreteCoordinates(6, 6));
-        registerActor(p1,p2,p3,p4,p5,p6,p7);
+        begin = begin && registerActor(p1,p2,p3,p4,p5,p6,p7);
         Logic rock2Password = new MultipleAnd(p1,p2,p3,p4,p5,p6,p7);
-        registerActor(new SignalRock(rock2Password,this,new DiscreteCoordinates(5,8)));
+        begin = begin && registerActor(new SignalRock(rock2Password,this,new DiscreteCoordinates(5,8)));
 
         //Third rock with lever or Torch
         Lever l1= new Lever(this, new DiscreteCoordinates(10, 5));
@@ -51,19 +49,19 @@ public class Level3 extends EnigmeArea {
         e.add(l3);
         Logic leverPass =new LogicNumber(5,e);
         Torch torch= new TorchAnimated(this, new DiscreteCoordinates(7, 5), false);
-        registerActor(l1,l2,l3,torch);
+        begin = begin && registerActor(l1,l2,l3,torch);
         Or rock3Password = new Or(leverPass,torch);
-        registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(4,8)));
+        begin = begin && registerActor(new SignalRock(rock3Password,this, new DiscreteCoordinates(4,8)));
 
 
-        registerActor(new MovableRock(this, new DiscreteCoordinates(5,5)));
+        begin = begin && registerActor(new MovableRock(this, new DiscreteCoordinates(5,5)));
 
-        registerActor(new HealthPotion(this,new DiscreteCoordinates(1,5)));
+        begin = begin && registerActor(new HealthPotion(this,new DiscreteCoordinates(1,5)));
 
         Safe safe =new Safe(this,new DiscreteCoordinates(1,7),rock3Password);
         HealthPotion healthPotion = new HealthPotion(this,new DiscreteCoordinates(1,6), safe);
 
-        registerActor(safe,healthPotion);
+        begin = begin && registerActor(safe,healthPotion);
 
 
 

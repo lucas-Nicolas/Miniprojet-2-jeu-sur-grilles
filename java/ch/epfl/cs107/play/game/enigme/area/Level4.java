@@ -24,8 +24,6 @@ public class Level4 extends EnigmeArea {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         boolean begin = super.begin(window, fileSystem);
-        //porte de retour
-        registerActor(new Door(this,"LevelSelector",new DiscreteCoordinates(4,7), Orientation.DOWN,new DiscreteCoordinates(11,29),new DiscreteCoordinates(12,29)));
 
         //keys
         Key keyToDoor1 = new Key(this,new DiscreteCoordinates(6,8));
