@@ -23,7 +23,7 @@ public class Safe extends AreaEntity implements Logic {
     public Safe(Area area,DiscreteCoordinates position,Logic key) {
         super(area, position);
         this.key=key;
-        messageNotKey = new Dialog("Il vous faut une clé ...", "dialog.3",area);
+        messageNotKey = new Dialog("Impossible d'ouvrir le coffre ...", "dialog.3",area);
     }
 
     /**
