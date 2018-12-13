@@ -36,14 +36,12 @@ public class Enigme extends AreaGame {
         if(super.begin(window, fileSystem)){
             Area Tuto = new Tuto();
             Area levelSelector = new LevelSelector();
-            Area level1 = new Level1();
             Area level2 = new Level2();
             Area level3 = new Level3();
-            Area level4 = new Enigme1();
+            Area level4 = new Level4();
 
             addArea(Tuto);
             addArea(levelSelector);
-            addArea(level1);
             addArea(level2);
             addArea(level3);
             addArea(level4);
