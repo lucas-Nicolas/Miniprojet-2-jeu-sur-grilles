@@ -58,7 +58,7 @@ public abstract class MovableAreaEntityAnimated extends MovableAreaEntity {
     }
 
     /**
-     * dessine le sprite adapté selon l'orientation de l'entité concernée et alterne les sprites de sorte à animer l'entité.
+     * dessine le sprite adapté selon l'orientation de l'entité concernée et alterne les sprites de sorte à animer l'entité.`
      * @param canvas target, not null
      */
     @Override
